@@ -1,0 +1,141 @@
+\RequirePackage{plautopatch}
+\documentclass[report,a4paper,uplatex,dvipdfmx,11pt]{jsbook}
+\usepackage{amsmath,amssymb}
+\usepackage{amsfonts}
+\usepackage{bm} %数式中でボールド体も斜体にする。\bm{a}と書けば、斜体ボールドのaが書ける
+\usepackage{graphicx}
+\usepackage[hyphens]{url}
+\usepackage[sort,compress,numbers]{natbib} % apsrev4-2ja.bstを使うのに必要
+\usepackage{doi}
+\usepackage{hyperref}
+\usepackage{tocloft}
+
+% 参考文献の書式の設定-----------------------------------------------------------------
+\bibliographystyle{apsrev4-2ja} % アメリカ物理学会(APS)の標準のbibtexスタイルファイル
+%\bibliographystyle{junsrt} % 文献のタイトルまで表示したい場合はこちらを使う
+% -------------------------------------------------------------------------------------
+
+
+% 余白の設定をするためのパッケージ------------------------------
+%\usepackage[pass]{geometry}
+%\usepackage{bxpapersize}
+% --------------------------------------------------------------
+
+
+% 章見出しの上の余白を小さくする--------------------------------
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\@makechapterhead}{\vspace*{2\Cvs}}{}{}{}
+\patchcmd{\@makeschapterhead}{\vspace*{2\Cvs}}{}{}{}
+\makeatother
+\renewcommand{\cftbeforetoctitleskip}{0pt}
+% --------------------------------------------------------------
+
+
+% 目次のフォントについて----------------------------------------------------
+% 1. 見出しの文字を明朝体にする(太字にはならない)
+%\renewcommand{\headfont}{\mcfamily}
+
+% 2. 明朝体の太字を使う場合は、
+%\usepackage[deluxe]{otf}
+%\renewcommand{\headfont}{\mcfamily\bfseries}
+
+% 3. 見出し全てではなく、目次のフォントのみ変更する場合は、
+\renewcommand{\cftchapnumwidth}{3.8em}
+\renewcommand{\cftchapfont}{\mcfamily}
+\renewcommand{\cftchappagefont}{\rmfamily}
+% --------------------------------------------------------------------------
+
+
+% 目次に参考文献を表示する ---------------------------------------
+\makeatletter
+\renewenvironment{thebibliography}[1]{%
+ \bibsection\parindent \z@\bibpreamble\bibfont\list
+   {\@biblabel{\arabic{NAT@ctr}}}{\@bibsetup{#1}%
+   \addcontentsline{toc}{chapter}{\bibname}%
+    \setcounter{NAT@ctr}{0}}%
+    \ifNAT@openbib
+      \renewcommand\newblock{\par}
+    \else
+      \renewcommand\newblock{\hskip .11em \@plus.33em \@minus.07em}%
+    \fi
+    \sloppy\clubpenalty4000\widowpenalty4000
+    \sfcode`\.=1000\relax
+    \let\citeN\cite \let\shortcite\cite
+    \let\citeasnoun\cite
+ }{\def\@noitemerr{%
+  \PackageWarning{natbib}
+     {Empty `thebibliography' environment}}%
+  \endlist\vskip-\lastskip}
+ \let\bibfont\relax
+\makeatother
+% ----------------------------------------------------------------
+
+
+% 卒論で、図をページ数に含めたくないときに用いる図・表環境-------------
+\newenvironment{clearpagefigure}
+{
+\clearpage
+\begin{figure}
+\centering
+\thispagestyle{empty}
+\addtocounter{page}{-1}
+}
+{\end{figure}}
+\newenvironment{clearpagetable}
+{
+\clearpage
+\begin{table}
+\centering
+\thispagestyle{empty}
+\addtocounter{page}{-1}
+}
+{\end{table}}
+% ---------------------------------------------------------------------
+
+
+\setcounter{tocdepth}{2} % 目次にどのレベルのセクションまで反映させるか。2だとsubsectionまで。
+
+%\allowdisplaybreaks % 数式の途中での改ページを許す
+
+
+\title{卒論・修論用\LaTeX テンプレート}
+\author{Author's Name}
+\date{2022年2月5日}
+%\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\frontmatter
+\include{sub/abstract}
+\tableofcontents
+
+\mainmatter
+\include{sub/chapter1}
+\include{sub/chapter2}
+\include{sub/chapter3}
+\include{sub/chapter4}
+\include{sub/chapter5}
+
+\newcounter{pagenumberbody}
+\setcounter{pagenumberbody}{\value{page}}
+
+\appendix
+\setcounter{page}{1}
+\renewcommand{\thepage}{A--\arabic{page}}
+\include{appendixA}
+%\setcounter{page}{1}
+%\renewcommand{\thepage}{B--\arabic{page}}
+%\include{appendixB}
+
+\renewcommand{\thepage}{\arabic{page}}
+\setcounter{page}{\value{pagenumberbody}}
+
+\backmatter
+\bibliography{reference} % reference.bibの読み込み
+
+\include{acknowledgement}
+
+\end{document}
