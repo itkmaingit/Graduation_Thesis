@@ -1,1 +1,97 @@
 \chapter{準備}
+\section{ペンシルパズルに関する諸概念の定義}
+\subsection{用語の定義}
+この節ではペンシルパズルにおける用語を定義する．
+
+まず，ペンシルパズルとはサイズ$m\times n$の平面グリッドが盤面として与えられ，パズルルールに定められた条件とその解答ステップにおいて存在する既知情報から格子点，細胞，辺のいずれかの未知情報に論理的推測から解を書き込み，全ての格子点，細胞，辺がパズルルールに定められた条件を満たす完成盤面へと「解く」行為とする．
+
+ここで、ペンシルパズルにおいて具体的なパズルルールを与えた際に，そのパズルルールに則った問題を考えることができる．その問題にかかわる概念として完成盤面と未完成盤面の定義を行う。
+
+\begin{definition}\label{FinishedBoard}\textup{\textgt{完成盤面}}
+
+  全ての格子点，細胞，辺がパズルルールに定められた条件を満たしている盤面
+\end{definition}
+
+\begin{definition}\label{UnfinishedBoard}\textup{\textgt{未完成盤面}}
+
+  各未知情報がその未完成盤面に対応する完成盤面の解と一対一に対応するような盤面．(\textgt{唯一解})
+\end{definition}
+
+上の記述より，一つの完成盤面には複数の未完成盤面が対応する．(一つの操作(未知情報に解を書き込む)を課した未完成盤面もまた未完成盤面である．)
+
+つまり，未完成盤面から完成盤面への写像が(そのパズルルールに対し)ただ一つ存在すれば，その未完成盤面の集合全体は与えたパズルルールの「問題である」と言える．
+
+\subsection{盤面の定義}
+この節ではペンシルパズルの盤面上の情報に関する各概念を数学的に定義する．
+
+
+平面グリッドを与えたとき，ペンシルパズルの盤面には左上から各格子点に対し座標$(i,j)$を割り振ることができる．そうした時，グリッドにおける格子点，細胞，辺に対して下図で表されるように変数を与えることができるが，これを数学的に定義する．各格子点，辺，細胞を構成する各座標の集合をそれぞれ
+\begin{definition}\label{VariableDefinition}\textup{盤面上の変数}
+  \begin{align}
+    p(i,j)= & \{(i,j)\}                              & \\
+    c(i,j)= & \{(i,j), (i,j+1), (i+1,j), (i+1,j+1)\} & \\
+    h(i,j)= & \{(i,j), (i,j+1)\}                     & \\
+    v(i,j)= & \{(i,j), (i+1,j)\}                     &
+  \end{align}
+\end{definition}
+と定義する．このような添え字付きの変数を改めて格子点，細胞，辺とし，まとめて盤面上の変数と呼ぶこととする．ここで完成盤面に対して盤面上の変数の各集合から，各パズルルールにおいて定義される盤面上の変数が取りうる集合(codomain)の元を与える写像を考えることができる．
+
+\begin{definition}\label{Mapping}\textup{盤面上の変数}
+
+  \begin{equation}
+    \begin{array}{rccc}
+      p\colon & \{p(i,j)\}            & \longrightarrow & P                     \\
+              & \rotatebox{90}{$\in$} &                 & \rotatebox{90}{$\in$} \\
+              & p(i,j)                & \longmapsto     & p_{i,j}
+    \end{array}
+  \end{equation}
+  \vskip\baselineskip
+
+  \begin{equation}
+    \begin{array}{rccc}
+      c\colon & \{c(i,j)\}            & \longrightarrow & C                     \\
+              & \rotatebox{90}{$\in$} &                 & \rotatebox{90}{$\in$} \\
+              & c(i,j)                & \longmapsto     & c_{i,j}
+    \end{array}
+  \end{equation}
+
+  \vskip\baselineskip
+  \begin{equation}
+    \begin{array}{rccc}
+      h\colon & \{h(i,j)\}            & \longrightarrow & H                     \\
+              & \rotatebox{90}{$\in$} &                 & \rotatebox{90}{$\in$} \\
+              & h(i,j)                & \longmapsto     & h_{i,j}
+    \end{array}
+  \end{equation}
+
+  \vskip\baselineskip
+  \begin{equation}
+    \begin{array}{rccc}
+      v\colon & \{v(i,j)\}            & \longrightarrow & V                     \\
+              & \rotatebox{90}{$\in$} &                 & \rotatebox{90}{$\in$} \\
+              & v(i,j)                & \longmapsto     & v_{i,j}
+    \end{array}
+  \end{equation}
+
+
+\end{definition}
+
+未完成盤面において，解答者にこれら写像の中で，盤面上の変数とcodomainの元との対応が公開されていないものを未知情報と呼び，公開されているもの及び解答者が論理的推測により導いたものを既知情報と呼ぶこととする．
+
+完成盤面においては各変数が全て既知情報であるため，混同の恐れがない場合$c_{ij}=3$などの表記を行う．つまり，各写像は
+\begin{align*}
+  c=\{c_{ij}\}
+\end{align*}
+と記述することができる．
+
+このような座標系と写像を導入することにより，任意の完成盤面は
+\begin{equation}
+  U=\Bigl\{\{c\},\{p\},\{h\},\{v\}\Bigr\}=\biggl\{\Bigl\{\{c_{ij}\},\{p_{ij}\},\{h_{ij}\},\{v_{ij}\}\Bigr\}\biggr\}
+\end{equation}
+
+
+なる集合の1つの元と言うことが出来る.
+
+\subsection{パズルルールの定義}
+前節で定義した用語を用いることによってペンシルパズルにおけるパズルルールという用語の定義を行う．
+ペンシルパズルにおけるパズルルールとは完成盤面における全ての既知情報が満たしているべき必要十分条件(conditions)と，その既知情報が取りうる値の範囲(codomain)，そして解答者に向けて隠される情報(Hide Information, 以下HI)の組み合わせである．それぞれが
