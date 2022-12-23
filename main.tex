@@ -96,14 +96,14 @@
 
 \setcounter{tocdepth}{2} % 目次にどのレベルのセクションまで反映させるか。2だとsubsectionまで。
 
-%\allowdisplaybreaks % 数式の途中での改ページを許す
+\allowdisplaybreaks % 数式の途中での改ページを許す
 
-\newtheorem{definition}{定義} [chapter]
-\newtheorem{theorem}{定理} [chapter]
-\newtheorem{proposition} {命題} [chapter]
-\newtheorem{lemma} {補題} [chapter]
-\newtheorem{corollary} {系} [chapter]
-\newtheorem{example} {例} [chapter]
+\newtheorem{definition}{定義}[section]
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition} {命題}[section]
+\newtheorem{lemma} {補題}[section]
+\newtheorem{corollary} {系}[section]
+\newtheorem{example} {例}[section]
 
 
 \title{卒論・修論用\LaTeX テンプレート}
@@ -132,7 +132,7 @@
 \appendix
 \setcounter{page}{1}
 \renewcommand{\thepage}{A--\arabic{page}}
-\include{appendixA}
+\include{sub/appendixA}
 %\setcounter{page}{1}
 %\renewcommand{\thepage}{B--\arabic{page}}
 %\include{appendixB}
