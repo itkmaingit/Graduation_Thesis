@@ -1,54 +1,83 @@
 \chapter{準備}\label{chapter:2}
-\section{ペンシルパズルに関する諸概念の定義}
-\subsection{用語の定義}
-この節ではペンシルパズルにおける用語を定義する．
+\section{章の概略}\label{section:1}
+この章では準備としてペンシルパズルに関わる用語の定義を行う．ただし，ペンシルパズルとは「サイズ$m\times n$の平面グリッドを与えたとき，パズルルールに定められた条件と，その解答ステップにおいて明らかになっている解から格子点，細胞，辺のいずれかの未知情報に論理的推測から解を書き込み，全ての格子点，細胞，辺がパズルルールに定められた条件を満たす完成盤面へと解く行為と，その問題やルールなどを一括りに呼ぶ概念」とし，明確な定義は行わずあくまで概念として以下もペンシルパズルという用語を使用する．ただし，格子点，細胞，辺というのは図\ref{fig:Board}で与える図中の名前とそれぞれ対応させるものとする．ペンシルパズルは，例としてナンバープレイス（図\ref{fig:SamplePuzzle}）などが与えられる．\ref{section:2}ではペンシルパズルにおける盤面を定義する．
 
-ただし，ペンシルパズルとは「サイズ$m\times n$の平面グリッドが盤面として与えられ，パズルルールに定められた条件と，その解答ステップにおいて明らかになっている解から格子点，細胞，辺のいずれかの未知情報に論理的推測から解を書き込み，全ての格子点，細胞，辺がパズルルールに定められた条件を満たす完成盤面へと解く行為と，その問題やルールなどを一括りに呼ぶ概念」とし，明確な定義は行わずあくまで概念として以下もペンシルパズルという用語を使用する．
+\section{用語の定義}\label{section:2}
+この節ではペンシルパズルにおける用語を定義する．ただし，ペンシルパズルとは「サイズ$m\times n$の平面グリッドを与えたとき，パズルルールに定められた条件と，その解答ステップにおいて明らかになっている解から格子点，細胞，辺のいずれかの未知情報に論理的推測から解を書き込み，全ての格子点，細胞，辺がパズルルールに定められた条件を満たす完成盤面へと解く行為と，その問題やルールなどを一括りに呼ぶ概念」とし，明確な定義は行わずあくまで概念として以下もペンシルパズルという用語を使用する．ただし，格子点，細胞，辺というのは図\ref{fig:Board}で与える図中の名前とそれぞれ対応させるものとする．ペンシルパズルは，例としてナンバープレイス（図\ref{fig:SamplePuzzle}）などが与えられる．
 
-ここで，ペンシルパズルにおいて具体的なパズルルールを与えた際に，そのパズルルールに則った問題を考えることができる．その問題にかかわる概念として完成盤面と未完成盤面の定義を行う．
+以下の説明のために盤面，完成盤面，未完成盤面を定義する．図\ref{fig:Board}で与えたようなグリッドに対し，各格子点，細胞，辺に対応する解が存在するものを総称して\textgt{盤面}と定義する．しかし，その解が未知，既知に関わらず盤面と呼ぶ．ただし解とはペンシルパズルにおいて格子点，細胞，辺に対して存在する数値や，変数のことである．図\ref{fig:SamplePuzzle}に与えたパズルでは，左上端の細胞の解が2に対応し，右下端の細胞の解は未知である（既知の場合3）．また，全ての格子点，細胞，辺の解がパズルルールに定められた条件を満たしている盤面のことを\textgt{完成盤面}と定義する．さらに任意の格子点，細胞，辺の解が未知であるものが存在する盤面の中で，解を既知にしたときに対応する完成盤面がただ一つしかない盤面を\textgt{未完成盤面}と定義する．未完成盤面と完成盤面の例として図\ref{fig:SamplePuzzle}を与える．図中左が未完成盤面，図中右が完成盤面である．
 
-\begin{definition}\label{definition:FinishedBoard}\textup{\textgt{完成盤面}}
-
-  全ての格子点，細胞，辺がパズルルールに定められた条件を満たしている盤面
-\end{definition}
-
-\vskip\baselineskip
-\begin{definition}\label{definition:UnfinishedBoard}\textup{\textgt{未完成盤面}}
-
-  各未知情報がその未完成盤面に対応する完成盤面の解と一対一に対応するような盤面．(\textgt{唯一解})
-\end{definition}
-\vskip\baselineskip
-
-上の記述より，一つの完成盤面には複数の未完成盤面が対応する．(一つの操作(未知情報に解を書き込む)を課した未完成盤面もまた未完成盤面．)
-
-つまり，未完成盤面から完成盤面への写像が(そのパズルルールに対し)ただ一つ存在すれば，その未完成盤面の集合全体は与えたパズルルールの「問題である」と言える．
-
-\subsection{盤面上の情報に関する概念の数学的定義}
-この節ではペンシルパズルにおける盤面上の情報に関する各概念を数学的に定義する．ここで定義するものは全て直感的な定義と違わないように行う．
-
-
-平面グリッドを与えたとき，ペンシルパズルの盤面には左上から各格子点に対し座標$(i,j)$を割り振ることができる．そうした時，グリッドにおける格子点，細胞，辺に対して下図(図\ref{fig:VariableAtBoard})で表されるように変数を与えることができるが，これを数学的に定義する．各格子点，辺，細胞を構成する各座標の集合と$(i,j)$の間にはそれぞれ以下のものが定義できる．
-\begin{definition}\label{definition:VariableAtBoard}\textup{\textgt{盤面上の変数}}
-  \begin{align}
-    p(i,j)\coloneqq & \{(i,j)\}                              & \\
-    c(i,j)\coloneqq & \{(i,j), (i,j+1), (i+1,j), (i+1,j+1)\} & \\
-    h(i,j)\coloneqq & \{(i,j), (i,j+1)\}                     & \\
-    v(i,j)\coloneqq & \{(i,j), (i+1,j)\}                     &
-  \end{align}
-
-  ただし，$h(i,j),v(i,j)$の詳細に興味がない場合は，それらを合わせて$e(i,j)$と記述する．また，盤面上の変数の詳細そのものに興味がない場合は上記のもの全て合わせて$\lambda(i,j)$と記述する.
-\end{definition}
-\vskip\baselineskip
-このような包含写像が存在し，これを$p(i,j),c(i,j),h(i,j),v(i,j)$の定義とし，このような添え字付きの変数を改めて格子点，細胞，辺と呼び，これらをまとめた概念として盤面上の変数と呼ぶこととする．
+上の記述より，一つの完成盤面には複数の未完成盤面が対応する（一つの操作（未知情報に解を書き込む）を課した未完成盤面もまた未完成盤面．）.このとき，その複数の未完成盤面と，完成盤面の集合全体をパズルルールの\textgt{問題}と定義する．
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=5cm,clip]{fig/define.png}
-  \caption{まだ作成できておらず，内容が少し異なりますがイメージのためにつけておきます．}
+  \includegraphics[width=8cm,clip]{fig/board.png}
+  \caption{}
+  \label{fig:Board}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=8cm,clip]{fig/samplePuzzle.png}
+  \caption{}
+  \label{fig:SamplePuzzle}
+\end{figure}
+
+
+
+\section{盤面上の情報に関する概念の数学的定義}\label{section3}
+この節ではペンシルパズルにおける盤面上の情報に関する各概念を数学的に定義する．ここで定義するものは全て直感的な定義と違わないように行う．平面グリッドを与えたとき，ペンシルパズルの盤面には左上から各格子点に対し座標$(i,j)$を割り振ることができる（図\ref{fig:Coordinate}）．そうした時，グリッドにおける格子点，細胞，辺に対して下図\ref{fig:VariableAtBoard}で表されるように変数を与えることができる．これをそれぞれ数学的に格子点$p(i,j)$, 細胞$c(i,j)$, 横辺$h(i,j)$, 縦辺$v(i,j)$として定義する．
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=8cm,clip]{fig/coordinate.png}
+  \caption{}
+  \label{fig:Coordinate}
+\end{figure}
+
+\begin{definition}[格子点$p(i,j)$, 細胞$c(i,j)$, 横辺$h(i,j)$, 縦辺$v(i,j)$]\label{definition:VariableAtBoard}
+
+
+  \textgt{格子点}$p(i,j)$($(i,j)\in \mathbb{Z}^2$)を
+  \begin{equation*}
+    p(i,j)\coloneqq \{(i,j)\}
+  \end{equation*}
+  と定義する．
+
+  以下同様に\textgt{細胞}$c(i,j)$，\textgt{横辺}$h(i,j)$，\textgt{縦辺}$v(i,j)$を
+  \begin{align*}
+    c(i,j)\coloneqq & \{(i,j), (i,j+1), (i+1,j), (i+1,j+1)\} & (1\leq i \leq n-1,1\leq j \leq n-1,) & \\
+    h(i,j)\coloneqq & \{(i,j), (i,j+1)\}                     & (1\leq i \leq n-1,1\leq j \leq n,)   & \\
+    v(i,j)\coloneqq & \{(i,j), (i+1,j)\}                     & (1\leq i \leq n,1\leq j \leq n-1,)   &
+  \end{align*}
+
+  と定義する．
+
+  ただし，$h(i,j),v(i,j)$の詳細に興味がない場合は，任意の辺という意味で辺$e(i,j)$を
+  \begin{equation*}
+    e(i,j) \coloneqq \{h(i,j),v(i,j)\}\ni \forall x
+  \end{equation*}
+
+  と定義する．
+
+  また，格子点，細胞，辺の集合の詳細そのものに興味がない場合は任意の格子点，細胞，辺という意味で$\lambda(i,j)$を
+  \begin{equation*}
+    \lambda(i,j) \coloneqq \{p(i,j),c(i,j),h(i,j),v(i,j)\}\ni \forall x
+  \end{equation*}
+
+  と定義する.
+\end{definition}
+\vskip\baselineskip
+これら添え字付きの変数を改めて格子点，細胞，辺と呼び，これらをまとめた総称として\textgt{盤面上の変数}と呼ぶこととする．
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=8cm,clip]{fig/define.png}
+  \caption{}
   \label{fig:VariableAtBoard}
 \end{figure}
 
-ペンシルパズルにおいて，盤面上の変数に対して，ソルバーは未知情報に対して解を書き込むことが前提にあるので，パズルルールを定義するためには，解がどのような集合の元に含まれるかを定義する必要がある．そのために以下で$\mathbf{codomain}$という用語を用いて解集合を定義する．
+ペンシルパズルにおいて，ソルバーは盤面上の変数に対して解を書き込むことが前提であった（\ref{section:1}）そのため，パズルルールを定義するためには，解がどのような集合の元に含まれるかを定義する必要がある．そのために以下でcodomainという用語を用いて解集合を定義する．
 
 \begin{definition}\label{definition:Codomain}\textup{$\mathbf{codomain}$}
 
@@ -179,7 +208,7 @@
 \end{definition}
 \vskip\baselineskip
 
-$\mathbf{conditions}$の具体例は節(\ref{subsection:GraphDefinition})で定義するグラフと(定義\ref{definition:Function})で定義する関数を用いる必要があるため，後の節(例\ref{example:SlitherLinkConditions})で取り上げることとする．
+$\mathbf{conditions}$の具体例は節(\ref{section:GraphDefinition})で定義するグラフと(定義\ref{definition:Function})で定義する関数を用いる必要があるため，後の節(例\ref{example:SlitherLinkConditions})で取り上げることとする．
 
 上の$\mathbf{conditions}$を用いればあるパズルルールが存在した時，完成盤面全体の集合Xは
 
@@ -237,7 +266,7 @@ $\mathbf{conditions}$の具体例は節(\ref{subsection:GraphDefinition})で定�
 \end{figure}
 
 
-\subsection{盤面上の変数の関係性の定義}\label{subsection:RelationDefinition}
+\section{盤面上の変数の関係性の定義}\label{section:RelationDefinition}
 
 次に，前節で定義した盤面上の変数同士の関係性について定義を行う．ただし，ここでは完成盤面を仮定する．
 
@@ -373,8 +402,8 @@ $\mathbf{conditions}$の具体例は節(\ref{subsection:GraphDefinition})で定�
 \end{definition}
 
 
-\subsection{グラフの定義}\label{subsection:GraphDefinition}
-前節\ref{subsection:RelationDefinition}で定義した概念を用いることによって，盤面$\Bigl\{\{p_{i,j}\},\{c_{i,j}\},\{e_{i,j}\}\Bigr\}$を与えたとき，盤面上にグラフという概念を導入することができる．
+\section{グラフの定義}\label{section:GraphDefinition}
+前節\ref{section:RelationDefinition}で定義した概念を用いることによって，盤面$\Bigl\{\{p_{i,j}\},\{c_{i,j}\},\{e_{i,j}\}\Bigr\}$を与えたとき，盤面上にグラフという概念を導入することができる．
 
 \begin{definition}\textup{\textgt{グラフ}}
   \begin{equation}
@@ -399,7 +428,7 @@ $\mathbf{conditions}$の具体例は節(\ref{subsection:GraphDefinition})で定�
 \begin{equation}
   A=\{G_1,G_2,...,G_m\}=\{G_x\}\quad (mは盤面に存在するグラフの数)
 \end{equation}
-がいつでも一意に定まる．(証明\ref{subsection:GraphIsUniqueProof})
+がいつでも一意に定まる．(証明\ref{section:GraphIsUniqueProof})
 また，(定義\ref{definition:Function})で取り上げた関数のうち，グラフが定義に$p(i,j)$を含むことにより$\bm{cross}$に関しては「グラフ内の全ての$p(i,j)$において，$\bm{cross}(p(i,j))=2$」などという条件を構成できる．
 
 

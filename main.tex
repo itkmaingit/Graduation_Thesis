@@ -1,6 +1,7 @@
 \RequirePackage{plautopatch}
 \documentclass[report,a4paper,uplatex,dvipdfmx,11pt]{jsbook}
 \usepackage{amsmath, amssymb,  latexsym, mathtools}
+\usepackage{amsthm}
 \usepackage{amsfonts}
 \usepackage{bm} %数式中でボールド体も斜体にする。\bm{a}と書けば、斜体ボールドのaが書ける
 \usepackage{graphicx}
@@ -98,7 +99,20 @@
 
 \allowdisplaybreaks % 数式の途中での改ページを許す
 
+\newtheoremstyle{myDefinition}%   % スタイル名
+    {}%b                     % 上部スペース
+    {}%                      % 下部スペース
+    {}%              % 本文フォント
+    {}%                      % 1行目のインデント量
+    {}%             % 見出しフォント
+    {.}%                     % 見出し後の句読点
+    { }%                     % 見出し後のスペース
+    {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
+
+\theoremstyle{myDefinition}
 \newtheorem{definition}{定義}[section]
+
+
 \newtheorem{theorem}{定理}[section]
 \newtheorem{proposition} {命題}[section]
 \newtheorem{lemma} {補題}[section]
