@@ -104,20 +104,22 @@
     {}%                      % 下部スペース
     {}%              % 本文フォント
     {}%                      % 1行目のインデント量
-    {}%             % 見出しフォント
+    {\bfseries}%             % 見出しフォント
     {.}%                     % 見出し後の句読点
     { }%                     % 見出し後のスペース
     {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
 
 \theoremstyle{myDefinition}
-\newtheorem{definition}{定義}[section]
+\newtheorem{definition}{Definition}[section]
 
 
-\newtheorem{theorem}{定理}[section]
-\newtheorem{proposition} {命題}[section]
-\newtheorem{lemma} {補題}[section]
-\newtheorem{corollary} {系}[section]
-\newtheorem{example} {例}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition} {Proposition}[section]
+\newtheorem{lemma} {Lemma}[section]
+\newtheorem{corollary} {Corollary}[section]
+
+\theoremstyle{myDefinition}
+\newtheorem{example} {e.g.}[section]
 
 
 \title{パズルルールの自動作成を目指した数学的考察}

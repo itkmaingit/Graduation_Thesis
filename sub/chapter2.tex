@@ -3,7 +3,7 @@
 この章では準備としてペンシルパズルに関わる用語の定義を行う．ただし，ペンシルパズルとは「サイズ$m\times n$の平面グリッドを与えたとき，パズルルールに定められた条件と，その解答ステップにおいて明らかになっている解から格子点，細胞，辺のいずれかの未知情報に論理的推測から解を書き込み，全ての格子点，細胞，辺がパズルルールに定められた条件を満たす完成盤面へと解く行為と，その問題やルールなどを一括りに呼ぶ概念」とし，明確な定義は行わずあくまで概念として以下もペンシルパズルという用語を使用する．ただし，格子点，細胞，辺というのは図\ref{fig:Board}で与える図中の名前とそれぞれ対応させるものとする．ペンシルパズルは，例としてナンバープレイス（図\ref{fig:SamplePuzzle}）などが与えられる．\ref{section:2}ではペンシルパズルにおける盤面を定義する．
 
 \section{用語の定義}\label{section:2}
-この節ではペンシルパズルにおける用語を定義する．ただし，ペンシルパズルとは「サイズ$m\times n$の平面グリッドを与えたとき，パズルルールに定められた条件と，その解答ステップにおいて明らかになっている解から格子点，細胞，辺のいずれかの未知情報に論理的推測から解を書き込み，全ての格子点，細胞，辺がパズルルールに定められた条件を満たす完成盤面へと解く行為と，その問題やルールなどを一括りに呼ぶ概念」とし，明確な定義は行わずあくまで概念として以下もペンシルパズルという用語を使用する．ただし，格子点，細胞，辺というのは図\ref{fig:Board}で与える図中の名前とそれぞれ対応させるものとする．ペンシルパズルは，例としてナンバープレイス（図\ref{fig:SamplePuzzle}）などが与えられる．
+この節ではペンシルパズルにおける用語を定義する．ただし，ペンシルパズルとは「サイズ$m\times n$の平面グリッドを与えたとき，格子点，細胞，辺のいずれかの未知情報に対し，パズルルールに定められた条件とその解答ステップにおいて明らかになっている既知情報から一意に定まる解を書き込み，全ての格子点，細胞，辺がパズルルールに定められた条件を満たす完成盤面へと解く行為と，その問題やルールなどを一括りに呼ぶ概念」とし，明確な定義は行わずあくまで概念として以下もペンシルパズルという用語を使用する．ただし，格子点，細胞，辺というのは図\ref{fig:Board}で与える図中の名前とそれぞれ対応させるものとし，ある解答ステップにおける既知情報とはあるパズルの問題があったとき初期状態と，それまでの解答ステップにより得られた解のことを指すものとする．．ペンシルパズルは，例としてナンバープレイス（図\ref{fig:SamplePuzzle}）などが与えられる．
 
 以下の説明のために盤面，完成盤面，未完成盤面を定義する．図\ref{fig:Board}で与えたようなグリッドに対し，各格子点，細胞，辺に対応する解が存在するものを総称して\textgt{盤面}と定義する．しかし，その解が未知，既知に関わらず盤面と呼ぶ．ただし解とはペンシルパズルにおいて格子点，細胞，辺に対して存在する数値や，変数のことである．図\ref{fig:SamplePuzzle}に与えたパズルでは，左上端の細胞の解が2に対応し，右下端の細胞の解は未知である（既知の場合3）．また，全ての格子点，細胞，辺の解がパズルルールに定められた条件を満たしている盤面のことを\textgt{完成盤面}と定義する．さらに任意の格子点，細胞，辺の解が未知であるものが存在する盤面の中で，解を既知にしたときに対応する完成盤面がただ一つしかない盤面を\textgt{未完成盤面}と定義する．未完成盤面と完成盤面の例として図\ref{fig:SamplePuzzle}を与える．図中左が未完成盤面，図中右が完成盤面である．
 
@@ -50,21 +50,18 @@
     h(i,j)\coloneqq & \{(i,j), (i,j+1)\}                     & (1\leq i \leq n-1,1\leq j \leq n,)   & \\
     v(i,j)\coloneqq & \{(i,j), (i+1,j)\}                     & (1\leq i \leq n,1\leq j \leq n-1,)   &
   \end{align*}
-
   と定義する．
 
   ただし，$h(i,j),v(i,j)$の詳細に興味がない場合は，任意の辺という意味で辺$e(i,j)$を
   \begin{equation*}
     e(i,j) \coloneqq \{h(i,j),v(i,j)\}\ni \forall x
   \end{equation*}
-
   と定義する．
 
   また，格子点，細胞，辺の集合の詳細そのものに興味がない場合は任意の格子点，細胞，辺という意味で$\lambda(i,j)$を
   \begin{equation*}
     \lambda(i,j) \coloneqq \{p(i,j),c(i,j),h(i,j),v(i,j)\}\ni \forall x
   \end{equation*}
-
   と定義する.
 \end{definition}
 \vskip\baselineskip
@@ -77,15 +74,13 @@
   \label{fig:VariableAtBoard}
 \end{figure}
 
-ペンシルパズルにおいて，ソルバーは盤面上の変数に対して解を書き込むことが前提であった（\ref{section:1}）そのため，パズルルールを定義するためには，解がどのような集合の元に含まれるかを定義する必要がある．そのために以下でcodomainという用語を用いて解集合を定義する．
+ペンシルパズルにおいて，ソルバーは盤面上の変数に対して解を書き込むことが前提であった（\ref{section:1}）.そのため，パズルルールを定義するためには，解がどのような集合の元に含まれるかを定義する必要がある．そのために以下で\textit{codomain}という用語を用いて解集合を定義する．
 
-\begin{definition}\label{definition:Codomain}\textup{$\mathbf{codomain}$}
-
-  盤面上の変数の集合に対し一対一に対応する解の列の要素がとりうる値の集合のことを$\mathbf{codomain}$と呼ぶこととする．格子点，細胞，辺の$\mathbf{codomain}$を表す集合として$\mathbb{P},\mathbb{C},\mathbb{H},\mathbb{V}$を用いる．$\mathbb{H},\mathbb{V}$の$\mathbf{codomain}$が一致している場合にはまとめて$\mathbb{E}$と記述する．$\mathbf{codomain}$の詳細に興味がない場合はそれら集合を含意するものとして$\Lambda$を使用する．
+\begin{definition}[\textit{codomain}]\label{definition:Codomain}
+  盤面上の変数に対し一対一に対応する解が含まれる集合のことを\textbf{\textit{codomain}}と定義する．格子点，細胞，辺の\textit{codomain}を表す集合として$\mathbb{P},\mathbb{C},\mathbb{H},\mathbb{V}$を用いる．$\mathbb{H},\mathbb{V}$の\textit{codomain}が一致している場合にはまとめて$\mathbb{E}$と記述する．\textit{codomain}の詳細に興味がなく，\textit{codomain}全体を考えるときにはそれら集合を含意するものとして$\Lambda$を使用する．
 \end{definition}
 
-\vskip\baselineskip
-ここで，盤面上の変数に対してそれぞれ解として具体的な値(1や3などの数値，あるいは$x_1$などの記号)が対応するがその解は列をなしていて同一の値が含んだ列となることがある．よって$\mathbf{codomain}$と解の列は同一視できないことに注意する．
+ここで，盤面上の変数に対してそれぞれ解として具体的な値（1や3などの数値，あるいは$x_1$などの記号）が対応するがその解は列をなしていて同一の値が含んだ列となることがある．よって\textit{codomain}と解の列は同一視できないことに注意する．また，パズルルールによっては格子点，細胞，辺に解を与えられない場合があり，そのときに限っては\textit{codomain}は$\emptyset$と記述し，盤面上の変数に対応する解が存在しないことを表すこととする．
 以下に既存のパズルルールのスリザーリンクを例として用いる．ただし，スリザーリンクのパズルルールは以下のものである．\cite{web:SlitherLink}
 
 \begin{enumerate}
@@ -103,124 +98,101 @@
 
 
 
-\begin{example}\label{example:SlitherLinkCodomain}\textup{スリザーリンクの$\mathbf{codomain}$}
-
-  スリザーリンクにおいては，$\mathbf{codomain}$は以下のように表すことができる．しかし辺が「書かれている」時は1,「書かれていない」時は0に対応させるものとする．
-  \begin{equation}
-    \mathbf{codomain}\colon
-    \left\{
-    \begin{aligned}
-      \mathbb{P} = & \{null\}      & \\
-      \mathbb{C} = & \{0,1,2,3,4\} & \\
-      \mathbb{E} = & \{0,1\}       &
-    \end{aligned}
-    \right.
-  \end{equation}
+\begin{example}[スリザーリンクの\textit{codomain}]\label{example:SlitherLinkCodomain}
+  スリザーリンクにおいては，\textit{codomain}は以下のように表すことができる．しかし辺が「書かれている」時は1,「書かれていない」時は0に対応させるものとする．
+  \begin{align*}
+    \mathbb{P}  =  \emptyset     \\
+    \mathbb{C}  =  \{0,1,2,3,4\} \\
+    \mathbb{E}  =  \{0,1\}
+  \end{align*}
 \end{example}
 \vskip\baselineskip
 
-以上のように$\mathbf{codomain}$を考えることにより，盤面上の変数の各集合から，解集合($\mathbf{codomain}$)に送る写像を考えることができる．
+以上のように\textit{codomain}を考えることにより，盤面上の変数が含まれる各集合から，\textit{codomain}に送る写像を考えることができる．
 
-\begin{definition}\label{definition:Mapping}\textup{盤面上の変数に解を対応させる写像}
-
-  \begin{equation}
+\begin{definition}[写像$\bm{p}$, $\bm{c}$, $\bm{h}$, $\bm{v}$]\label{definition:Mapping}
+  格子点$p(i,j)$を過不足なくふくむ集合$\{p(i,j)\}$から$\mathbb{P}$に送る写像$\bm{p}$を
+  \begin{equation*}
     \begin{array}{rccc}
-      \bm{p}\colon & \{p(i,j)\}            & \longrightarrow & \mathbb{P}            \\
-                   & \rotatebox{90}{$\in$} &                 & \rotatebox{90}{$\in$} \\
-                   & p(i,j)                & \longmapsto     & p_{i,j}
+      \bm{p}\colon & \{p(i,j)\} & \longrightarrow & \mathbb{P} \\
+                   & p(i,j)     & \longmapsto     & p_{i,j}
     \end{array}
-  \end{equation}
-  \vskip\baselineskip
+  \end{equation*}
+  と定義する．
+  以下同様に$\bm{c}$, $\bm{h}$, $\bm{v}$を
 
-  \begin{equation}
+  \begin{equation*}
     \begin{array}{rccc}
-      \bm{c}\colon & \{c(i,j)\}            & \longrightarrow & \mathbb{C}            \\
-                   & \rotatebox{90}{$\in$} &                 & \rotatebox{90}{$\in$} \\
-                   & c(i,j)                & \longmapsto     & c_{i,j}
+      \bm{c}\colon & \{c(i,j)\} & \longrightarrow & \mathbb{C} \\
+                   & c(i,j)     & \longmapsto     & c_{i,j}
     \end{array}
-  \end{equation}
-
-  \vskip\baselineskip
-  \begin{equation}
-    \begin{array}{rccc}
-      \bm{h}\colon & \{h(i,j)\}            & \longrightarrow & \mathbb{H}            \\
-                   & \rotatebox{90}{$\in$} &                 & \rotatebox{90}{$\in$} \\
-                   & h(i,j)                & \longmapsto     & h_{i,j}
-    \end{array}
-  \end{equation}
+  \end{equation*}
 
   \vskip\baselineskip
-  \begin{equation}
+  \begin{equation*}
     \begin{array}{rccc}
-      \bm{v}\colon & \{v(i,j)\}            & \longrightarrow & \mathbb{V}            \\
-                   & \rotatebox{90}{$\in$} &                 & \rotatebox{90}{$\in$} \\
-                   & v(i,j)                & \longmapsto     & v_{i,j}
+      \bm{h}\colon & \{h(i,j)\} & \longrightarrow & \mathbb{H} \\
+                   & h(i,j)     & \longmapsto     & h_{i,j}
     \end{array}
-  \end{equation}
+  \end{equation*}
+
   \vskip\baselineskip
-
-  ただし，$\bm{h},\bm{v}$の詳細に興味がない場合は，それらをまとめて
-  \begin{equation}
+  \begin{equation*}
     \begin{array}{rccc}
-      \bm{e}\colon & \{e(i,j)\}            & \longrightarrow & \mathbb{E}            \\
-                   & \rotatebox{90}{$\in$} &                 & \rotatebox{90}{$\in$} \\
-                   & e(i,j)                & \longmapsto     & e_{i,j}
+      \bm{v}\colon & \{v(i,j)\} & \longrightarrow & \mathbb{V} \\
+                   & v(i,j)     & \longmapsto     & v_{i,j}
     \end{array}
-  \end{equation}
-  と記述する．
+  \end{equation*}
+  と定義する．
 
-  上記の写像の詳細に興味がない場合それらの写像全てを含意するものとして$\bm{\lambda}$を用いて
-
-  \begin{equation}
+  ただし，$\bm{h},\bm{v}$の詳細に興味がない場合は，同様に
+  \begin{equation*}
     \begin{array}{rccc}
-      \bm{\lambda}\colon & \{\lambda(i,j)\}      & \longrightarrow & \Lambda               \\
-                         & \rotatebox{90}{$\in$} &                 & \rotatebox{90}{$\in$} \\
-                         & \lambda(i,j)          & \longmapsto     & \lambda_{i,j}
+      \bm{e}\colon & \{e(i,j)\} & \longrightarrow & \mathbb{E} \\
+                   & e(i,j)     & \longmapsto     & e_{i,j}
     \end{array}
-  \end{equation}
+  \end{equation*}
+  と記述し，上記の写像の詳細に興味がない場合それらの写像全てを含意するものとして$\bm{\lambda}$を用いて
+
+  \begin{equation*}
+    \begin{array}{rccc}
+      \bm{\lambda}\colon & \{\lambda(i,j)\} & \longrightarrow & \Lambda       \\
+                         & \lambda(i,j)     & \longmapsto     & \lambda_{i,j}
+    \end{array}
+  \end{equation*}
   と記述する．
 
 \end{definition}
 \vskip\baselineskip
 
-集合論の用語を借りれば，解の列$\{\lambda_{1,1}, \lambda_{1,2},...\}(以下\{\lambda_{i,j}\}とする)$と写像$\bm{\lambda}\colon \{\lambda(i,j)\} \longrightarrow \Lambda$の間には$\bm{\lambda}(\lambda(i,j))=\lambda_{ij}$という自然な一対一対応が存在し，写像$\bm{\lambda}$は$\{\lambda(i,j)\}$によって添え字付けられた族であり，この時$\{\lambda(i,j)\}$は添字集合で，$\lambda(i,j)$はこの写像の添字である．
+集合論の用語を用いると，解の列$\{\lambda_{1,1}, \lambda_{1,2},...\}$と写像$\bm{\lambda}\colon \{\lambda(i,j)\} \longrightarrow \Lambda$の間には$\bm{\lambda}(\lambda(i,j))=\lambda_{ij}$という自然な一対一対応が存在する．ここで$\{\lambda_{i,j}\}$は$\{\lambda_{1,1}, \lambda_{1,2},...\}$であり，写像$\bm{\lambda}$は$\{\lambda(i,j)\}$によって添え字付けられた族である．またこのとき，$\{\lambda(i,j)\}$は添字集合で，$\lambda(i,j)$はこの写像の添字である．
 
-未完成盤面において，ソルバーにこれら写像の中で，盤面上の変数と解($\mathbf{codomain}$の元)との対応が公開されていないものを未知情報と呼び，公開されているもの及びソルバーが論理的推測により導いたものを既知情報と呼ぶこととする．
-
-盤面上の変数とその解($\mathbf{codomain}$の元)の対応は(定義\ref{definition:Mapping})のように添字によってラベル付けされ，解同士の関係は(定義\ref{definition:Codomain})直後で記述したようにで実際に取る値の如何に関わらず別物として扱う．盤面上の変数と，その解(定義\ref{definition:Mapping})との対応が全て分かっているとき，写像はそれらの取る値を全て列として記述すれば
+盤面上の変数とその解(\textit{codomain}の元)の対応は(定義\ref{definition:Mapping})のように添字によってラベル付けされ，解同士の関係は(定義\ref{definition:Codomain})直後で記述したように実際に取る値の如何に関わらず別物として扱う．盤面上の変数と，その解(定義\ref{definition:Mapping})との対応が全て分かっているとき，写像はそれらの取る値を全て列として記述すれば
 \begin{equation*}
   \bm{\lambda}\Leftrightarrow \{\lambda_{i,j}\}
 \end{equation*}
 と同一視することができる．
 
-このような座標系と種々の定義を導入することにより，(パズルルールを与えず)codomainとして$\mathbb{P},\mathbb{C},\mathbb{E}$を与えたとき任意の盤面は
-\begin{equation}\label{equation:U}
-  U=\Bigl\{\{\bm{p},\bm{c},\bm{e}\}\Bigr\}=\biggl\{\Bigl\{\{p_{i,j}\},\{c_{i,j}\},\{e_{i,j}\}\Bigr\}\biggr\}
-\end{equation}
+このような種々の定義を導入することにより，$\mathbb{P},\mathbb{C},\mathbb{E}$を与えたとき任意の盤面は
+\begin{equation*}\label{equation:U}
+  U=\Bigl\{\{\bm{p},\bm{c},\bm{e}\}_x\Bigr\}=\biggl\{\Bigl\{\{p_{i,j}\}_x,\{c_{i,j}\}_x,\{e_{i,j}\}_x\Bigr\}_x\biggr\} \quad (1\leq x \leq |U|)
+\end{equation*}
+なる集合の一つの元と言うことが出来る.ただし，写像$\bm{c}$などは各盤面においてただ一つ存在するものだから，ある具体的な盤面は$\{\bm{p},\bm{c},\bm{e}\}_x$と記述されることに注意する．また，$\lambda(i,j)$が$\lambda_{i,j}$と一対一対応することより誤解の恐れがない場合は$\lambda(i,j) \in B  $，あるいは$\lambda_{i,j}\in B $と記述する．この時は$B$は集合として$B=\{\lambda(i,j)\}$を考え，$\lambda_{i,j}$も$\bm{\lambda}$によりBの元として扱うこととする．
 
-
-なる集合の一つの元と言うことが出来る.ただし，写像$\bm{c}$などは各盤面においてただ一つ存在するものだから，ある具体的な盤面は$\{\bm{p},\bm{c},\bm{e}\}$と記述されることに注意する．また，$\lambda(i,j)$が$\lambda_{i,j}$と一対一対応することより誤解の恐れがない場合は$B \ni \lambda(i,j)$，あるいは$B\ni \lambda_{i,j}$と記述する．この時は$B$は集合として$B=\{\lambda(i,j)\}$を考え，$\lambda_{i,j}$も$\bm{\lambda}$によりBの元として扱うこととする．
-
-ここで，ある問題を与えたとき完成盤面が満たしているべきパズルルールによって定められた条件は，そのまま式(\ref{equation:U})に条件として記述することができて，これを$\mathbf{conditions}$と呼ぶこととする．
-\begin{definition}\label{definition:Conditions}\textup{$\mathbf{conditions}$}
-
-  完成盤面において解が満たしているべき必要十分条件
+ここで，ある問題を与えたとき完成盤面が満たしているべきパズルルールによって定められた条件は，そのまま式(\ref{equation:U})に条件として記述することができて，これを\textit{conditions}と呼ぶこととする．
+\begin{definition}[\textit{conditions}]\label{definition:Conditions}
+  完成盤面において解が満たしているべき必要十分条件のことを\textbf{\textit{conditions}}と定義する．
 \end{definition}
-\vskip\baselineskip
+\textit{conditions}の具体例は節(\ref{section:GraphDefinition})で定義するグラフと(Definition \ref{definition:Function})で定義する関数を用いる必要があるため，後の節(e.g. \ref{example:SlitherLinkConditions})で取り上げることとする．
 
-$\mathbf{conditions}$の具体例は節(\ref{section:GraphDefinition})で定義するグラフと(定義\ref{definition:Function})で定義する関数を用いる必要があるため，後の節(例\ref{example:SlitherLinkConditions})で取り上げることとする．
-
-上の$\mathbf{conditions}$を用いればあるパズルルールが存在した時，完成盤面全体の集合Xは
+上の\textit{conditions}を用いればあるパズルルールが存在したとき，完成盤面全体の集合$X$は
 
 \begin{equation}\label{equation:X}
-  X=\biggl\{\Bigl\{\{p_{ij}\},\{c_{ij}\},\{e_{ij}\}\Bigr\}\mid \rm{\mathbf{conditions}}\biggr\}
+  X=\biggl\{\Bigl\{\{p_{ij}\}_x,\{c_{ij}\}_x,\{e_{ij}\}_x\Bigr\}_x\mid \rm{\textit{conditions}}\biggr\}
 \end{equation}
-
 と記述することができる．
 
-
-
-式(\ref{equation:X})で定義した完成盤面から問題へと派生させるために「ソルバーに隠す盤面上の変数の解」として$\mathbf{HI(Hidden\;Information)}$を定義する．ただし，「隠す」という言葉は$\mathbf{codomain}$から$\mathbf{codomain}$にnullを加えた集合$\Lambda'=\Lambda\cup null$への写像$\phi\colon \Lambda \longrightarrow \Lambda'$を解の列に作用させることを意味することとする．
+式(\ref{equation:X})で定義した完成盤面から問題へと派生させるために「ソルバーに隠す盤面上の変数の解」として$\mathbf{HI(Hidden\;Information)}$を定義する．ただし，「隠す」という言葉は\textit{codomain}から\textit{codomain}にnullを加えた集合$\Lambda'=\Lambda\cup null$への写像$\phi\colon \Lambda \longrightarrow \Lambda'$を解の列に作用させることを意味することとする．ただし，パズルルールにおいて解が未知であることを\textbf{\textit{null}}と定義する．
 
 \begin{definition}\label{definition:HiddenInformation}\textup{$\mathbf{HI(Hidden\;Information)}$}
 
@@ -432,7 +404,7 @@ $\mathbf{conditions}$の具体例は節(\ref{section:GraphDefinition})で定義�
 また，(定義\ref{definition:Function})で取り上げた関数のうち，グラフが定義に$p(i,j)$を含むことにより$\bm{cross}$に関しては「グラフ内の全ての$p(i,j)$において，$\bm{cross}(p(i,j))=2$」などという条件を構成できる．
 
 
-\begin{example}\textup{スリザーリンクの$\mathbf{conditions}$}\label{example:SlitherLinkConditions}
+\begin{example}\textup{スリザーリンクの\textit{conditions}}\label{example:SlitherLinkConditions}
   \begin{equation}
     \mathbf{conditions}\colon
     \left\{
