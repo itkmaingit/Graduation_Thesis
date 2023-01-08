@@ -9,7 +9,25 @@
 \usepackage[sort,compress,numbers]{natbib} % apsrev4-2ja.bstを使うのに必要
 \usepackage{doi}
 \usepackage{hyperref}
+\usepackage{cleveref}
 \usepackage{tocloft}
+
+\crefname{definition}{\textbf{Definition} }{\textbf{Definition} }
+\crefname{example}{\textbf{e.g.}}{\textbf{e.g.} }
+\crefname{theorem}{\textbf{Theorem} }{\textbf{Theorem} }
+\crefname{lemma}{\textbf{Lemma} }{\textbf{Lemma} }
+\crefname{corollary}{\textbf{Corollary} }{\textbf{Corollary} }
+\crefname{remark}{\textbf{Remark} }{\textbf{Remark} }
+\crefname{proposition}{\textbf{Proposition} }{\textbf{Proposition} }
+\crefname{fig}{図 }{図 }
+\crefname{equation}{式 }{式 }
+
+\crefname{chap}{第}{第}
+\creflabelformat{section}{#2#1章#3}
+\crefname{section}{第}{第}
+\creflabelformat{section}{#2#1節#3}
+\crefname{subsection}{第}{第}
+\creflabelformat{subsection}{#2#1小節#3}
 
 % 参考文献の書式の設定-----------------------------------------------------------------
 \bibliographystyle{apsrev4-2ja} % アメリカ物理学会(APS)の標準のbibtexスタイルファイル
@@ -75,14 +93,13 @@
 
 % 卒論で、図をページ数に含めたくないときに用いる図・表環境-------------
 \newenvironment{clearpagefigure}
-{
-\clearpage
-\begin{figure}
-\centering
-\thispagestyle{empty}
-\addtocounter{page}{-1}
-}
-{\end{figure}}
+{\newpage
+  \begin{figure}[htbp]\centering
+  \thispagestyle{empty}
+  \addtocounter{page}{-1}}
+{  \end{figure}
+  \newpage}
+
 \newenvironment{clearpagetable}
 {
 \clearpage
@@ -99,27 +116,32 @@
 
 \allowdisplaybreaks % 数式の途中での改ページを許す
 
+%---------------------------------------------
 \newtheoremstyle{myDefinition}%   % スタイル名
-    {}%b                     % 上部スペース
-    {}%                      % 下部スペース
+    {11pt}%b                     % 上部スペース
+    {11pt}%                      % 下部スペース
     {}%              % 本文フォント
     {}%                      % 1行目のインデント量
     {\bfseries}%             % 見出しフォント
     {.}%                     % 見出し後の句読点
-    { }%                     % 見出し後のスペース
+    {11pt}%                     % 見出し後のスペース
     {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
 
 \theoremstyle{myDefinition}
 \newtheorem{definition}{Definition}[section]
-
-
+\theoremstyle{myDefinition}
 \newtheorem{theorem}{Theorem}[section]
+\theoremstyle{myDefinition}
 \newtheorem{proposition} {Proposition}[section]
+\theoremstyle{myDefinition}
 \newtheorem{lemma} {Lemma}[section]
+\theoremstyle{myDefinition}
 \newtheorem{corollary} {Corollary}[section]
-
 \theoremstyle{myDefinition}
 \newtheorem{example} {e.g.}[section]
+\theoremstyle{myDefinition}
+\newtheorem{remark} {Remark}[section]
+
 
 
 \title{パズルルールの自動作成を目指した数学的考察}
