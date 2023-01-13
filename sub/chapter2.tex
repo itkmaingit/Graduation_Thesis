@@ -25,15 +25,15 @@
 \begin{definition}[格子点$p(i,j)$, 細胞$c(i,j)$, 横辺$h(i,j)$, 縦辺$v(i,j)$]\label{definition:VariableAtBoard}
   \textgt{格子点}$p(i,j)$($(i,j)\in \mathbb{Z}^2$)を
   \begin{equation*}
-    p(i,j)\coloneqq \{(i,j)\} \quad (1\leq i \leq n, 1\leq j \leq n)
+    p(i,j)\coloneqq \{(i,j)\} \quad (1\leq i \leq m+1, 1\leq j \leq n+1)
   \end{equation*}
   と定義する.
 
   以下同様に\textgt{細胞}$c(i,j)$, \textgt{横辺}$h(i,j)$, \textgt{縦辺}$v(i,j)$を
   \begin{align*}
-     & c(i,j)\coloneqq  \{(i,j), (i,j+1), (i+1,j), (i+1,j+1)\}  \quad & (1\leq i \leq n-1, 1\leq j \leq n-1) \\
-     & h(i,j)\coloneqq  \{(i,j), (i,j+1)\}                      \quad & (1\leq i \leq n-1, 1\leq j \leq n)   \\
-     & v(i,j)\coloneqq  \{(i,j), (i+1,j)\}                      \quad & (1\leq i \leq n, 1\leq j \leq n-1)
+     & c(i,j)\coloneqq  \{(i,j), (i,j+1), (i+1,j), (i+1,j+1)\}  \quad & (1\leq i \leq m, 1\leq j \leq n)   \\
+     & h(i,j)\coloneqq  \{(i,j), (i,j+1)\}                      \quad & (1\leq i \leq m, 1\leq j \leq n+1) \\
+     & v(i,j)\coloneqq  \{(i,j), (i+1,j)\}                      \quad & (1\leq i \leq m+1, 1\leq j \leq n)
   \end{align*}
   と定義する.
 
@@ -145,9 +145,11 @@ $\bm{\lambda}\colon \{\lambda(i_y,j_y,y)\} \longrightarrow \Lambda$の間には$
     B\coloneqq \{\bm{p},\bm{c},\bm{e}\}=\Bigl\{\{p_{i,j}\},\{c_{i,j}\},\{e_{i_y,j_y,y}\}\Bigr\}
   \end{equation*}
 \end{definition}
-ここで, 位置$\lambda(i_y,j_y,y)$が状態$\lambda_{i_y,j_y,y}$と一対一対応することより誤解の恐れがない場合は$\lambda(i_y,j_y,y) \in B  $,  $\lambda_{i_y,j_y,y}\in B $と記述する.
+ここで, 位置$\lambda(i_y,j_y,y)$が状態$\lambda_{i_y,j_y,y}$と一対一対応することより誤解の恐れがない場合は$\lambda(i_y,j_y,y) \in B  $, $\lambda_{i_y,j_y,y}\in B $と記述する.
 このときは$B$は集合として$B=\{\lambda(i_y,j_y,y)\}$を考え, 状態$\lambda_{i_y,j_y,y}$も$\bm{\lambda}$によりBの元として扱うこととする.
 ただし前と同様$\{\lambda(i_y,j_y,y)\}$とは$\{\lambda(1,1,y_{(1,1)}), \lambda(1,2,y_{(1,2)}),...\}$を指すものとする.
+
+
 
 ここで, 完成盤面と未完成盤面の定義を再度行う（\cref{section:WordDefinition}）.ただし, 完成盤面は全ての位置の状態が既知であることを必要条件としていて, 以下で使用する\textit{conditions}には\textit{null}を認めたものがないことが前提にあることに注意する.
 \begin{definition}[完成盤面と\textit{conditions}]\label{definition:Conditions}
@@ -215,28 +217,28 @@ $\bm{\lambda}\colon \{\lambda(i_y,j_y,y)\} \longrightarrow \Lambda$の間には$
 \section{位置の関係性の定義}\label{section:RelationDefinition}
 
 次に, \cref{section:MathematicalDefinition}で定義した位置同士の関係性について定義を行う. ただし, ここでは完成盤面を仮定する.
-まず, 連結と含有, 到達可能の定義を行う.
-連結とは直感的に辺と辺が繋がっていることを表す用語とし, 含有とは位置が集合として他の変数を含むこと, 到達可能とは離れた辺と辺へと向かう道が存在することを表す用語として導入する.
+まず, 連結, 含有, 隣接, 到達可能の定義を行う.
+連結とは直感的に辺と辺が繋がっていることを表す用語とし, 含有とは位置が集合として他の位置を含むこと, 隣接とは細胞と細胞が辺を共有していること, 到達可能とは離れた辺と辺へと向かう道が存在することを表す用語として導入する.
 
 \begin{definition}[連結]\label{definition:Connection}
-  $e(i_y,j_y,y)$と$e(i_{y'}',j_{y'}',y')$が\textbf{連結}であるとは, 以下が成立することで定義する.
+  辺$e(i_y,j_y,y)$と辺$e(i_{y'}',j_{y'}',y')$が\textbf{連結}であるとは, 以下が成立することで定義する.
   \begin{equation*}
     \begin{cases}
       {e_{i_y,j_y,y}=1,\quad e_{i_{y'}',j_{y'}',y'}  =     1          } \\
-      {e(i_y,j_y,y)\cup e(i_{y'}',j_{y'}',y')  \neq  \emptyset}
+      {e(i_y,j_y,y)\cap e(i_{y'}',j_{y'}',y')  \neq  \emptyset}
     \end{cases}
   \end{equation*}
 \end{definition}
 
 \begin{definition}[含有]\label{definition:Contain}
-  $e(i_y,j_y,y)$が$p(i',j')$を\textbf{含む（含有する）}とは以下が成立することで定義する.
+  辺$e(i_y,j_y,y)$が格子点$p(i',j')$を\textbf{含む（含有する）}とは以下が成立することで定義する.
   \begin{equation*}
     \begin{cases}
       {e_{i_y,j_y,y}=1               } \\
       {e(i_y,j_y,y)\supset p(i',j')}
     \end{cases}
   \end{equation*}
-  以下同様に, $c(i,j)$が$e(i_{y'}',j_{y'}',y')$を含む, $c(i,j)$が$p(i',j')$を含むことを以下が成立することでそれぞれ定義する.
+  以下同様に, 細胞$c(i,j)$が辺$e(i_{y'}',j_{y'}',y')$を含む, 細胞$c(i,j)$が格子点$p(i',j')$を含むことを以下が成立することでそれぞれ定義する.
   \begin{equation*}
     \begin{cases}
       {e_{i_{y'}',j_{y'}',y'}=1 } \\
@@ -246,6 +248,23 @@ $\bm{\lambda}\colon \{\lambda(i_y,j_y,y)\} \longrightarrow \Lambda$の間には$
   \begin{align*}
     c(i,j)\supset p(i',j')
   \end{align*}
+\end{definition}
+このような含有の概念を考えることで細胞, 辺が持つ集合を考えることができるので, これを以下で定義する. ただし, $c(i,j)\supset e(i_{y'}',j_{y'}',y')$などと記述する場合には$c(i,j)$に含まれる$e(i_y,j_y,y)$という意味で用いる.
+\begin{definition}[$P_{c(i,j)}$, $E_{c(i,j)}$, $P_{e(i_y,j_y,y)}$]
+  細胞$c(i,j)$が含む格子点の集合$P_{c(i,j)}$, 細胞$c(i,j)$が含む辺の集合$E_{c(i,j)}$, 辺$e(i_y,j_y,y)$が含む格子点の集合$P_{e(i_y,j_y,y)}$を以下で定義する.
+  \begin{align*}
+    P_{c(i,j)}       & \coloneqq \{p(i',j') \mid \forall p(i',j') \subset c(i,j)\}                           \\
+    E_{c(i,j)}       & \coloneqq \{e(i_{y'}',j_{y'}',y') \mid \forall e(i_{y'}',j_{y'}',y') \subset c(i,j)\} \\
+    P_{e(i_y,j_y,y)} & \coloneqq \{p(i',j') \mid \forall p(i',j') \subset e(i_y,j_y,y)\}
+  \end{align*}
+\end{definition}
+
+
+\begin{definition}[隣接]\label{definition:Adjacent}
+  細胞$c(i,j)$と細胞$c'(i,j)$が\textbf{隣接する}であるとは以下が成立することで定義する.
+  \begin{equation*}
+    E_{c(i,j)} \cap E_{c(i',j')} \neq \emptyset
+  \end{equation*}
 \end{definition}
 
 
@@ -258,8 +277,8 @@ $\bm{\lambda}\colon \{\lambda(i_y,j_y,y)\} \longrightarrow \Lambda$の間には$
   $e(i_y,j_y,y)$から$e(i_{y'}',j_{y'}',y')$に辿ることが出来る（到達可能である）ときはいつでも$e(i_{y'}',j_{y'}',y')$から$e(i_y,j_y,y)$に辿ることが出来る.
 \end{remark}
 
-\begin{example}[連結, 含有, 到達可能]
-  \cref{fig:SamplePuzzle}において, $h(4,1)$と$v(1,4)$は連結であり, $c(3,4)$は$v(4,4)$のみを含み, $h(3,8)$から$v(8,1)$へは辿ることが出来る.
+\begin{example}[連結, 含有, 隣接, 到達可能]
+  \cref{fig:SamplePuzzle}において, $h(4,1)$と$v(1,4)$は連結であり, $c(3,4)$は$v(4,4)$のみを含み, $c(2,2)$と$c(2,3)$は隣接しており, $h(3,8)$から$v(8,1)$へは辿ることが出来る.
 \end{example}
 以上の定義を用いることによって, 新たに「線」という概念を導入することができる.
 
@@ -289,7 +308,7 @@ $\bm{\lambda}\colon \{\lambda(i_y,j_y,y)\} \longrightarrow \Lambda$の間には$
   \begin{equation*}
     G_z=\{P_z,L_z\}=\biggl\{  \Bigl\{p(i,j)\Bigr\}_z,\Bigl\{e(i_y,j_y,y)\Bigr\}_z\biggr\}
   \end{equation*}
-  ただし, $L_z$はある$e(i_y,j_y,y)$が存在したとき盤面上に存在する$e(i_y,j_y,y)$を含む線の中で集合として最大の線であり,  $P_z$は$L_z$が含む全ての$p(i,j)$の和集合とする. ただし, どの線にも含まれない$p(i,j)$もグラフと呼び, そのときに限り$G_z=\{p(i,j)\}$とし, \textbf{孤立点}と呼ぶこととする（$\{p(i,j)\}$は集合として, 一つの要素$p(i,j)$しか持たない集合）.
+  ただし, $L_z$はある$e(i_y,j_y,y)$が存在したとき盤面上に存在する$e(i_y,j_y,y)$を含む線の中で集合として最大の線であり, $P_z$は$L_z$が含む全ての$p(i,j)$の和集合とする. ただし, どの線にも含まれない$p(i,j)$もグラフと呼び, そのときに限り$G_z=\{p(i,j)\}$とし, \textbf{孤立点}と呼ぶこととする（$\{p(i,j)\}$は集合として, 一つの要素$p(i,j)$しか持たない集合）.
 \end{definition}
 
 このようなグラフという概念が盤面に存在すると考えられ, 盤面上のグラフ全てを要素に持つ集合
@@ -302,12 +321,33 @@ $\bm{\lambda}\colon \{\lambda(i_y,j_y,y)\} \longrightarrow \Lambda$の間には$
 \begin{example}\textup{スリザーリンクの\textit{conditions}}\label{example:SlitherLinkConditions}
   \begin{equation*}
     \begin{cases}
-      {B\in \forall p(i,j)   ,  \forall c_{i,j} , \textit{cross}(p(i,j))=c_{i,j} } \\
-      {G_1\in \forall p(i,j)            , \textit{cross}(p(i,j))=2       }         \\
+      {B\in \forall p(i,j)   , \forall c_{i,j} , \textit{cross}(p(i,j))=c_{i,j} } \\
+      {G_1\in \forall p(i,j)            , \textit{cross}(p(i,j))=2       }        \\
       {G_xは孤立点(x\geq 2)}
     \end{cases}
   \end{equation*}
 \end{example}
+
+\section{変換盤面}\label{section:ConvertedBoard}
+\cref{definition:B}のような盤面を考えたとき, 格子点に状態が存在しない場合に限り盤面の格子点と細胞の役割を入れ替える操作を考えることができる. 具体的な構成方法は後の\cref{definition:ConvertedBoard}で触れるが, 格子点$p(i,j)\mapsto$細胞$c'(i,j)$, 細胞$c(i,j)\mapsto$格子点$p'(i+1,j+1)$へと変換することができる. 辺$e(i_y,j_y,y)$に関しては, その辺をまたがないように変換後は辺を構成することで新たに盤面を記述することができる. これらの変換は一対一写像であり, 逆写像も存在することにより同一の盤面として扱うことができる. このような変換を本研究では\textbf{シフト}, \textbf{逆シフト}と呼び, これを以下で定義する.
+\begin{definition}[シフト, 逆シフト]\label{definition:ConvertedBoard}
+  盤面$B$を与えられたとき, 格子点が状態を持たないとき以下の変換を考えることができる.
+  \begin{align*}
+    \bm{f_p}\colon & p(i,j)  \longmapsto c'(i,j)     \\
+    \bm{f_c}\colon & c(i,j)  \longmapsto p'(i+1,j+1)
+  \end{align*}
+  それぞれの位置に対応する状態も, 変換後の位置に対応させるものとする. また, 辺に関しても以下の変換を行うことにより, ある盤面を新たな盤面へと変換させることができる.
+  \begin{align*}
+    \bm{f_h}\colon & h(i,j)  \longmapsto v'(i,j+1) \\
+    \bm{f_v}\colon & v(i,j)  \longmapsto h'(i+1,j)
+  \end{align*}
+  ただし, 辺に関しては状態を反転させるものとする. （e.g. $h_{3,4}=1$のとき, $v'_{3,5}=0$）また, $h'_{1,n'}$, $h'_{m+2,n'}$, $v'_{m',1}$, $v'_{m',n+2}$は全て値として1を取り, $p'_{1,n'}$, $p'_{m+2,n'}$, $p'_{m',1}$, $p'_{m',n+2}$は状態を考えないものとする. $(1\leq m' \leq m+1, \quad 1\leq n'\leq n+1)$
+
+  このような変換をいかなる盤面でも考えることができ、さらに
+\end{definition}
+
+
+
 
 \begin{clearpagefigure}
   \includegraphics[width=8cm,clip]{fig/board.png}
