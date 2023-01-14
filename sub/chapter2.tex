@@ -9,10 +9,17 @@
 
 \section{用語の定義}\label{section:WordDefinition}
 この節ではペンシルパズルにおける用語を定義する.
-以下の説明のために位置, 状態, 盤面, 完成盤面, 未完成盤面を簡単に定義する. \cref{fig:Board}で与えたようなグリッドに対し, 前文で述べた格子点, 細胞, 辺を\textgt{位置}と呼ぶこととする. ペンシルパズルにおいて, その位置に与えられる状態のことを本研究ではそのまま\textgt{状態}と呼ぶこととする. 状態とは, 位置に対応する写像で送った結果のことを指し, 未知である状態のことを特に\textit{null}と表現し, 既知である状態のときは具体的に数値や定数で与えられるものとする. 位置の状態が既知である場合, その具体的な数値や定数のことを\textgt{解}と呼ぶこととする. ここで, グリッドにおける各格子点, 細胞, 辺全てに状態が存在するものを総称して\textgt{盤面}と定義する. しかし, その状態が未知, 既知に関わらず盤面と呼ぶことに注意する. \cref{fig:SamplePuzzle}に与えたパズルでは, 左上端の細胞の状態が既知であり, その解は2に対応し, 右下端の細胞の状態は未知である（既知の場合解は3）.
-また, 全ての格子点, 細胞, 辺の解がパズルルールに定められた条件（\textit{conditions}）を満たしている盤面のことを\textgt{完成盤面}と定義する. さらに任意の格子点, 細胞, 辺の解が未知であるものが存在する盤面の中で, 全ての位置の状態が既知であるときにパズルルールに定められた条件（\textit{conditions}）に従う完成盤面がただ一つしかない盤面を\textgt{未完成盤面}と定義する. 未完成盤面と完成盤面の例として\cref{fig:SamplePuzzle}を与える. 図中左が未完成盤面, 図中右が完成盤面である.
+以下の説明のために位置, 状態, 盤面, 完成盤面, 未完成盤面を簡単に定義する. \cref{fig:Board}で与えたようなグリッドに対し, 前文で述べた格子点, 細胞, 辺を\textbf{位置}と呼ぶこととする. ペンシルパズルにおいて, その位置に与えられる状態のことを本研究ではそのまま\textbf{状態}と呼ぶこととする. 状態とは, 位置に対応する写像で送った結果のことを指し, 未知である状態のことを特に\textit{null}と表現し, 既知である状態のときは具体的に数値や定数で与えられるものとする. 位置の状態が既知である場合, その具体的な数値や定数のことを\textbf{解}と呼ぶこととする. ここで, グリッドにおける各格子点, 細胞, 辺全てに状態が存在するものを総称して\textbf{盤面}と定義する. しかし, その状態が未知, 既知に関わらず盤面と呼ぶことに注意する. \cref{fig:SamplePuzzle}に与えたパズルでは, 左上端の細胞の状態が既知であり, その解は2に対応し, 右下端の細胞の状態は未知である（既知の場合解は3）.
+% TODO: 文献挿入
 
-上の記述より, 一つの完成盤面には複数の未完成盤面が対応する（一つの操作（状態が未知である位置に対し具体的な解を対応させること）を課した未完成盤面もまた未完成盤面. ）.このとき, その複数の未完成盤面と, 完成盤面の集合全体をパズルルールの\textgt{問題}と定義する.
+ここでパズルルールを既存のパズルルールと相違ない定義を行うためにパズルルールにて満たされるべき条件を定義する. 既存のパズルルールにおいてあるパズルルールの問題が存在したとき, それが唯一解であることが条件としてにある. 具体的なパズルルールにおいても唯一解であることが条件としてで確認されている. そのため, 本研究においてもパズルの問題, と呼んだときはそれが唯一解であることを要求することとする. ただしここで呼ぶ唯一解とは, 先の解とは意味が異なり, 問題を解いたとき, 盤面として答えが一つに定まるそのことを\textbf{唯一解}と呼ぶことに注意する.
+以上のことを踏まえ, 全ての格子点, 細胞, 辺の解がパズルルールに定められた条件（\textit{conditions}）を満たしている盤面のことを\textbf{完成盤面}と定義する. さらに任意の格子点, 細胞, 辺の解が未知であるものが存在する盤面の中で, 全ての位置の状態が既知であるときにパズルルールに定められた条件（\textit{conditions}）に従う完成盤面がただ一つしかない盤面を\textbf{未完成盤面}と定義する. 未完成盤面と完成盤面の例として\cref{fig:SamplePuzzle}を与える. 図中左が未完成盤面, 図中右が完成盤面である.
+
+
+
+上の記述より, 一つの完成盤面には複数の未完成盤面が対応する（一つの操作（状態が未知である位置に対し具体的な解を対応させること）を課した未完成盤面もまた未完成盤面. ）.このとき, その複数の未完成盤面と, 完成盤面の集合全体をパズルルールの\textbf{問題}と定義する.
+
+以上のような定義を行うことで問題とは唯一解であることを保証する.
 
 
 
@@ -23,13 +30,13 @@
 
 
 \begin{definition}[格子点$p(i,j)$, 細胞$c(i,j)$, 横辺$h(i,j)$, 縦辺$v(i,j)$]\label{definition:VariableAtBoard}
-  \textgt{格子点}$p(i,j)$($(i,j)\in \mathbb{Z}^2$)を
+  \textbf{格子点}$p(i,j)$($(i,j)\in \mathbb{Z}^2$)を
   \begin{equation*}
     p(i,j)\coloneqq \{(i,j)\} \quad (1\leq i \leq n, 1\leq j \leq n)
   \end{equation*}
   と定義する.
 
-  以下同様に\textgt{細胞}$c(i,j)$, \textgt{横辺}$h(i,j)$, \textgt{縦辺}$v(i,j)$を
+  以下同様に\textbf{細胞}$c(i,j)$, \textbf{横辺}$h(i,j)$, \textbf{縦辺}$v(i,j)$を
   \begin{align*}
      & c(i,j)\coloneqq  \{(i,j), (i,j+1), (i+1,j), (i+1,j+1)\}  \quad & (1\leq i \leq n-1, 1\leq j \leq n-1) \\
      & h(i,j)\coloneqq  \{(i,j), (i,j+1)\}                      \quad & (1\leq i \leq n-1, 1\leq j \leq n)   \\
@@ -50,11 +57,11 @@
   \end{equation*}
   と定義する.ただし, $y=p$のときは$\lambda(i_p,j_p,p)$は格子点$p(i_p,j_p$), $y=c$のときは$\lambda(i_c,j_c,c)$は細胞$c(i_c,j_c)$, $y=h$のときは$\lambda(i,j,h)$は横辺$h(i_h,j_h)$, $y=v$のときは$\lambda(i,j,v)$は縦辺$v(i_v,j_v)$を指すものとする. $(i_y,j_y)$の範囲は$y$によって指定されるそれぞれの変数によって定義されるものとする（$y=p$のときは$1\leq i_p \leq n,1\leq j_p \leq n$）.
 \end{definition}
-これら添え字付きの変数を改めて格子点, 細胞, 辺と呼び, これらをまとめた総称として\textgt{位置}と呼ぶこととする.
+これら添え字付きの変数を改めて格子点, 細胞, 辺と呼び, これらをまとめた総称として\textbf{位置}と呼ぶこととする.
 
 
 
-ペンシルパズルにおいて, 位置に対応させる概念として\textgt{状態}が存在し, これを定義する. ソルバーにある特定の位置に対し具体的な数値や定数が与えられている状態を\textgt{既知}と呼び, その具体的な数値や定数を\textgt{解}と呼ぶ. 既知でない状態のことを\textgt{未知}と呼び, その状態のことを特別に\textit{null}と表現する.
+ペンシルパズルにおいて, 位置に対応させる概念として\textbf{状態}が存在し, これを定義する. ソルバーにある特定の位置に対し具体的な数値や定数が与えられている状態を\textbf{既知}と呼び, その具体的な数値や定数を\textbf{解}と呼ぶ. 既知でない状態のことを\textbf{未知}と呼び, その状態のことを特別に\textit{null}と表現する.
 以上から, パズルルールを定義するためには状態がどのような集合の元であるかを定義する必要がある. そのために以下で\textit{codomain}という用語を用いて状態の集合を定義する.
 
 \begin{definition}[\textit{codomain}]\label{definition:Codomain}
@@ -151,10 +158,11 @@ $\bm{\lambda}\colon \{\lambda(i_y,j_y,y)\} \longrightarrow \Lambda$の間には$
 
 ここで, 完成盤面と未完成盤面の定義を再度行う（\cref{section:WordDefinition}）.ただし, 完成盤面は全ての位置の状態が既知であることを必要条件としていて, 以下で使用する\textit{conditions}には\textit{null}を認めたものがないことが前提にあることに注意する.
 \begin{definition}[完成盤面と\textit{conditions}]\label{definition:Conditions}
-  全ての位置の状態が既知である盤面を与えたとき, 解が満たしているべき条件を\textbf{\textit{conditions}}と呼び, これが条件として記述される盤面の集合の元を\textgt{完成盤面}と定義する.
+  全ての位置の状態が既知である盤面を与えたとき, 解が満たしているべき条件を\textbf{\textit{conditions}}と呼び, これが条件として記述される盤面の集合の元を\textbf{完成盤面}と定義する.
 \end{definition}
 
 未完成盤面は\cref{section:WordDefinition}で定義したように, 全ての位置の状態が既知であるときに\textit{conditions}に従う完成盤面がただ一つしかない盤面を\textbf{未完成盤面}と定義する.
+以上から完成盤面と, それに対応する未完成盤面全体の和集合を一つの\textbf{問題}と定義する. ただし, 未完成盤面の集合が空集合でない（完成盤面に対応する未完成盤面が一つ以上存在する）ことを問題の条件とする.
 
 ここで盤面（\cref{definition:B}）全体の集合を考えたとき, 以下のように記述される.
 \begin{equation}\label{equation:U}
@@ -168,10 +176,19 @@ $\bm{\lambda}\colon \{\lambda(i_y,j_y,y)\} \longrightarrow \Lambda$の間には$
 
 \textit{conditions}の具体例は\cref{section:GraphDefinition}で定義するグラフと\cref{definition:Function}で定義する関数を用いる必要があるため, 後の\cref{example:SlitherLinkConditions}で取り上げることとする.
 
+完成盤面においては位置と解が一対一に対応することにより, $\mathbb{E}$が要素として数値のみを持つ場合に限り新たに下記のような関数を導入することができる(\cref{fig:cross}, \cref{fig:cycle}).
+
+\begin{definition}[\textit{cross}, \textit{cycle}]\label{definition:Function}
+  \begin{gather*}
+    \textit{cross}(p(i,j))\coloneqq h_{i,j-1}+v_{i-1,j}+h_{i,j}+v_{i,j} \\
+    \textit{cycle}(c(i,j))\coloneqq h_{i,j}+v_{i,j}+h_{i+1,j}+v_{i,j+1}
+  \end{gather*}
+\end{definition}
 
 
-\cref{definition:B}で定義した完成盤面から問題へと派生させるために「ソルバーから解を隠す位置」として\textit{HI(Hidden Information)}を定義する.
-ただし, \textgt{隠す}という言葉を\textit{codomain}から\textit{null}を除いた集合$\Lambda'=\Lambda \setminus \textit{null}$から\textit{codomain}への写像$\phi\colon \Lambda' \longrightarrow \Lambda$を解の列に作用させることとして定義する.
+\cref{definition:B}で定義した完成盤面から未完成盤面を生成するために「ソルバーから解を隠す位置」として\textit{HI(Hidden Information)}を定義する.
+また, \textbf{隠す}という言葉を\textit{codomain}から\textit{null}を除いた集合$\Lambda'=\Lambda \setminus \textit{null}$から\textit{codomain}への写像$\phi\colon \Lambda' \longrightarrow \Lambda$を解の列に作用させることとして定義する.
+ただし, 具体的な生成方法については\cref{example:GenericAlgorithm}で取り上げる.
 
 
 ここで, パズルルールによっては未知である状態と, 数値あるいは変数がソルバーに同一の状態として示される場合があることに注意する（スリザーリンク（\cref{example:SlitherLinkCodomain}）においては$e_{i_y,j_y,y} = 0$のときと$e_{i_y,j_y,y}=\textit{null}$のとき, ソルバーに同一の状態として伝えられる.）.
@@ -181,6 +198,8 @@ $\bm{\lambda}\colon \{\lambda(i_y,j_y,y)\} \longrightarrow \Lambda$の間には$
   ソルバーから隠す位置の部分集合を\textbf{\textit{HI(Hidden Information)}}と定義する.
   ただし, その部分集合はパズルルールによってそれが一意に定まるものではなく問題に依存するものとし, パズルルールでは$\{c(i,j)\}$と$\{e(i_y,j_y,y)\}$の部分集合といったように隠す集合及び部分集合の情報のみを指定し, 詳細は指定しないものとする.
 \end{definition}
+
+
 
 具体的なあるパズルルールが存在したとき具体的な問題を与えた際には具体的な\textit{HI}を与えられる. そのとき, 写像$\phi$が具体的に構成することができて,
 \begin{equation}\label{equation:Phi}
@@ -200,14 +219,42 @@ $\bm{\lambda}\colon \{\lambda(i_y,j_y,y)\} \longrightarrow \Lambda$の間には$
   \end{align*}
 \end{example}
 
-完成盤面においては位置と解が一対一に対応することにより, $\mathbb{E}$が要素として数値のみを持つ場合に限り新たに下記のような関数を導入することができる(\cref{fig:cross}, \cref{fig:cycle}).
+\begin{remark}\label{remark:HI}
+  完成盤面から\textit{HI}を具体的に選び解を隠した盤面は未完成盤面とは限らない.
+\end{remark}
+なぜなら, 完成盤面から解を隠した盤面は, 全ての位置の状態を既知にしたとき全ての解が\textit{conditions}に従う完成盤面は一つとは限らない（元の完成盤面以外に違う完成盤面が従う可能性がある. ）. よってそれはあくまで盤面であり未完成盤面とはならないことに注意する. つまり完成盤面の存在は問題の存在と同値にならない. しかし, 先行研究より以下が成立する. ここで用いるパズルルールとは一般に用いられるものの意味で用い, 本研究とは関係がないものとする.
+\begin{lemma}\label{lemma:CompleteBoard}
+  あるペンシルパズルのパズルルールが存在したとき, 完成盤面が一つ存在すればその完成盤面から未完成盤面を任意に生成することができる.
+\end{lemma}
+\textit{HI}を用いることにより完成盤面から未完成盤面を生成する手法について説明する. \cite{Fujiwara2022}における未完成盤面の生成の具体的なアルゴリズムは以下のものである. 例として\cite{Fujiwara2022}と同様に数独（ナンバープレイス）を用いる. ただし, 数独（ナンバープレイス）のパズルルールは以下のとおりである. \cite{web:Sudoku}
 
-\begin{definition}[\textit{cross}, \textit{cycle}]\label{definition:Function}
-  \begin{gather*}
-    \textit{cross}(p(i,j))\coloneqq h_{i,j-1}+v_{i-1,j}+h_{i,j}+v_{i,j} \\
-    \textit{cycle}(c(i,j))\coloneqq h_{i,j}+v_{i,j}+h_{i+1,j}+v_{i,j+1}
-  \end{gather*}
-\end{definition}
+\begin{enumerate}
+  \item あいているマスに,  1から9までの数字のどれかを入れます.
+  \item タテ列 （9列あります）,  ヨコ列 （9列あります）,  太線で囲まれた3$\times$3のブロック（それぞれ9マスあるブロックが9つあります）のどれにも1から9までの数字が1つずつ入ります.
+\end{enumerate}
+
+\begin{example}[遺伝的アルゴリズム]\label{example:GenericAlgorithm}
+  \begin{enumerate}
+    \item 縦, 列, $3\times3$の部屋に数字の被りがない完成盤面$X$を1つ用意する.
+    \item その盤面から, \textit{HI}の具体的な位置を決め, その部分を全て$null$にする.
+    \item 2.の盤面は1.の完成盤面を解として含むが, その盤面は未完成盤面と限らない.
+    \item ソルバーがその盤面を解き,
+          \begin{enumerate}
+            \item 唯一解であれば4.は未完成盤面であり, 数独（ナンバープレイス）の問題である.
+            \item その盤面に対応する完成盤面が存在しない, あるいは前の子孫より完成盤面が増えたらその盤面を捨てて5.へ進む. （初回ならその盤面を5.へと進める. ）
+            \item その盤面に対応する完成盤面が前の子孫より減ったらその盤面を採用して5.へ進む. （初回ならその盤面を5.へと進める. ）
+          \end{enumerate}
+    \item \textit{HI}の具体的な位置を変えることにより, 別の完成盤面の存在を仮定する. そのような操作を施した別の盤面を用意して4.へ戻る.
+  \end{enumerate}
+\end{example}
+
+以上より, 以下が成立する.
+\begin{theorem}\label{theorem:Equivalent}
+  完成盤面の存在は問題の存在と同値である.
+\end{theorem}
+問題は完成盤面と, 一つ以上の未完成盤面の集合との和集合であった. よって, 完成盤面の存在が未完成盤面の存在を保証することにより\cref{theorem:Equivalent}が成立する.
+
+
 
 
 
@@ -308,6 +355,13 @@ $\bm{\lambda}\colon \{\lambda(i_y,j_y,y)\} \longrightarrow \Lambda$の間には$
     \end{cases}
   \end{equation*}
 \end{example}
+
+\section{パズルルールの定義}
+今章で定義した概念を用いることによってパズルルールを数学的に定義する. パズルルールに必要とされる条件は\cref{section:WordDefinition}より, 問題が一つ以上存在することである. しかし, \cref{theorem:Equivalent}より, 完成盤面の存在は問題の存在と同値である. よって以下のようにペンシルパズルのパズルルールを定義することができる.
+\begin{definition}[パズルルール]\label{definition:PuzzleRule}
+  具体的な\textit{codomain}と\textit{conditions}と\textit{HI}を与えた際に完成盤面が一つ以上存在するそれらの組み合わせのことを\textbf{パズルルール}と定義する.
+\end{definition}
+この定義が既存のパズルルールと相違なく定義できていることを確認し, 新しくパズルルールが考えられることを\cref{chapter:3}で実証する.
 
 \begin{clearpagefigure}
   \includegraphics[width=8cm,clip]{fig/board.png}
