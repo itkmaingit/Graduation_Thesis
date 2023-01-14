@@ -8,3 +8,5 @@ main.pdf
 main.toc
 main.fdb_latexmk
 main.synctex.gz
+indent.log
+main.synctex(busy)

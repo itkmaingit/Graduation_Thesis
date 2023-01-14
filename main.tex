@@ -1,19 +1,28 @@
 \RequirePackage{plautopatch}
 \documentclass[report,a4paper,uplatex,dvipdfmx,11pt]{jsbook}
+\usepackage[dvipdfmx]{graphicx,color}
 \usepackage{amsmath, amssymb,  latexsym, mathtools}
 \usepackage{amsthm}
 \usepackage{amsfonts}
 \usepackage{bm} %数式中でボールド体も斜体にする。\bm{a}と書けば、斜体ボールドのaが書ける
-\usepackage{graphicx}
+\usepackage[dvipdfmx]{graphicx,color}
 \usepackage[hyphens]{url}
 \usepackage[sort,compress,numbers]{natbib} % apsrev4-2ja.bstを使うのに必要
 \usepackage{doi}
-\usepackage{hyperref}
-\usepackage{pxjahyper}
 \usepackage{cleveref}
 \usepackage{tocloft}
-\usepackage{ascmac}
 \usepackage{autonum}
+\usepackage{hyperref}
+\usepackage{pxjahyper}
+\usepackage{xcolor}
+\hypersetup{
+  colorlinks=true,
+  bookmarksdepth=tocdepth,
+  bookmarksnumbered=true,
+  citecolor=blue,
+  linkcolor=red,
+  urlcolor=orange,
+  }
 
 \crefname{definition}{\textbf{Definition} }{\textbf{Definition} }
 \crefname{example}{\textbf{e.g.}}{\textbf{e.g.} }
@@ -22,7 +31,7 @@
 \crefname{corollary}{\textbf{Corollary} }{\textbf{Corollary} }
 \crefname{remark}{\textbf{Remark} }{\textbf{Remark} }
 \crefname{proposition}{\textbf{Proposition} }{\textbf{Proposition} }
-\crefname{figure}{図}{図 }
+\crefname{figure}{Figure }{Figure }
 \crefname{equation}{式}{式}
 
 \crefname{chapter}{第}{第}
@@ -31,6 +40,8 @@
 \creflabelformat{section}{#2#1 節#3}
 \crefname{subsection}{第}{第}
 \creflabelformat{subsection}{#2#1 小節#3}
+
+\renewcommand{\figurename}{Fig}
 
 % 参考文献の書式の設定-----------------------------------------------------------------
 \bibliographystyle{apsrev4-2ja} % アメリカ物理学会(APS)の標準のbibtexスタイルファイル
@@ -97,7 +108,7 @@
 % 卒論で、図をページ数に含めたくないときに用いる図・表環境-------------
 \newenvironment{clearpagefigure}
 {\newpage
-  \begin{figure}[htbp]\centering
+  \begin{figure}[tbp]\centering
   \thispagestyle{empty}
   \addtocounter{page}{-1}}
 {  \end{figure}
