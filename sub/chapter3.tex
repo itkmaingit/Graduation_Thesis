@@ -1,23 +1,60 @@
-\chapter{仮定, 手法}
-\label{chapter:3}
+\chapter{手法}\label{chapter:3}
+\section{章の概略}
+今章では, \cref{chapter:Prepare}で定義したパズルルールがよく定義できているか確認を行う. \cref{section:ExistsPuzzleRule}では既存のパズルルールのうち\cref{chapter:Prepare}で定義したパズルルールとして説明できるものがあることを実証する.  さらに\cref{section:NewPuzzleRule}ではパズルルールの自動作成の足掛けとして新しいパズルルールが作成できることを説明する.
+そして\cref{section:CannotDescribePuzzleRule}では\cref{chapter:Prepare}で定義したパズルルールで既存のパズルルール全てを記述できないことを説明する.
 
-\section{仮定と手法}
-
-\cref{chapter:Prepare}で定義したパズルルールによって既存のパズルルールとが説明できることを以下の例にて説明する.
-実証例として四角に切れとスリザーリンクを用いる. 四角に切れのパズルルールは以下のものである\cite{web:Sikakunikire}
+\section{既存のパズルルール}\label{section:ExistsPuzzleRule}
+今節では既存のパズルルールが\cref{chapter:Prepare}で定義したパズルルールで記述できることを実証する. 実証方法として, ある既存のパズルルールの完成盤面全体が\textit{codomain}と\textit{conditions}で全て余すことなく記述でき, そのパズルルールとして認められない完成盤面がないことを証明する. そして\textit{HI}により未完成盤面が表現できることを証明することにより実証する.
+実証例としてナンバーリンクとスリザーリンクを用いる. ナンバーリンクのパズルルールは以下のものである\cite{web:NumberLink}.
 
 \begin{enumerate}
-  \item 盤面を長方形（正方形）に分割します.
-  \item 数字は, 1マスの面積を1とした, 長方形の面積です. 4と書いてあるマスを含む長方形は,  1$\times$4, 2$\times$2, 4$\times$1のどれかになります.
-  \item 切るのは線の上で, どの長方形にも数字が1つずつ入ります.
+  \item 白マスに線を引いて, 同じ数字どうしをつなげましょう.
+  \item 線は, マスの中央を通るようにタテヨコに引きます. 線を交差させたり, 枝分かれさせたりしてはいけません.
+  \item 数字の入っているマスを通過するように線を引いてはいけません.
+  \item １マスに２本以上の線を引いてはいけません.
 \end{enumerate}
 
-\begin{example}
+\begin{example}[スリザーリンクの数学的記述]
+  スリザーリンクの\textit{codomain}, \textit{conditions}, \textit{HI}にはそれぞれ\cref{example:SlitherLinkCodomain}, \cref{example:SlitherLinkConditions}, \cref{example:SlitherLinkHiddenInformation}を用いる.
+\end{example}
+
+\begin{example}[ナンバーリンクの数学的記述]
+  ナンバーリンクは, 以下で示す\textit{codomain}, \textit{conditions}で定めた盤面をシフトすることによりナンバーリンクの完成盤面を余すことなく記述することができる.
+  \begin{align}
+     & \mathbb{P}=\emptyset                                         \\
+     & \mathbb{C}=\{\textit{null}, \emptyset ,x_1,x_2,\ldots, x_a\} \\
+     & \mathbb{E}=\{\textit{null},0,1\}                             \\
+  \end{align}
+
+  \begin{align}
+     & B\ni \forall p(i,j),1\leq \textit{cross}(p(i,j))\leq 2                        \\
+     & B\ni \forall p(i,j),  \textit{cross}(p(i,j))= 2 \Rightarrow p_{i,j}=\emptyset \\
+     & \forall G_z\ni P_z,        |\{p(i,j)\mid cross(p(i,j))=1\}|=2                 \\
+     & \forall G_z\ni P_z,     \textit{cross}(p(i,j))= 1 \Rightarrow p_{i,j}=x_a     \\
+  \end{align}
+  \begin{align}
+     & \{e_{i,j}\}                      \\
+     & e:\textit{null}\leftrightarrow 0
+  \end{align}
 
 \end{example}
-\begin{example}
 
-つまり上記より，完成盤面が1つ以上存在すれば未完成盤面が生成でき，問題とすることができる．つまり，節(\ref{subsection:PuzzleDefinition})で定義した3つの要素($\mathbf{codomain,conditions,HI}$)を具体的に構成し，そのパズルルールに対し実際に完成盤面を1つ以上存在することを示すことがパズルルールの生成手法と言える．
+\section{新しいパズルルールの作成}\label{section:NewPuzzleRule}
+今節では\cref{chapter:Prepare}で定義したパズルルールで, 新しいパズルが作成できることを説明する. ただし, \cref{theorem:Equivalent}より, 完成盤面を一つ提示することが問題の提示と同値となることに注意する. まず, 以下のように\textit{codomain}, \textit{codomain}, \textit{codomain}を次のように選ぶ.
+
+\begin{align}
+  \mathbb{P}=\{\} \\
+  \mathbb{C}=\{\} \\
+  \mathbb{E}=\{\} \\
+\end{align}
+\begin{align}
+  aaa
+\end{align}
+\begin{align}
+  aaa
+\end{align}
 
 
-\section{新しいパズルルールの作成}
+\section{記述できないパズルルール}\label{section:CannotDescribePuzzleRule}
+今節では, \cref{chapter:Prepare}で定義したパズルルールでは記述できないパズルルールについて説明を行う.
+現状, 既存のペンシルパズルのパズルルールを全て\cref{chapter:Prepare}で定義したパズルルールで記述することができるわけではない. いくつか例を挙げて補足を行う.

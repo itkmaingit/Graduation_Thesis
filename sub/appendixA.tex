@@ -1,6 +1,6 @@
-\chapter{付録A}
-\label{chapter:AppendixA}
-
-
-\section{証明}
-\subsection{ある盤面を与えたとき全てのグラフを要素に持つ集合がいつでも一意に取れることの証明}\label{subsection:GraphIsUniqueProof}
+\chapter{}\label{chapter:AppendixA}
+\section{ある盤面を与えたとき全てのグラフを要素に持つ集合$A$がいつでも一意に取れることの証明}
+ある盤面を与えたとき, $A$（\cref{equation:A}）いつでも一意であることを証明する.
+\begin{proof}\label{proof:GraphUnique}
+  $A=\{G_1,G_2,...,G_a\}=\{G_z\}$だが, $C=\{L_1,L_2,...,L_a\}=\{L_z\}$が一意であることを示すことと同値である. 盤面$B$を与えたとき$C$, $C'$が定まるとする. $C\ni  L_z$を取ったとき, $A'\ni  L'_{z'} \mbox{ s.t. $G_z \cap L'_{z'} \neq \emptyset $}$なる$L'_{z'}$が存在する. $L_z$, $L'_{z'}$が線であるから$L_z\cap L'_{z'}$も線である. いま, $L_z\subset L_z\cap L'_{z'}$であるが$L_z$が最大である仮定から$L_z\supset L_z\cap L'_{z'}$である. よって, $L'_{z'}$も同様の議論より, $L_z= L_z\cap L'_{z'}=L'_{z'}$である. これが$C$に含まれる線について全て成立することより, $C=C'$. $C=C'$から$A=A'$である. 以上の議論より, 題意は示された.
+\end{proof}

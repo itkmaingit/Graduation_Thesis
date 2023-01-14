@@ -9,8 +9,11 @@
 \usepackage[sort,compress,numbers]{natbib} % apsrev4-2ja.bstを使うのに必要
 \usepackage{doi}
 \usepackage{hyperref}
+\usepackage{pxjahyper}
 \usepackage{cleveref}
 \usepackage{tocloft}
+\usepackage{ascmac}
+\usepackage{autonum}
 
 \crefname{definition}{\textbf{Definition} }{\textbf{Definition} }
 \crefname{example}{\textbf{e.g.}}{\textbf{e.g.} }
@@ -19,15 +22,15 @@
 \crefname{corollary}{\textbf{Corollary} }{\textbf{Corollary} }
 \crefname{remark}{\textbf{Remark} }{\textbf{Remark} }
 \crefname{proposition}{\textbf{Proposition} }{\textbf{Proposition} }
-\crefname{fig}{図 }{図 }
-\crefname{equation}{式 }{式 }
+\crefname{figure}{図}{図 }
+\crefname{equation}{式}{式}
 
 \crefname{chapter}{第}{第}
-\creflabelformat{chapter}{#2#1章#3}
+\creflabelformat{chapter}{#2#1 章#3}
 \crefname{section}{第}{第}
-\creflabelformat{section}{#2#1節#3}
+\creflabelformat{section}{#2#1 節#3}
 \crefname{subsection}{第}{第}
-\creflabelformat{subsection}{#2#1小節#3}
+\creflabelformat{subsection}{#2#1 小節#3}
 
 % 参考文献の書式の設定-----------------------------------------------------------------
 \bibliographystyle{apsrev4-2ja} % アメリカ物理学会(APS)の標準のbibtexスタイルファイル
