@@ -4,7 +4,7 @@
 そして\cref{section:CannotDescribePuzzleRule}では\cref{chapter:Prepare}で定義したパズルルールで既存のパズルルール全てを記述できないことを説明する.
 
 \section{既存のパズルルール}\label{section:ExistsPuzzleRule}
-今節では既存のパズルルールが\cref{chapter:Prepare}で定義したパズルルールで記述できることを実証する. 実証方法として, ある既存のパズルルールの完成盤面全体が\textit{codomain}と\textit{conditions}で全て余すことなく記述でき, そのパズルルールとして認められない完成盤面がないことを証明する. そして\textit{HI}により未完成盤面が表現できることを証明することにより実証する.
+今節では既存のパズルルールが\cref{chapter:Prepare}で定義したパズルルールで記述できることを実証する. 実証方法として, ある既存のパズルルールの完成盤面全体が\textit{codomain}と\textit{conditions}で全て余すことなく記述でき, そのパズルルールとして認められない完成盤面がないことを証明する. そして HIにより未完成盤面が表現できることを証明することにより実証する.
 実証例としてナンバーリンクとスリザーリンクを用いる. ナンバーリンクのパズルルールは以下のものである\cite{web:NumberLink}.
 
 \begin{enumerate}
@@ -15,25 +15,25 @@
 \end{enumerate}
 
 \begin{example}[スリザーリンクの数学的記述]
-  スリザーリンクの\textit{codomain}, \textit{conditions}, \textit{HI}にはそれぞれ\cref{example:SlitherLinkCodomain}, \cref{example:SlitherLinkConditions}, \cref{example:SlitherLinkHiddenInformation}を用いる.
+  スリザーリンクの\textit{codomain}, \textit{conditions},  HIにはそれぞれ\cref{example:SlitherLinkCodomain}, \cref{example:SlitherLinkConditions}, \cref{example:SlitherLinkHiddenInformation}を用いる.
 \end{example}
 
 \begin{example}[ナンバーリンクの数学的記述]
   ナンバーリンクは, 以下で示す\textit{codomain}, \textit{conditions}で定めた盤面をシフトすることによりナンバーリンクの完成盤面を余すことなく記述することができる.
   \begin{align}
-     & \mathbb{P}=\emptyset                                         \\
-     & \mathbb{C}=\{\textit{null}, \emptyset ,x_1,x_2,\ldots, x_a\} \\
-     & \mathbb{E}=\{\textit{null},0,1\}                             \\
+     & \mathbb{P}=\emptyset                                             \\
+     & \mathbb{C}=\{\,\textit{null}, \emptyset ,x_1,x_2,\ldots, x_a\,\} \\
+     & \mathbb{E}=\{\,\textit{null},0,1\,\}                             \\
   \end{align}
 
   \begin{align}
      & B\ni \forall p(i,j),1\le \textit{cross}(p(i,j))\le 2                          \\
      & B\ni \forall p(i,j),  \textit{cross}(p(i,j))= 2 \Rightarrow p_{i,j}=\emptyset \\
-     & \forall G_z\ni P_z,        |\{p(i,j)\mid cross(p(i,j))=1\}|=2                 \\
+     & \forall G_z\ni P_z,        |\{\,p(i,j)\mid cross(p(i,j))=1\,\}|=2             \\
      & \forall G_z\ni P_z,     \textit{cross}(p(i,j))= 1 \Rightarrow p_{i,j}=x_a     \\
   \end{align}
   \begin{align}
-     & \{e_{i,j}\}                      \\
+     & \{\,e_{i,j}\,\}                  \\
      & e:\textit{null}\leftrightarrow 0
   \end{align}
 
@@ -43,9 +43,9 @@
 今節では\cref{chapter:Prepare}で定義したパズルルールで, 新しいパズルが作成できることを説明する. ただし, \cref{theorem:Equivalent}より, 完成盤面を一つ提示することが問題の提示と同値となることに注意する. まず, 以下のように\textit{codomain}, \textit{codomain}, \textit{codomain}を次のように選ぶ.
 
 \begin{align}
-  \mathbb{P}=\{\} \\
-  \mathbb{C}=\{\} \\
-  \mathbb{E}=\{\} \\
+  \mathbb{P}=\{\,\,\} \\
+  \mathbb{C}=\{\,\,\} \\
+  \mathbb{E}=\{\,\,\} \\
 \end{align}
 \begin{align}
   aaa
