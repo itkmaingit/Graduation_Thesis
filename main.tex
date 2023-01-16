@@ -193,13 +193,12 @@
 \setcounter{page}{1}
 \renewcommand{\thepage}{A--\arabic{page}}
 \include{sub/appendixA}
-%\setcounter{page}{1}
-%\renewcommand{\thepage}{B--\arabic{page}}
-%\include{appendixB}
 
-\renewcommand{\thepage}{\arabic{page}}
-\setcounter{page}{\value{pagenumberbody}}
+% \renewcommand{\thepage}{\arabic{page}}
+% \setcounter{page}{\value{pagenumberbody}}
 
+\setcounter{page}{1}
+\renewcommand{\thepage}{B--\arabic{page}}
 \backmatter
 \bibliography{reference} % reference.bibの読み込み
 
