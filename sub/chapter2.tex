@@ -1,6 +1,6 @@
 \chapter{主張}\label{chapter:Prepare}
 \section{章の概略}\label{section:Outline}
-この章では準備としてペンシルパズルに関わる用語の定義を行う. ただし, ペンシルパズルとは「サイズ$m\times n$の平面グリッドに完成形の条件を明示した問題を与えたとき, 論理的推測から問題を解く行為と, その問題やルールなどを一括りに呼ぶ概念」とし, 明確な定義は行わずあくまで概念として以下もペンシルパズルという用語を使用する.
+この章では準備としてペンシルパズルと, そのパズルルールに関わる用語の定義を行う. ただし, ペンシルパズルとは「サイズ$m\times n$の平面グリッド上に存在する概念や状態に対し, 盤面が満たされるべき条件を提示した問題や, それらに付随する概念」とし, パズルルールとは, その問題が存在するための必要十分条件とする.
 ペンシルパズルは, 例としてナンバープレイス（\cref{figure:SamplePuzzle}）などが与えられる.
 
 \cref{section:WordDefinition}ではペンシルパズルで与えられる盤面と, それに付随する用語を定義する.
@@ -162,8 +162,6 @@ $\bm{\lambda}\colon \{\,\lambda(i_y,j_y,y)\,\} \longrightarrow \Lambda$の間に
 このように与えることであるパズルルールが存在したとき, 完成盤面は$X$の元であると言え, ベン図として\cref{figure:VennDiagram}のように記述することができる.
 
 \textit{conditions}の具体例は\cref{section:ConcreteConditions}で, 具体的な構成方法を示したのちに取り上げることとする（\cref{example:SlitherLinkConditions}）.
-
-
 
 完成盤面から未知の状態が含まれる完成可能盤面を生成するために「ソルバーから解を隠す位置」として\textit{Hidden Information}（HI）を定義する.
 ただし, \textbf{隠す}という言葉は\textit{codomain}から\textit{null}を除いた集合$\Lambda'=\Lambda \setminus \textit{null}$から\textit{codomain}への写像$\phi\colon \Lambda' \longrightarrow \Lambda$を解の列に作用させることとして定義する. ただし, 完成盤面から完成可能盤面を生成する具体的な手法については\cref{section:GenericAlgorithm}で取り上げる. ある完成盤面があって具体的にHIを与えた際には写像は具体的に構成することができ, それは\cref{equation:Phi}で取り上げる.
