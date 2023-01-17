@@ -1,4 +1,4 @@
-\chapter{手法}\label{chapter:3}
+\chapter{パズルルールの定義の妥当性の確認}\label{chapter:3}
 \section{章の概略}
 今章では, \cref{chapter:Prepare}で定義したパズルルールがよく定義できているか確認を行う. \cref{section:ExistsPuzzleRule}では既存のパズルルールのうち\cref{chapter:Prepare}で定義したパズルルールとして説明できるものがあることを実証する.  さらに\cref{section:NewPuzzleRule}ではパズルルールの自動作成の足掛けとして新しいパズルルールが作成できることを説明する.
 
@@ -22,28 +22,31 @@
 
 \begin{example}[ナンバーリンクの数学的記述]
   ナンバーリンクは, 以下で示す\textit{codomain}, \textit{conditions}で定めた盤面をリプレイスすることによりナンバーリンクの盤面を表すことができる.
-
-  \textit{codomain}は以下である.
+  \textit{codomain}は以下のように記述することができる
   \begin{align}
      & \mathbb{P}=\emptyset                                             \\
      & \mathbb{C}=\{\,\textit{null}, \emptyset ,x_1,x_2,\ldots, x_a\,\} \\
-     & \mathbb{E}=\{\,\textit{null},0,1\,\}                             \\
+     & \mathbb{E}=\{\,\textit{null},0,1\,\}          .                  \\
   \end{align}
-  \textit{conditions}は以下である.
+
+  \textit{conditions}は以下のように記述することができる
   \begin{align}
-     & B\ni \forall p(i,j),1\le \textit{cross}(p(i,j))\le 2                          \label{equation:NumberLinkConditions_1} \\
-     & B\ni \forall p(i,j),  \textit{cross}(p(i,j))= 2 \Rightarrow p_{i,j}=\emptyset \label{equation:NumberLinkConditions_2} \\
-     & \forall G_z\ni P_z,        |\{\,p(i,j)\mid cross(p(i,j))=1\,\}|=2             \label{equation:NumberLinkConditions_3} \\
-     & \forall G_z\ni P_z,     \textit{cross}(p(i,j))= 1 \Rightarrow p_{i,j}=x_a     \label{equation:NumberLinkConditions_4} \\
+     & B\ni \forall p(i,j),1\le \textit{cross}(p(i,j))\le 2                          \label{equation:NumberLinkConditions_1}   \\
+     & B\ni \forall p(i,j),  \textit{cross}(p(i,j))= 2 \Rightarrow p_{i,j}=\emptyset \label{equation:NumberLinkConditions_2}   \\
+     & \forall G_z\ni P_z,        |\{\,p(i,j)\mid cross(p(i,j))=1\,\}|=2             \label{equation:NumberLinkConditions_3}   \\
+     & \forall G_z\ni P_z,     \textit{cross}(p(i,j))= 1 \Rightarrow p_{i,j}=x_a     \label{equation:NumberLinkConditions_4} . \\
   \end{align}
-  HIは以下である.
+
+  HIは以下のように記述することができる
   \begin{equation}
-    \{\,e_{i,j}\,\}
+    \{\,e_{i,j}\,\}.
   \end{equation}
-  \textit{identification}は以下である.
+
+  \textit{identification}は以下のように記述することができる
   \begin{equation}
-    e:\textit{null}\leftrightarrow 0
+    e:\textit{null}\leftrightarrow 0.
   \end{equation}
+
   \textit{conditions}に関し, \cref{example:NumberLinkRule}の\ref{NumberLinkRule_1}は\cref{equation:NumberLinkConditions_1}と\cref{equation:NumberLinkConditions_2}と\cref{equation:NumberLinkConditions_4}に含まれ, \ref{NumberLinkRule_2}は\cref{equation:NumberLinkConditions_3}に対応し, \ref{NumberLinkRule_2}は\cref{equation:NumberLinkConditions_4}に含まれ,\cref{example:NumberLinkRule}の\ref{NumberLinkRule_4}は\textit{codomain}の時点で保証される.
 
   このパズルルールから具体的に完成盤面を選んだものは\cref{figure:NumberLink}であり, 非完成盤面は\cref{figure:NumberLinkQuestion}であり, これをリプレイスしたものがそれぞれ\cref{figure:NumberLinkReplace}, \cref{figure:NumberLinkQuestionReplace}である. これは確かにスリザーリンクの完成盤面であることが分かる.
@@ -52,24 +55,24 @@
 \section{新しいパズルルールの作成}\label{section:NewPuzzleRule}
 \cref{section:NewPuzzleRule}では\cref{chapter:Prepare}で定義したパズルルールで, 新しいパズルルールが作成できることを説明する. まず, 以下のように\textit{codomain}, \textit{conditions}, HI, \textit{identification}を次のように選ぶ.
 
-\textit{codomain}は以下とする.
+\textit{codomain}は以下とする
 \begin{align}
    & \mathbb{P}=\emptyset                       \\
    & \mathbb{C}=\{\,\textit{null},0,1,2,3,4\,\} \\
-   & \mathbb{E}=\{\,\textit{null},0,1\,\}       \\
+   & \mathbb{E}=\{\,\textit{null},0,1\,\}  .    \\
 \end{align}
-\textit{conditions}は以下とする.
+\textit{conditions}は以下とする
 \begin{align}
   A\ni \forall G_z, G_z\ni L_z, |L_z|=4 \\
-  B\ni \forall c(i,j), c_{i,j}= cycle(c(i,j))
+  B\ni \forall c(i,j), c_{i,j}= cycle(c(i,j)).
 \end{align}
-HIは以下とする.
+HIは以下とする
 \begin{align}
-  \{\,e(i_y,j_y,y)\,\}
+  \{\,e(i_y,j_y,y)\,\}.
 \end{align}
-\textit{identification}は以下とする.
+\textit{identification}は以下とする
 \begin{align}
-  e:\textit{null}\leftrightarrow 0
+  e:\textit{null}\leftrightarrow 0.
 \end{align}
 
 \textit{codomain}, \textit{conditions}, HI, \textit{identification}を選んだとき, 非完成盤面と完成盤面の組み合わせとして\cref{figure:NewPuzzleRule}を考えることができる（非完成盤面であることの証明は省く）.
