@@ -5,6 +5,7 @@
 \usepackage{amsthm}
 \usepackage{amsfonts}
 \usepackage{bm} %数式中でボールド体も斜体にする。\bm{a}と書けば、斜体ボールドのaが書ける
+\usepackage{midpage}
 \usepackage[dvipdfmx]{graphicx,color}
 \usepackage[hyphens]{url}
 \usepackage[sort,compress,numbers]{natbib} % apsrev4-2ja.bstを使うのに必要
@@ -117,10 +118,13 @@
 % 卒論で、図をページ数に含めたくないときに用いる図・表環境-------------
 \newenvironment{clearpagefigure}
 {\newpage
-  \begin{figure}[htbp]\centering
+  \begin{midpage}
+  \begin{figure}[htbp]
+  \centering
   \thispagestyle{empty}
   \addtocounter{page}{-1}}
-{  \end{figure}
+{\end{figure}
+  \end{midpage}
   \newpage}
 
 \newenvironment{clearpagetable}
