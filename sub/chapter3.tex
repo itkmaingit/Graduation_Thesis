@@ -1,60 +1,114 @@
-\chapter{手法}\label{chapter:3}
+\chapter{パズルルールの定義の妥当性の確認}\label{chapter:3}
 \section{章の概略}
 今章では, \cref{chapter:Prepare}で定義したパズルルールがよく定義できているか確認を行う. \cref{section:ExistsPuzzleRule}では既存のパズルルールのうち\cref{chapter:Prepare}で定義したパズルルールとして説明できるものがあることを実証する.  さらに\cref{section:NewPuzzleRule}ではパズルルールの自動作成の足掛けとして新しいパズルルールが作成できることを説明する.
-そして\cref{section:CannotDescribePuzzleRule}では\cref{chapter:Prepare}で定義したパズルルールで既存のパズルルール全てを記述できないことを説明する.
 
 \section{既存のパズルルール}\label{section:ExistsPuzzleRule}
-今節では既存のパズルルールが\cref{chapter:Prepare}で定義したパズルルールで記述できることを実証する. 実証方法として, ある既存のパズルルールの完成盤面全体が\textit{codomain}と\textit{conditions}で全て余すことなく記述でき, そのパズルルールとして認められない完成盤面がないことを証明する. そして HIにより未完成盤面が表現できることを証明することにより実証する.
-実証例としてナンバーリンクとスリザーリンクを用いる. ナンバーリンクのパズルルールは以下のものである\cite{web:NumberLink}.
-
-\begin{enumerate}
-  \item 白マスに線を引いて, 同じ数字どうしをつなげましょう.
-  \item 線は, マスの中央を通るようにタテヨコに引きます. 線を交差させたり, 枝分かれさせたりしてはいけません.
-  \item 数字の入っているマスを通過するように線を引いてはいけません.
-  \item １マスに２本以上の線を引いてはいけません.
-\end{enumerate}
+今節では既存のパズルルールが\cref{chapter:Prepare}で定義したパズルルールで記述できることを実証する. \textit{codomain}, HI, \textit{identification}は自明であるから\textit{conditions}と本来のパズルルールとの対応についてのみ説明を行い, 厳密な証明は省く.
+実証例としてスリザーリンクとナンバーリンクを用いる. スリザーリンクのパズルルールは\cref{example:SlitherLinkRule}である. ナンバーリンクのパズルルールは以下のものである（\cite{web:NumberLink}）.
+\begin{example}[ナンバーリンクのパズルルール]\label{example:NumberLinkRule}\textup{}
+  \begin{enumerate}
+    \item 白マスに線を引いて, 同じ数字どうしをつなげましょう.\label{NumberLinkRule_1}
+    \item 線は, マスの中央を通るようにタテヨコに引きます. 線を交差させたり, 枝分かれさせたりしてはいけません.\label{NumberLinkRule_2}
+    \item 数字の入っているマスを通過するように線を引いてはいけません.\label{NumberLinkRule_3}
+    \item １マスに２本以上の線を引いてはいけません.\label{NumberLinkRule_4}
+  \end{enumerate}
+\end{example}
 
 \begin{example}[スリザーリンクの数学的記述]
-  スリザーリンクの\textit{codomain}, \textit{conditions},  HIにはそれぞれ\cref{example:SlitherLinkCodomain}, \cref{example:SlitherLinkConditions}, \cref{example:SlitherLinkHiddenInformation}を用いる.
+  スリザーリンクの\textit{codomain}, \textit{conditions},  HI, \textit{identification}はそれぞれ\cref{example:SlitherLinkCodomain}, \cref{example:SlitherLinkConditions}, \cref{example:SlitherLinkHiddenInformation}, \cref{example:SlitherLinkIndentification}である. \textit{conditions}に関し, \cref{example:SlitherLinkRule}の\ref{SlitherLinkRule_1}と\ref{SlitherLinkRule_3}は\cref{equation:SlitherLinkConditions_2}と\cref{equation:SlitherLinkConditions_3}に対応し, \cref{example:SlitherLinkRule}の\ref{SlitherLinkRule_2}は\cref{equation:SlitherLinkConditions_1}に対応している.
+
+  このパズルルールから具体的に完成盤面を選んだものは\cref{figure:SlitherLink}であり, 非完成盤面は\cref{figure:SlitherLinkQuestion}であり, 確かにスリザーリンクの完成盤面であることが分かる.
 \end{example}
 
 \begin{example}[ナンバーリンクの数学的記述]
-  ナンバーリンクは, 以下で示す\textit{codomain}, \textit{conditions}で定めた盤面をシフトすることによりナンバーリンクの完成盤面を余すことなく記述することができる.
+  ナンバーリンクは, 以下で示す\textit{codomain}, \textit{conditions}で定めた盤面をリプレイスすることによりナンバーリンクの盤面を表すことができる.
+  \textit{codomain}は以下のように記述することができる
   \begin{align}
      & \mathbb{P}=\emptyset                                             \\
      & \mathbb{C}=\{\,\textit{null}, \emptyset ,x_1,x_2,\ldots, x_a\,\} \\
-     & \mathbb{E}=\{\,\textit{null},0,1\,\}                             \\
+     & \mathbb{E}=\{\,\textit{null},0,1\,\}          .                  \\
   \end{align}
 
+  \textit{conditions}は以下のように記述することができる
   \begin{align}
-     & B\ni \forall p(i,j),1\le \textit{cross}(p(i,j))\le 2                          \\
-     & B\ni \forall p(i,j),  \textit{cross}(p(i,j))= 2 \Rightarrow p_{i,j}=\emptyset \\
-     & \forall G_z\ni P_z,        |\{\,p(i,j)\mid cross(p(i,j))=1\,\}|=2             \\
-     & \forall G_z\ni P_z,     \textit{cross}(p(i,j))= 1 \Rightarrow p_{i,j}=x_a     \\
-  \end{align}
-  \begin{align}
-     & \{\,e_{i,j}\,\}                  \\
-     & e:\textit{null}\leftrightarrow 0
+     & B\ni \forall p(i,j),1\le \textit{cross}(p(i,j))\le 2                          \label{equation:NumberLinkConditions_1}   \\
+     & B\ni \forall p(i,j),  \textit{cross}(p(i,j))= 2 \Rightarrow p_{i,j}=\emptyset \label{equation:NumberLinkConditions_2}   \\
+     & \forall G_z\ni P_z,        |\{\,p(i,j)\mid cross(p(i,j))=1\,\}|=2             \label{equation:NumberLinkConditions_3}   \\
+     & \forall G_z\ni P_z,     \textit{cross}(p(i,j))= 1 \Rightarrow p_{i,j}=x_a     \label{equation:NumberLinkConditions_4} . \\
   \end{align}
 
+  HIは以下のように記述することができる
+  \begin{equation}
+    \{\,e_{i,j}\,\}.
+  \end{equation}
+
+  \textit{identification}は以下のように記述することができる
+  \begin{equation}
+    e:\textit{null}\leftrightarrow 0.
+  \end{equation}
+
+  \textit{conditions}に関し, \cref{example:NumberLinkRule}の\ref{NumberLinkRule_1}は\cref{equation:NumberLinkConditions_1}と\cref{equation:NumberLinkConditions_2}と\cref{equation:NumberLinkConditions_4}に含まれ, \ref{NumberLinkRule_2}は\cref{equation:NumberLinkConditions_3}に対応し, \ref{NumberLinkRule_2}は\cref{equation:NumberLinkConditions_4}に含まれ,\cref{example:NumberLinkRule}の\ref{NumberLinkRule_4}は\textit{codomain}の時点で保証される.
+
+  このパズルルールから具体的に完成盤面を選んだものは\cref{figure:NumberLink}であり, 非完成盤面は\cref{figure:NumberLinkQuestion}であり, これをリプレイスしたものがそれぞれ\cref{figure:NumberLinkReplace}, \cref{figure:NumberLinkQuestionReplace}である. これは確かにスリザーリンクの完成盤面であることが分かる.
 \end{example}
 
 \section{新しいパズルルールの作成}\label{section:NewPuzzleRule}
-今節では\cref{chapter:Prepare}で定義したパズルルールで, 新しいパズルが作成できることを説明する. ただし, \cref{theorem:Equivalent}より, 完成盤面を一つ提示することが問題の提示と同値となることに注意する. まず, 以下のように\textit{codomain}, \textit{codomain}, \textit{codomain}を次のように選ぶ.
+\cref{section:NewPuzzleRule}では\cref{chapter:Prepare}で定義したパズルルールで, 新しいパズルルールが作成できることを説明する. まず, 以下のように\textit{codomain}, \textit{conditions}, HI, \textit{identification}を次のように選ぶ.
 
+\textit{codomain}は以下とする
 \begin{align}
-  \mathbb{P}=\{\,\,\} \\
-  \mathbb{C}=\{\,\,\} \\
-  \mathbb{E}=\{\,\,\} \\
+   & \mathbb{P}=\emptyset                       \\
+   & \mathbb{C}=\{\,\textit{null},0,1,2,3,4\,\} \\
+   & \mathbb{E}=\{\,\textit{null},0,1\,\}  .    \\
 \end{align}
+\textit{conditions}は以下とする
 \begin{align}
-  aaa
+  A\ni \forall G_z, G_z\ni L_z, |L_z|=4 \\
+  B\ni \forall c(i,j), c_{i,j}= cycle(c(i,j)).
 \end{align}
+HIは以下とする
 \begin{align}
-  aaa
+  \{\,e(i_y,j_y,y)\,\}.
+\end{align}
+\textit{identification}は以下とする
+\begin{align}
+  e:\textit{null}\leftrightarrow 0.
 \end{align}
 
+\textit{codomain}, \textit{conditions}, HI, \textit{identification}を選んだとき, 非完成盤面と完成盤面の組み合わせとして\cref{figure:NewPuzzleRule}を考えることができる（非完成盤面であることの証明は省く）.
 
-\section{記述できないパズルルール}\label{section:CannotDescribePuzzleRule}
-今節では, \cref{chapter:Prepare}で定義したパズルルールでは記述できないパズルルールについて説明を行う.
-現状, 既存のペンシルパズルのパズルルールを全て\cref{chapter:Prepare}で定義したパズルルールで記述することができるわけではない. いくつか例を挙げて補足を行う.
+\begin{clearpagefigure}
+  \includegraphics[width=0.8\linewidth,clip]{fig/cycle.png}
+  \caption{replace}
+  \label{figure:SlitherLinkQuestion}
+\end{clearpagefigure}
+
+\begin{clearpagefigure}
+  \includegraphics[width=0.8\linewidth,clip]{fig/cycle.png}
+  \caption{replace}
+  \label{figure:NumberLink}
+\end{clearpagefigure}
+
+\begin{clearpagefigure}
+  \includegraphics[width=0.8\linewidth,clip]{fig/cycle.png}
+  \caption{replace}
+  \label{figure:NumberLinkQuestion}
+\end{clearpagefigure}
+
+\begin{clearpagefigure}
+  \includegraphics[width=0.8\linewidth,clip]{fig/cycle.png}
+  \caption{replace}
+  \label{figure:NumberLinkReplace}
+\end{clearpagefigure}
+
+\begin{clearpagefigure}
+  \includegraphics[width=0.8\linewidth,clip]{fig/cycle.png}
+  \caption{replace}
+  \label{figure:NumberLinkQuestionReplace}
+\end{clearpagefigure}
+
+\begin{clearpagefigure}
+  \includegraphics[width=0.8\linewidth,clip]{fig/cycle.png}
+  \caption{replace}
+  \label{figure:NewPuzzleRule}
+\end{clearpagefigure}
