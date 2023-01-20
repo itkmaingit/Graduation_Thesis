@@ -10,18 +10,18 @@ Iwashita-Kawahara-Minato-Tsumura-Yoshinaka
 \section{定義}\label{section:IntroDefinition}
 ペンシルパズルとは「サイズ$m\times n$の平面グリッド上に存在する概念や状態に対し, 盤面が満たされるべき条件を提示した問題や, それらに付随する概念」とし, パズルルールとは, その問題を作成するための制約とする. 本研究ではまず, グリッド上の格子点, 細胞, 縦辺, 横辺という四つの概念を\textbf{位置}という用語を用いて数学的に定義した（\cref{figure:Board}）. そして, それぞれの位置には未知と既知という\textit{状態}が存在し, それらには具体的な値として与えられることについて言及を行った. その値が含まれる集合を以下で定義する.
 \begin{definition}[\textit{codomain}]
-	位置に対応する状態がとりうる集合のことを\textbf{\textit{codomain}}と定義する.
+  位置に対応する状態がとりうる集合のことを\textbf{\textit{codomain}}と定義する.
 \end{definition}
 それらを定義したとき, 盤面が$B\coloneqq\Bigl\{\,\{\,p_{i,j}\,\},\{\,c_{i,j}\,\},\{\,e_{i_y,j_y,y}\,\}\,\Bigr\}$と数学的な記述が可能になることを示した. ただし, $\Bigl\{\,\{\,p_{i,j}\,\},\{\,c_{i,j}\,\},\{\,e_{i_y,j_y,y}\,\}\,\Bigr\}$は各位置の状態の列である. そして, パズルルールにおいて盤面が満たすべき条件を以下で定義する.
 \begin{definition}[\textit{conditions}]
-	全ての位置の状態が既知である盤面を与えたとき, 盤面にある全ての状態が満たしているべき条件を\textbf{\textit{conditions}}と定義する.
+  全ての位置の状態が既知である盤面を与えたとき, 盤面にある全ての状態が満たしているべき条件を\textbf{\textit{conditions}}と定義する.
 \end{definition}
 これを用いて, パズルの問題の完成盤面がこの組み合わせで全て記述できることを示した. ただし, \cref{chapter:Prepare}以降では問題と完成盤面という用語をさらに厳密に定義する. さらに, パズルルールには問題が存在する. そこで, 完成盤面から問題を作成するために以下二つの定義を導入する. 完成盤面から状態を隠すことで問題を作るための概念としてHIを導入する. また、問題においては状態が未知であることと, 既知である状態がソルバーに同一の状態として示される（\cref{figure:SlitherLink}では辺が書かれていない状態と, 未知であることがソルバーに同一の状態として示されている）. その対応を\textit{identification}として導入する. これら二つを以下で定義する.
 \begin{definition}[\textit{Hidden Information}（HI）]
-	ある完成盤面があったとき, ソルバーから隠す位置の部分集合を\textbf{\textit{Hidden Information}（HI）}と定義する.
+  ある完成盤面があったとき, ソルバーから隠す位置の部分集合を\textbf{\textit{Hidden Information}（HI）}と定義する.
 \end{definition}
 \begin{definition}[\textit{identification}]
-	未知の状態と, 既知の状態の具体的な値がソルバーに同一の状態として伝えられるその対応を\textbf{\textit{identification}}として定義する.
+  未知の状態と, 既知の状態の具体的な値がソルバーに同一の状態として伝えられるその対応を\textbf{\textit{identification}}として定義する.
 \end{definition}
 
 \section{主結果}
