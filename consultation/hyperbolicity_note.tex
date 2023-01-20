@@ -1,0 +1,416 @@
+\documentclass[12pt, pdftex]{amsart}
+\usepackage[margin=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,decorations.pathreplacing,decorations.markings,shapes,calc}
+\usetikzlibrary{matrix,arrows,decorations.pathmorphing,backgrounds,decorations.markings,positioning}
+% this package is used to rotate \sim.
+\usepackage{graphics}
+\newcommand{\rotatesim}{\rotatebox[origin=c]{90}{$\sim$}}
+\usepackage[all]{xy}
+\usepackage{comment}
+\usepackage{amsmath}
+% \usepackage{amscd}
+\usepackage{color}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{here}
+\usepackage{amscd} 
+\usepackage{tikz-cd}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{mathabx}
+\usepackage{scalefnt}
+\usepackage{url}
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{ass}[thm]{Assumption}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{prob}[thm]{Problem}
+\newtheorem{que}[thm]{Question}
+\renewcommand{\thedefn}{}
+\newtheorem{ex}[thm]{Example}
+\renewcommand{\theex}{}
+\renewcommand{\proofname}{\textbf{Proof}}
+\numberwithin{equation}{section}
+\def\A{{\mathbb A}}
+\def\F{{\mathbb F}}
+\def\Q{{\mathbb Q}}
+\def\R{{\mathbb R}}
+\def\Z{{\mathbb Z}}
+\def\C{{\mathbb C}}
+\def\P{{\mathbb P}}
+\def\B{{\mathbb B}}
+\def\S{{\mathfrak S}}
+\def\id{\mathop{\mathrm{id}}\nolimits}
+\def\End{\mathop{\mathrm{End}}\nolimits}
+\def\Frob{\mathop{\mathrm{Frob}}\nolimits}
+\def\Frac{\mathop{\mathrm{Frac}}\nolimits}
+\def\Aut{\mathop{\mathrm{Aut}}\nolimits}
+\def\Gal{\mathop{\mathrm{Gal}}\nolimits}
+\def\Lie{\mathop{\mathrm{Lie}}\nolimits}
+\def\Hom{\mathop{\mathrm{Hom}}\nolimits}
+\def\Image{\mathop{\mathrm{Im}}\nolimits}
+\def\Ker{\mathop{\mathrm{Ker}}\nolimits}
+\def\Pic{\mathop{\mathrm{Pic}}\nolimits}
+\def\NS{\mathop{\mathrm{NS}}\nolimits}
+\def\GL{\mathop{\mathrm{GL}}\nolimits}
+\def\SL{\mathop{\mathrm{SL}}\nolimits}
+\def\SU{\mathop{\mathrm{SU}}\nolimits}
+\def\Her{\mathop{\mathrm{Her}}\nolimits}
+\def\Spec{\mathop{\mathrm{Spec}}\nolimits}
+\def\rec{\mathop{\mathrm{rec}}\nolimits}
+\def\Tr{\mathop{\mathrm{Tr}}\nolimits}
+\def\Norm{\mathop{\mathrm{Norm}}\nolimits}
+\def\det{\mathop{\mathrm{det}}\nolimits}
+\def\dim{\mathop{\mathrm{dim}}\nolimits}
+\def\div{\mathop{\mathrm{div}}\nolimits}
+\def\Div{\mathop{\mathrm{Div}}\nolimits}
+\def\vol{\mathop{\mathrm{vol}}\nolimits}
+\def\Ind{\mathop{\mathrm{Ind}}\nolimits}
+\def\Stab{\mathop{\mathrm{Stab}}\nolimits}
+\def\rank{\mathop{\mathrm{rank}}\nolimits}
+\def\Hom{\mathop{\mathrm{Hom}}\nolimits}
+\def\diag{\mathop{\mathrm{diag}}\nolimits}
+\def\antidiag{\mathop{\mathrm{antidiag}}\nolimits}
+\def\chara{\mathop{\mathrm{char}}}
+\def\resp{\mathop{\mathrm{resp}}}
+\def\ss{\mathop{\mathrm{ss}}}
+
+\def\ord{\mathrm{ord}}
+\def\GIT{\mathrm{GIT}}
+\def\K{\mathrm{K}}
+\def\tor{\mathrm{tor}}
+\def\BB{\mathrm{BB}}
+\def\lev{\mathrm{lev}}
+
+
+
+\def\L{\mathscr{L}}
+\def\H{\mathscr{H}}
+\def\g{\mathfrak{g}}
+\def\k{\mathfrak{k}}
+\def\N{\mathscr{N}}
+\def\M{\mathcal{M}}
+\def\F{\mathscr{F}}
+\def\W{\mathscr{W}}
+\def\OO{\mathscr{O}}
+\def\V{\mathscr{V}}
+\def\A{\mathcal{A}}
+\def\D{\mathscr{D}}
+\def\p{\mathfrak{p}}
+\def\f{\mathfrak{f}}
+\def\PP{\mathcal{P}}
+\def\QQ{\mathcal{Q}}
+\def\RR{\mathcal{R}}
+\def\a{\alpha}
+\def\b{\beta}
+\def\g{\gamma}
+\def\l{\langle}
+\def\r{\rangle}
+\def\Res{\mathop{\mathrm{Res}}\nolimits}
+\def\GSpin{\mathop{\mathrm{GSpin}}\nolimits}
+\def\CH{\mathop{\mathrm{CH}}\nolimits}
+\def\Spin{\mathop{\mathrm{Spin}}\nolimits}
+\def\exp{\mathop{\mathrm{exp}}\nolimits}
+\def\Sp{\mathop{\mathrm{Sp}}\nolimits}
+\def\SO{\mathop{\mathrm{SO}}\nolimits}
+\def\SU{\mathop{\mathrm{SU}}\nolimits}
+\def\Mp{\mathop{\mathrm{Mp}}\nolimits}
+\def\Supp{\mathop{\mathrm{Supp}}\nolimits}
+\def\Sym{\mathop{\mathrm{Sym}}\nolimits}
+\def\PGL{\mathop{\mathrm{PGL}}\nolimits}
+\def\U{\mathrm{U}}
+\def\O{\mathrm{O}}
+\def\v{\mathrm{vol}_{HM}}
+
+\allowdisplaybreaks[4]
+
+\newcommand{\transp}[1]{{}^{t}\!{#1}}
+\newcommand{\defeq}{\vcentcolon=}
+\renewcommand{\labelenumi}{(\arabic{enumi})}
+
+\begin{document}
+\title[Hyperbolicity of the moduli spaces of polarized Abelian surfaces]
+{Provisional note: Hyperbolicity of the moduli spaces of polarized Abelian surfaces}
+\author{Yota Maeda}
+\email{y.maeda@math.kyoto-u.ac.jp}
+\maketitle
+
+\section{Introduction}
+In this note, we shall study certain hyperbolicity of $\A^{\lev}_{1,t}=\H_2/\Gamma_{1,t}$.
+\begin{prob}
+\label{prob:main}
+All rational or elliptic curves in $\A^{\lev}_{1,t}$ are contained in the Humbert surfaces $H_1$ or $H_2$ if $t$ is sufficiently large.
+\end{prob}
+We work on Problem \ref{prob:main} by extending the result \cite{Rou13} and constructing certain cusp forms by the Gritsenko lift.
+
+We call a variety $X$ \textit{hyperbolic} if it is Kobayashi hyperbolic, i.e., the Kobayashi pseudo-metric is non-degenerate at any point $x\in X$.
+For a subvariety $W\subset X$, we call $X$ hyperbolic modulo $W$ if $X\setminus W$ is hyperbolic.
+Note that if $X$ is hyperbolic, then it is Brody hyperbolic, i.e., there is no non-constant map $f\colon:\C\to X$ and this implies that $X$ contains no  either rational or elliptic curves.
+If $X$ is projective, then the converse is true (but we won't use this in this note).
+Hence, Problem \ref{prob:main} is deduced to the following.
+\begin{prob}
+\label{prob:hyperbolicity}
+A toroidal compactification $\overline{\A^{\lev}_{1,t}}^{\tor}$ is hyperbolic modulo its boundary $\overline{\A^{\lev}_{1,t}}^{\tor}\setminus \A^{\lev}_{1,t}$ and the Humbert surfaces $H_1$ and $H_2$.
+\end{prob}
+To solve this problem, first, we study the relationship between pseudo-metrics and cusp forms.
+A pseudo-metric $\rho$ on $X$ is called \textit{distance decreasing} if for any map $f\colon (\Delta, g_p) \to (X, \rho)$, we have $f^{\star}\rho \leq g_p$.
+Here, $(\Delta, g_p)$ is the unit disc equipped with the Poincar\'{e} metric.
+Note that the Kobayashi metric is characterized the largest pseudo-metric among distance decreasing pseudo-metrics.
+
+\section{General theorem}
+Below, let $X\defeq\D/\Gamma$ be a quotient of Hermitian symmetric domain $\D$ by an arithmetic subgroup $\Gamma\subset\Aut(\D)$.
+Here, we do \textit{not} assume that $\Gamma$ is neat.
+We take a toroidal compactification $\overline{X}^{\tor}$ of $X$ and denote its boundary $D$.
+Let $B=\cup_i B_i$ be the union of branch divisors of the map $\D\to\D/\Gamma$ and $n_i$ be the branch index of $B_i$.
+\begin{thm}
+\label{thm:hyperbolicity}
+Let $x\in X\setminus B$.
+We assume that there is a positive integer $\ell$ and a section $s\in H^0(\overline{X}^{\tor}, \ell(K_{\overline{X}^{\tor}}+D+\sum_i \frac{n_i-1}{n_i}B_i))$ satisfying 
+\begin{enumerate}
+\item $s(x)\neq 0$
+\item $s$ vanishes on $D$ with multiplicity $>\frac{\ell}{\gamma}$
+\item $s$ vanishes on $B$ with multiplicity $>0$.
+\end{enumerate}
+Then, there exists a pseudo-metric on $\overline{X}^{\tor}$ which is distance decreasing and  non-degenerate at $x\in X$.
+In particular, the Kobayashi pseudo-metric on $\overline{X}^{\tor}$ is non-degenerate at $x\in X$.
+\end{thm}
+For the definition of the rational number $\gamma$, see \cite[p3]{Rou13}, but in our Siegel threefolds case, we can take $\gamma=\frac{1}{3}$.
+\begin{proof}
+We give a sketch of proof here.
+Basically,  we follow the strategy of \cite[Proposition 2.2, 2.3, 2.4]{Rou13}.
+We also take the same $\psi$ as in \cite{Rou13} and have to check that
+\begin{enumerate}
+\item $\psi$ vanishes on $D$ and $B$
+\item $\psi\cdot g$ vanishes on $D$ and $B$.
+\end{enumerate}
+Here, $g$ is the Bergman metric on $\D$.
+At the boundary, by taking neat cover, we can choose new coordinates $w_1,\cdots,  w_k$ where $w_i=z_i^{m_i}$ for some positive integer $m_i$, satisfying that the (irreducible components of) boundary is represented by the equation $(w_1\cdots w_k=0)$.
+Then, the same discussion of \cite[Proposition 2.2, 2.3]{Rou13} holds, i.e., $\psi$ and $\psi\cdot g$ vanish on $D$.
+At the branch divisors, the explicit form of the Bergman metric $(-4\frac{\partial^2}{\partial z_i\partial \overline{z_j}}\log(1-z_i\overline{z_j}))_{i,j}$, it follows easily that $\psi$ and $\psi\cdot g$ vanish on $B$ because $s$ does vanish on $B$.
+Then, the existence of a distance decreasing pseudo-metric \cite[Proposition 2.4]{Rou13} also holds by the same discussion, hence this completes the proof.
+\end{proof}
+
+Now, let $D=\cup_i D_i$ be the irreducible decomposition of the toroidal boundary.
+A little modification of Theorem \ref{thm:hyperbolicity} implies the following corollary.
+
+\begin{cor}
+\label{cor:hyperbolicity}
+Let $x\in X\setminus B$.
+We assume that there is a positive integer $\ell$ and a family of sections $s_i\in H^0(\overline{X}^{\tor}, \ell(K_{\overline{X}^{\tor}}+D_i+\sum_i \frac{n_i-1}{n_i}B_i))$ satisfying 
+\begin{enumerate}
+\item $s_i(x)\neq 0$
+\item $s_i$ vanishes on $D_i$ with multiplicity $>\frac{\ell}{\gamma}$
+\item $s_i$ vanishes on $B$ with multiplicity $>0$.
+\end{enumerate}
+Then, there exists a pseudo-metric on $\overline{X}^{\tor}$ which is distance decreasing and  non-degenerate at $x\in X$.
+In particular, the Kobayashi pseudo-metric on $\overline{X}^{\tor}$ is non-degenerate at $x\in X$.
+\end{cor}
+\begin{proof}
+Taking a partition of unity $\sum_i\a_i =1$ around the boundaries, it suffices to define $\psi_i\defeq ||s_i||_h^{2(\gamma-\epsilon)/\ell}$ and $\widetilde{g_i}\defeq \beta \psi_i g$, and use $\widetilde{g}\defeq \sum_i\a_i\widetilde{g_i}$ in \cite[Proposition 2.2, 2.3, 2.4]{Rou13}.
+Here, we take $\beta \defeq \sup_i{\beta_i}$.
+\end{proof}
+
+\section{Cusp forms}
+Below, we specify these to our situation.
+By \cite{Got61a, Got61b, Uen71}, the branch divisors on $\A_{1,t}$ (it may need to take $t=p>2$) are only $H_1$ and $H_2$ with index 2; see also \cite[section 5A]{HKW93}.
+Now, we have
+\[K_{\overline{\A^{\lev}_{1,t}}^{\tor}}=3L-\frac{1}{2}H-D\]
+in $\Pic(\overline{\A^{\lev}_{1,t}}^{\tor})\otimes\Q$ where $L$ is the automorphic line bundle of weight 1 (Hodge bundle) and $H\defeq H_1+H_2$.
+In this note, \textit{weight} always means arithmetic weight.
+
+Hence, by Theorem \ref{thm:hyperbolicity}, Problem \ref{prob:hyperbolicity} is deduced to the following problem, claiming the existence of certain cusp forms.
+\begin{prob}
+\label{prob:cusp_form}
+For any $x\in \overline{\A^{\lev}_{1,t}}^{\tor}\setminus (D\cup H)$, there exists a section $s\in H^0(\overline{\A^{\lev}_{1,t}}^{\tor}, 3\ell L-\frac{1}{2}H-3\ell D)$, not vanishing at $x$ for some $\ell$.
+\end{prob}
+Here, in the above situation, we shall prove that any section $s\in H^0(\overline{\A^{\lev}_{1,t}}^{\tor}, 3\ell L-\frac{1}{2}H-3\ell D)$ does not vanish at $x$ for sufficiently large $t=p^r$ with $r\geq 0$.
+On the other hand, we obtain 
+\begin{align*}
+3\ell L-\frac{1}{2}H-3\ell D&=\ell K_{\overline{\A^{\lev}_{1,t}}^{\tor}}+\frac{\ell-1}{2}H-2\ell D.\\
+\end{align*}
+Here, $\frac{\ell-1}{2}H$ is effective for $\ell>1$ and $(\ell K_{\overline{\A^{\lev}_{1,t}}^{\tor}}-2\ell D)\vert_{\A^{\lev}_{1,t}}$ is big because $\A^{\lev}_{1,t}$ is now of general type by for $t=p^r>>0$ by \cite{Erd04, GS96, OG89, San97} or \cite[section 2]{HS94}.
+Hence, the set of the base point of the line bundle $3\ell L-\frac{1}{2}H-3\ell D$ is contained in $D$.
+
+By the above discussion, Problem \ref{prob:cusp_form} is deduced to the following.
+\begin{prob}
+There exists a non-zero cusp form $f$ vanishing on $H$ with respect to $\Gamma_{1,t}$, satisfying the corresponding section $s\defeq s_f$ on $\overline{\A^{\lev}_{1,t}}^{\tor}$ has slope $\leq 1$ for $t=p^r>>0$.
+\end{prob}
+Here, \textit{slope} of $s_f$ is the quantity (weight of $f$)/(vanishing order of $s_f$ at $D$ on $\overline{\A^{\lev}_{1,t}}^{\tor}$).
+
+On the other hand, by the injectivity of the Gritsenko lift and the dimension formula, there exists a non-zero cusp form of level $\Gamma_{1,p^r}$ if $p\geq 37$ and $p\neq 41,47,59,71$.
+From now on, we shall study 
+\begin{enumerate}
+\item (Reflective obstruction:) $f$ vanishes on $H$
+\item (Cusp obstruction:) $s_f$ has slope $\leq 1$.
+\end{enumerate}
+
+
+
+Below, we show a strategy to prove (1) and (2).
+
+To treat (1), we apply Hirzebuch's proportionality principle, Hirzebruch-Riemann-Roch theorem and Kodaira vanishing theorem to the line bundle $\ell L-H-D$ on $\overline{\A^{\lev}_{1,t}}^{\tor}$.
+This strategy was used in \cite{HS94}.
+This implies that the space $H^0(\overline{\A^{\lev}_{1,p}}^{\tor}, \ell L-D-H)$ has positive dimension for large $p$.
+Thus the rest problem is to pullback a section in $H^0(\overline{\A^{\lev}_{1,p}}^{\tor}, \ell L-D-H)$ along (2) and construct a low slope section on $\overline{\A^{\lev}_{1,p^r}}^{\tor}$.
+
+To work on (2), we take a finite ramified cover $\overline{\A^{\lev}_{1,p^r}}^{\tor}\to \overline{\A^{\lev}_{1,p}}^{\tor}$.
+We want to prove that this map ramifies along the boundary with large branch index at least $p^{2(r-1)}$.
+This can be done by comparing the center of the unipotent part of $\Gamma_{1,p^r}$ with $\Gamma_{1,p}$. 
+
+\textcolor{red}{Note: there actually exists a boundary component that does not ramify under the finite covering $\Gamma_{1,p^r}\to\Gamma_{1,p}$.
+We can prove that ``standard" boundaries always ramify, but this is not enough for our case because $\Gamma_{1,p^r}$ is \textit{not} a normal subgroup of $\Gamma_{1,p}$ (or $\Sp_2(\Z)$), thus the branch indexes are \textit{not} the same for some orbits ($\Gamma_{1,p}/\Gamma_{1,p^r}$ is not a group!) unlike the case of the moduli space of the principally polarized $g$-dimensional abelian varieties with canonical level structure $\overline{\A_g(n)}$ \cite{Rou13} ($\Sp_g(\Z)/\Gamma(n)$ is a group, so the branch indexes under this group action are as the same and it suffices to consider the standard boundaries $F_0,\dots,F_{g-1}$).}
+
+\textcolor{blue}{A sketch of proof of $\dim H^0(\overline{\A_{1,p}^{\lev}}^{\tor} \ell(kL-m D-\frac{1}{2}H))>0$ for $\ell, k, m, p>>0$ with $k/m<1$ is as follows.
+Note that 
+\[\dim H^0 (kL-D)=p^5k^3 + O(k^2).\]
+Let $D_0$ be the central component and $\{D_i\}_{i=1}^r$ be the peripheral components of a toroidal boundary.
+\begin{enumerate}
+\item First, we shall show that
+\[\dim H^0(\overline{\A_{1,p}^{\lev}}^{\tor} \ell(kL-(k+1) D)=\dim H^0(\overline{\A_{1,p}^{\lev}}^{\tor} (3kL-3(k+1) D)>0.\]
+Here, for simplicity, let $m=k+1, \ell =3$.
+Considering the Fourier-Jacobi expansion of Siegel modular forms of genus 2, the cusp obstructions can be estimated by the dimension of Jacobi forms.
+Near a peripheral component $D_i$, the obstruction is 
+\[\bigoplus_{m=0}^{3(k+1)}J_{3k, m}\]
+and dimension running all $D_i$ has order $p^2 k^3 +O(k^2)$ by \cite[Proposition 3.2]{HS94}.
+Near the central boundary component $D_0$, by \cite[Proposition 3.7]{HS94}, the dimension of obstruction due to $D_0$ has order $p^3 k^3 + O(k^2)$.
+Hence, the cusp obstruction has order $p^2 k^3 + O(k^2)$ and this implies that this obstruction is small enough for sufficiently large $p$.
+\item Second, we prove 
+\[\dim H^0(\overline{\A_{1,p}^{\lev}}^{\tor} kL-mD-\frac{1}{2}H)=\dim H^0(\overline{\A_{1,p}^{\lev}}^{\tor} 2kL-2m D - H)>0,\]
+where $\ell =2$ for simplicity.
+Now, we have an exact sequence
+\[0\to\OO(k L-mD-H)\to\OO(k L-mD)\to\OO_H(k L-mD)\to 0.\]
+Thus, we have to prove that $h^0(k L-mD)>>h^0((k L-mD)\vert_H)$, but left-hand side can be estimated by (1) and has order $(p^5-p^2)k^3 +O(k^2)$.
+The right-hand side can be computed \cite[Corollary 4.7, Theorem 4.19]{HS94}, for sufficiently divisible $k$ (maybe a multiple of 12), it follows $h^0((k L-mD)\vert_H)=0$.
+\end{enumerate}
+Therefore, for large $p$ and sufficiently divisible $k, \ell$, we conclude 
+\[\dim H^0(\overline{\A_{1,p}^{\lev}}^{\tor} \ell(kL-m D-\frac{1}{2}H))>0.\]}
+
+\subsection{Reflective obstruction}
+Here, we show an outline of how to estimate the dimension of the space $H^0(\overline{\A^{\lev}_{1,p}}^{\tor}, \ell L-D-H)$.
+First, we consider the exact sequence 
+\[0\to\OO(-H)\to\OO\to\OO_H\to 0.\]
+By twisting the appropriate factor, we obtain
+\[0\to\OO(\ell L-D-H)\to\OO(\ell L-D)\to\OO_H(\ell L-D)\to 0.\]
+Here, we take a cohomological long exact sequence.
+By easy consequence of Kodaira vanishing theorem, since $\overline{\A^{\lev}_{1,p}}^{\tor}$ has only quotient singularities, we have
+\[H^1(\overline{\A^{\lev}_{1,p}}^{\tor}, \ell L-D-H)=0\]
+for sufficiently large $\ell$ (I might think that we have to take $\ell'(\ell L-D-H)$ for large $\ell'$ because of quotient singularities, but this is no problem for our purpose).
+Hence, to prove that $\dim H^0(\overline{\A^{\lev}_{1,p}}^{\tor}, \ell L-D-H) >0$, it suffices to show that 
+\begin{align}
+\label{ineq:cusp_forms}
+\dim H^0(\overline{\A^{\lev}_{1,p}}^{\tor}, \ell L-D)>\dim H^0(\overline{\A^{\lev}_{1,p}}^{\tor}, (\ell L-D)\vert_H).
+\end{align}
+The right-hand side of (\ref{ineq:cusp_forms}) can be estimated as 
+\[c\ell^3+O(\ell^2)\]
+by Hirzebruch's proportionality principle, the Kodaira vanishing theorem and the Hirzebruch-Riemann-Roch theorem.
+Here, $c$ is a positive constant, depending only on the volume of $\Gamma_{1,p}$.
+On the other hand, the left-hand side of (\ref{ineq:cusp_forms}) can be estimated as 
+\[c'\ell^2+O(\ell)\]
+in the same way for some positive integer $c'$ depending on the number of components of $H$ (in the case of $\overline{\A^{\lev}_{1,p}}^{\tor}$, this number is 2, thus it can be easily controlled).
+Therefore, for sufficiently large $\ell$, we can obtain the result which claims that the reflective obstruction is small enough for large $\ell$.
+
+\subsection{Cusp obstraction}
+By the above explanation, we have to modify the strategy to prove that the map $\overline{\A^{\lev}_{1,p^r}}^{\tor}\to \overline{\A^{\lev}_{1,p}}^{\tor}$ ramifies at \textit{any} boundary components.  
+Below, we show its modification.
+Our goal is to construct a family of modular forms $f_i$ vanishing on $H$ and $D_i$ with slope 1.
+Here, $D=D(p^r)\cup \cup_i D_i$ and $D(p^r)$ (resp. $D_i$) corresponds to the blow up of the Baily-Borel boundary $X(p^r)$ (resp. $X(1)$).
+Note that the number of $D_i$ is order $p^2r$.
+\begin{align}
+\dim S_k(\Gamma_{1,t})&=\dim H^0(\overline{\A^{\lev}_{1,t}}^{\tor}, kL-D)=t^5k^3+O(k^2)\\
+\dim \dim H^0(\overline{\A^{\lev}_{1,t}}^{\tor}, kL-kD_i)&=t^5k^3+O(k^2)\\
+\dim \dim H^0(\overline{\A^{\lev}_{1,t}}^{\tor}, kL-D)&=t^5k^3+O(k^2)
+\end{align}
+
+\section{Conjecture}
+\textcolor{blue}{\begin{conj}
+Let $G$ be a semi-simple algebraic group and $\D=G(\R)/K$ be the associated Hermitian symmetric domain of dimension $N$.
+Suppose that $\{\Gamma_i\}_i$ be a family of infinitely many arithmetic subgroups in $\Gamma\defeq G(\Z)$ where 
+\[d_i\defeq [\Gamma : \Gamma_i]\to\infty\ (i\to\infty).\]
+Then, $\overline{X_i}^{\tor}\defeq \overline{\D/\Gamma_i}^{\tor}$ is hyperbolic modulo branch divisors and boundary divisors if $d_i>>0$.
+\end{conj}
+\begin{proof}
+Here, we write an idea.
+The space of modular forms have dimension $h^0(kL)=d_ik^N+O(k^{N-1})$.
+Also, cusp and reflective obstruction can be estimated as above.
+Here, we have to pay attention to the number of branch divisors and cusps, however this should be not a big problem.
+In the orthogonal or unitary cases, the number of branch divisors can be estimated by a purely lattice-theoretic method as in the paper by Ma or the author.
+Alternatively, as in \cite[Corollary 4.7, Theorem 4.19]{HS94}, this might be not an obstruction.
+\end{proof}}
+
+\begin{que}
+\begin{enumerate}
+\item For the case of $t=p^r$ or general a composite number?
+\item We hope that we can prove that the moduli space of quasi-polarized $K3$ surfaces with polarization degree $2d$ are hyperbolic for sufficiently large $d$ based on the work of Gritsenko-Hulek-Sankaran in the same way (or more general settings).
+\end{enumerate}
+\end{que}
+
+\begin{thebibliography}{99}
+
+\bibitem{Erd04}
+C. Erdenberger,
+The Kodaira dimension of certain moduli spaces of abelian surfaces,
+Math. Nachr. 274/275 (2004), 32–39.
+
+\bibitem{HKW93}
+K. Hulek, C. Kahn, S. H. Weintraub, 
+Moduli spaces of abelian surfaces: compactification, degenerations, and theta functions.
+De Gruyter Expositions in Mathematics, 12. Walter de Gruyter \& Co., Berlin, 1993.
+
+\bibitem{Got61a}
+E. Gottschling,
+Über die Fixpunkte der Siegelschen Modulgruppe,
+Math. Ann. 143 (1961), 111–149.
+
+\bibitem{Got61b}
+E. Gottschling,
+Über die Fixpunktuntergruppen der Siegelschen Modulgruppe,
+Math. Ann. 143 (1961), 399–430.
+
+\bibitem{GS96}
+V. A. Gritsenko, G. K. Sankaran, 
+Moduli of abelian surfaces with a (1,p2) polarisation,
+Izv. Ross. Akad. Nauk Ser. Mat. 60 (1996), no. 5, 19–26.
+
+\bibitem{HS94}
+K. Hulek, G. K. Sankaran,
+The Kodaira dimension of certain moduli spaces of abelian surfaces,
+Compositio Math. 90 (1994), no. 1, 1–35.
+
+\bibitem{OG89}
+K. G. O'Grady,
+On the Kodaira dimension of moduli spaces of abelian surfaces,
+Compositio Math. 72 (1989), no. 2, 121–163.
+
+\bibitem{Rou13}
+E. Rousseau,
+Hyperbolicity, automorphic forms and Siegel modular varieties,
+arXiv:1302.4723.
+
+\bibitem{San97}
+G. K. Sankaran, 
+Moduli of polarised abelian surfaces,
+Math. Nachr. 188 (1997), 321–340.
+
+\bibitem{San22}
+G. K. Sankaran,
+A supersingular coincidence,
+Ramanujan J. 59 (2022), no. 2, 609–613.
+
+\bibitem{Uen71}
+K. Ueno, 
+On fibre spaces of normally polarized abelian varieties of dimension 2. I. Singular fibres of the first kind,
+J. Fac. Sci. Univ. Tokyo Sect. IA Math. 18 (1971), 37–95.
+
+\end{thebibliography}
+
+\end{document}
