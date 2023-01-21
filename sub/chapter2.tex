@@ -3,23 +3,13 @@
 この章では準備としてペンシルパズルと, そのパズルルールに関わる用語の定義を行う. ただし, ペンシルパズルとは「サイズ$m\times n$の平面グリッド上に存在する概念や状態に対し, 盤面が満たされるべき条件を提示した問題や, それらに付随する概念」とし, パズルルールとは, その問題を作成するための制約とする.
 ペンシルパズルは, 例として数独（ナンバープレイス）（\cref{figure:NumberPlace}, \cref{figure:NumberPlaceQuestion}）などが与えられる.
 
-\cref{section:WordDefinition}ではペンシルパズルで与えられる盤面と, それに付随する用語を定義する.
 \cref{section:MathematicalDefinition}ではペンシルパズルにおける, 諸概念の数学的な定義を行う.
 \cref{section:PuzzleRuleDefinition}では\cref{section:MathematicalDefinition}で定義する\textit{codomain}, \textit{conditions}, HI, \textit{identification}という四つの用語を用いて, パズルルールの定義を行う.
 \cref{section:Replace}では, \cref{section:MathematicalDefinition}において定義する盤面を変換するシフトという概念の定義を行う.
 \cref{section:ConcreteConditions}では\cref{section:MathematicalDefinition}で定義する\textit{conditions}の具体的な構成方法についての説明を行う.
 
-\section{用語の定義}\label{section:WordDefinition}
-\cref{section:WordDefinition}では以降の章における理解を助けるためにペンシルパズルにおける位置, 状態, 盤面, 完成盤面, 完成可能盤面という用語を簡単に定義する. \cref{figure:Board}で与えたようなグリッドに対し, 格子点, 細胞, 横辺, 縦辺を\textbf{位置}と呼ぶこととする. ただし, 格子点, 細胞, 横辺, 縦辺は\cref{figure:Board}で与える図中の名称とそれぞれ対応させるものとする. ペンシルパズルにおいて, その位置に与えられる状態のことを本研究ではそのまま\textbf{状態}と呼ぶこととする. 状態とは, 各位置に対応する写像で送ったその値のことを指すものとする. ソルバーに対し状態が明示されていることを\textbf{既知}, されていないことを\textbf{未知}と呼ぶこととする. 既知である状態のとき, その値を\textbf{解}と呼び, 具体的に数値や定数で与えられるものとする（e.g. 3や$x_1$. ）. 未知である状態のとき, その値を特に\textbf{\textit{null}}と表現することとする. さらに, グリッドにおける各格子点, 細胞, 横辺, 縦辺全てに状態が存在するときに限り, その状態全体を\textbf{盤面}と定義する. しかし, その状態が未知, 既知に関わらず盤面と呼ぶことに注意する. \cref{figure:NumberPlaceQuestion}に与えたパズルでは, 左上端の細胞の状態が既知であり, その解は8に対応し, 右上端の細胞の状態は未知である（既知の場合解は4）.
-
-ここで問題を定義するために, 既存のパズルルールの問題が満たしている条件を用いて定義する. 一般に既存のパズルルールにおいては, あるパズルルールの問題が存在したときそれが唯一解であることが条件である. そのことが具体的なパズルルールとして前提にあることが参考文献にて確認される. いくつか例として挙げると, Sun-Sun-Wu-Yang-Yin \cite{Sun2008}は数独（ナンバープレイス）にて作問アルゴリズム自体に, 唯一解を持たせることを念頭に置いて研究している. Fumiya-Ishihata \cite{Fumiya2022}はNagareruというパズルルールにおいても唯一解であることが前提として議論を進めている. これらから分かるように, ペンシルパズルのパズルルールにのっとった問題は, 唯一解であることを要求する. そのため, 本研究における問題とは, それが唯一解であることを要求することとする. ただしここで呼ぶ唯一解とは, 先の解とは意味が異なり, 問題を解いたとき盤面として答えが一つに定まるそのことを\textbf{唯一解}と呼ぶことに注意する.
-以上のことを踏まえ, 全ての格子点, 細胞, 辺の解がパズルルールに定められた条件（\textit{conditions}）を満たしている盤面のことを\textbf{完成盤面}と定義する. ある盤面が存在して, 全ての位置の状態が既知であるときにその解が, パズルルールに定められた条件（\textit{conditions}）に従う完成盤面がただ一つしかない盤面を\textbf{完成可能盤面}と定義する. 以上の記述より, ある完成盤面もまた完成可能盤面である. 完成可能盤面と完成盤面の例として\cref{figure:SlitherLink}を与える. 図中上が完成可能盤面, 図中下が完成盤面である.
-
-上の記述より, 一つの完成盤面には複数の完成可能盤面が対応する（一つの操作（状態が未知である位置に対し具体的な解を対応させること）を課した完成可能盤面もまた完成可能盤面. ）. このとき, 一つの完成盤面に対応している完成可能盤面の集合全体をパズルルールの\textbf{問題}と定義する. ある問題に含まれる完成可能盤面を, その完成可能盤面に対応する完成盤面へと変換するその操作のことを問題を\textbf{解く}と呼ぶこととする.
-以上のような定義を行うことで問題が唯一解であることを保証する.
-
 \section{盤面に関する数学的定義}\label{section:MathematicalDefinition}
-\cref{section:MathematicalDefinition}では\cref{section:WordDefinition}で与えた用語を数学的に定義する. ここで定義するものは全て直感的な定義と違わないように行う.
+\cref{section:MathematicalDefinition}では\cref{section:IntroDefinition}で与えた用語を数学的に定義する. ここで定義するものは全て直感的な定義と違わないように行う.
 まず, 平面グリッドを与えたとき, ペンシルパズルの盤面には左上から各格子点に対し座標$(i,j)$を割り振ることができる（\cref{figure:Coordinate}）. そうしたとき, グリッドにおける格子点, 細胞, 横辺, 縦辺に対して\cref{figure:VariableAtBoard}で表されるように変数を与えることができる.
 これをそれぞれ数学的に格子点$p(i,j)$, 細胞$c(i,j)$, 横辺$h(i,j)$, 縦辺$v(i,j)$として定義する.
 
@@ -132,9 +122,9 @@ $\bm{\lambda}\colon \{\,\lambda(i_y,j_y,y)\,\} \longrightarrow \Lambda$の間に
 このときは$B$は集合として$B=\{\,\lambda(i_y,j_y,y)\,\}$を考え, 状態$\lambda_{i_y,j_y,y}$も$\bm{\lambda}$によりBの元として扱うこととする.
 ただし前と同様$\{\,\lambda(i_y,j_y,y)\,\}$とは$\{\,\lambda(1,1,y_{(1,1)}), \lambda(1,2,y_{(1,2)}),\ldots\,\}$を指すものとする.
 
+パズルルールにまつわる概念として問題が存在する. それを数学的に定義するために既存のパズルルールの問題が満たしている条件を用いて定義する. 一般に既存のパズルルールにおいては, あるパズルルールの問題が存在したときそれが唯一解であることが条件である. そのことが具体的なパズルルールとして前提にあることが参考文献にて確認される. いくつか例として挙げると, Sun-Sun-Wu-Yang-Yin \cite{Sun2008}は数独（ナンバープレイス）にて作問アルゴリズム自体に, 唯一解を持たせることを念頭に置いて研究している. Fumiya-Ishihata \cite{Fumiya2022}はNagareruというパズルルールにおいても唯一解であることが前提として議論を進めている. これらから分かるように, ペンシルパズルのパズルルールにのっとった問題は, 唯一解であることを要求する. そのため, 本研究における問題とは, それが唯一解であることを要求することとする. ただしここで呼ぶ唯一解とは, 先の解とは意味が異なり, 問題を解いたとき盤面として答えが一つに定まるそのことを\textbf{唯一解}と呼ぶことに注意する.
 
-
-ここで, 完成盤面, 完成可能盤面, 問題の定義を再度行う（\cref{section:WordDefinition}）. ただし, 完成盤面は全ての位置の状態が既知であることを必要条件としている. よって以下で使用する\textit{conditions}には\textit{null}を認めたものがないことが前提にあることに注意する.
+これらを踏まえ, 以下で完成盤面, 完成可能盤面, 問題の定義を行う. ただし, 完成盤面は全ての位置の状態が既知であることを必要条件としている. よって以下で使用する\textit{conditions}には\textit{null}を認めたものがないことが前提にあることに注意する.
 \begin{definition}[完成盤面と\textit{conditions}]\label{definition:Conditions}
   全ての位置の状態が既知である盤面を与えたとき, 解が満たしているべき条件を\textbf{\textit{conditions}}と呼ぶ. そしてこれが条件として記述される盤面の集合の任意の元を\textbf{完成盤面}と定義する.
 \end{definition}
@@ -147,8 +137,7 @@ $\bm{\lambda}\colon \{\,\lambda(i_y,j_y,y)\,\} \longrightarrow \Lambda$の間に
   一つの完成盤面に対応する完成可能盤面全体の集合を一つの\textbf{問題}と定義する. ただし, 問題の集合は要素として2以上であることを要請するものとする. また, 文脈の中で問題の元として特別, 状態が未知であるものを含む盤面を指したいときは\textbf{非完成盤面}と呼ぶこととする.
 \end{definition}
 
-ある盤面を与えたとき, それに対応する完成盤面がただ一つであることを\textbf{唯一解}と呼ぶこととする. 問題の集合が要素として2以上であるから, 必ず非完成盤面も問題に含まれることとなる.
-以上のような定義を行うことで, 問題は唯一解であることを保証する.
+問題の集合が要素として2以上であるから, 必ず非完成盤面も問題に含まれることに注意する.以上のような定義を行うことで, 問題は唯一解であることを保証する. ある問題に含まれる完成可能盤面を, その完成可能盤面に対応する完成盤面へと変換するその操作のことを問題を\textbf{解く}と呼ぶこととする.
 
 ここで盤面（\cref{definition:B}）全体の集合を考えたとき, 以下のように記述される
 \begin{equation}\label{equation:U}
@@ -220,7 +209,7 @@ $\bm{\lambda}\colon \{\,\lambda(i_y,j_y,y)\,\} \longrightarrow \Lambda$の間に
 
 
 \section{パズルルールの定義}\label{section:PuzzleRuleDefinition}
-\cref{section:MathematicalDefinition}で定義した概念を用いることによってパズルルールを数学的に定義する. パズルルールに必要とされる条件は\cref{section:WordDefinition}より, 問題が一つ以上存在することである. しかし, \cref{theorem:AutoGeneration}より, 完成盤面の存在は問題の存在と同値である. よって以下のようにペンシルパズルのパズルルールを定義することができる.
+\cref{section:MathematicalDefinition}で定義した概念を用いることによってパズルルールを数学的に定義する. パズルルールに必要とされる条件は\cref{section:IntroDefinition}より, 問題が一つ以上存在することである. しかし, \cref{theorem:AutoGeneration}より, 完成盤面の存在は問題の存在と同値である. よって以下のようにペンシルパズルのパズルルールを定義することができる.
 \begin{definition}[パズルルール]\label{definition:PuzzleRule}
   \textit{codomain}, \textit{conditions}, HI, \textit{identification}の組み合わせを\textbf{パズルルール}と定義する.
 \end{definition}
