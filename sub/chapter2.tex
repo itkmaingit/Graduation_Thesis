@@ -12,7 +12,7 @@
 \section{用語の定義}\label{section:WordDefinition}
 \cref{section:WordDefinition}では以降の章における理解を助けるためにペンシルパズルにおける位置, 状態, 盤面, 完成盤面, 完成可能盤面という用語を簡単に定義する. \cref{figure:Board}で与えたようなグリッドに対し, 格子点, 細胞, 横辺, 縦辺を\textbf{位置}と呼ぶこととする. ただし, 格子点, 細胞, 横辺, 縦辺は\cref{figure:Board}で与える図中の名称とそれぞれ対応させるものとする. ペンシルパズルにおいて, その位置に与えられる状態のことを本研究ではそのまま\textbf{状態}と呼ぶこととする. 状態とは, 各位置に対応する写像で送ったその値のことを指すものとする. ソルバーに対し状態が明示されていることを\textbf{既知}, されていないことを\textbf{未知}と呼ぶこととする. 既知である状態のとき, その値を\textbf{解}と呼び, 具体的に数値や定数で与えられるものとする（e.g. 3や$x_1$. ）. 未知である状態のとき, その値を特に\textbf{\textit{null}}と表現することとする. さらに, グリッドにおける各格子点, 細胞, 横辺, 縦辺全てに状態が存在するときに限り, その状態全体を\textbf{盤面}と定義する. しかし, その状態が未知, 既知に関わらず盤面と呼ぶことに注意する. \cref{figure:NumberPlaceQuestion}に与えたパズルでは, 左上端の細胞の状態が既知であり, その解は8に対応し, 右上端の細胞の状態は未知である（既知の場合解は4）.
 
-ここで問題を定義するために, 既存のパズルルールの問題が満たしている条件を用いて定義する. 一般に既存のパズルルールにおいては, あるパズルルールの問題が存在したときそれが唯一解であることが条件である. そのことが具体的なパズルルールとして前提にあることが参考文献にて確認される. いくつか例として挙げると, Sun-Sun-Wu-Yang-Yin\cite{Sun2008}は数独（ナンバープレイス）にて作問アルゴリズム自体に, 唯一解を持たせることを念頭に置いて研究している. Fumiya-Ishihata\cite{Fumiya2022}はNagareruというパズルルールにおいても唯一解であることが前提として議論を進めている. これらから分かるように, ペンシルパズルのパズルルールにのっとった問題は, 唯一解であることを要求する. そのため, 本研究における問題とは, それが唯一解であることを要求することとする. ただしここで呼ぶ唯一解とは, 先の解とは意味が異なり, 問題を解いたとき盤面として答えが一つに定まるそのことを\textbf{唯一解}と呼ぶことに注意する.
+ここで問題を定義するために, 既存のパズルルールの問題が満たしている条件を用いて定義する. 一般に既存のパズルルールにおいては, あるパズルルールの問題が存在したときそれが唯一解であることが条件である. そのことが具体的なパズルルールとして前提にあることが参考文献にて確認される. いくつか例として挙げると, Sun-Sun-Wu-Yang-Yin \cite{Sun2008}は数独（ナンバープレイス）にて作問アルゴリズム自体に, 唯一解を持たせることを念頭に置いて研究している. Fumiya-Ishihata \cite{Fumiya2022}はNagareruというパズルルールにおいても唯一解であることが前提として議論を進めている. これらから分かるように, ペンシルパズルのパズルルールにのっとった問題は, 唯一解であることを要求する. そのため, 本研究における問題とは, それが唯一解であることを要求することとする. ただしここで呼ぶ唯一解とは, 先の解とは意味が異なり, 問題を解いたとき盤面として答えが一つに定まるそのことを\textbf{唯一解}と呼ぶことに注意する.
 以上のことを踏まえ, 全ての格子点, 細胞, 辺の解がパズルルールに定められた条件（\textit{conditions}）を満たしている盤面のことを\textbf{完成盤面}と定義する. ある盤面が存在して, 全ての位置の状態が既知であるときにその解が, パズルルールに定められた条件（\textit{conditions}）に従う完成盤面がただ一つしかない盤面を\textbf{完成可能盤面}と定義する. 以上の記述より, ある完成盤面もまた完成可能盤面である. 完成可能盤面と完成盤面の例として\cref{figure:SlitherLink}を与える. 図中上が完成可能盤面, 図中下が完成盤面である.
 
 上の記述より, 一つの完成盤面には複数の完成可能盤面が対応する（一つの操作（状態が未知である位置に対し具体的な解を対応させること）を課した完成可能盤面もまた完成可能盤面. ）. このとき, 一つの完成盤面に対応している完成可能盤面の集合全体をパズルルールの\textbf{問題}と定義する. ある問題に含まれる完成可能盤面を, その完成可能盤面に対応する完成盤面へと変換するその操作のことを問題を\textbf{解く}と呼ぶこととする.
@@ -20,7 +20,7 @@
 
 \section{盤面に関する数学的定義}\label{section:MathematicalDefinition}
 \cref{section:MathematicalDefinition}では\cref{section:WordDefinition}で与えた用語を数学的に定義する. ここで定義するものは全て直感的な定義と違わないように行う.
-まず, 平面グリッドを与えたとき, ペンシルパズルの盤面には左上から各細胞に対し座標$(i,j)$を割り振ることができる（\cref{figure:Coordinate}）. そうしたとき, グリッドにおける格子点, 細胞, 横辺, 縦辺に対して\cref{figure:VariableAtBoard}で表されるように変数を与えることができる.
+まず, 平面グリッドを与えたとき, ペンシルパズルの盤面には左上から各格子点に対し座標$(i,j)$を割り振ることができる（\cref{figure:Coordinate}）. そうしたとき, グリッドにおける格子点, 細胞, 横辺, 縦辺に対して\cref{figure:VariableAtBoard}で表されるように変数を与えることができる.
 これをそれぞれ数学的に格子点$p(i,j)$, 細胞$c(i,j)$, 横辺$h(i,j)$, 縦辺$v(i,j)$として定義する.
 
 \begin{definition}[格子点$p(i,j)$, 細胞$c(i,j)$, 横辺$h(i,j)$, 縦辺$v(i,j)$, 位置]\label{definition:VariableAtBoard}
@@ -158,7 +158,7 @@ $\bm{\lambda}\colon \{\,\lambda(i_y,j_y,y)\,\} \longrightarrow \Lambda$の間に
 \begin{equation}\label{equation:X}
   X=\biggl\{\,\Bigl\{\,\{\,p_{ij}\,\}_x,\{\,c_{ij}\,\}_x,\{\,e_{i_y,j_y,y}\,\}_x\,\Bigr\}_x\mid \rm{\textit{conditions}}\,\biggr\}.
 \end{equation}
-このように与えることであるパズルルールが存在したとき, 完成盤面は$X$の元であると言え, ベン図として\cref{figure:VennDiagram}のように記述することができる.
+このように与えることであるパズルルールが存在したとき, 完成盤面は$X$の元であると言える. そのため, このように記述することで\textit{conditions}は完成盤面$X$と同値とみなすことができる.
 
 \textit{conditions}の具体例は\cref{section:ConcreteConditions}で, 具体的な構成方法を示したのちに取り上げることとする（\cref{example:SlitherLinkConditions}）.
 
@@ -406,7 +406,6 @@ $\bm{\lambda}\colon \{\,\lambda(i_y,j_y,y)\,\} \longrightarrow \Lambda$の間に
   \end{align}
 \end{example}
 
-% TODO:画像素材作成
 \begin{clearpagefigure}
   \includegraphics[width=\linewidth,clip]{fig/Board.eps}
   \caption{盤面と, 位置の名称の対応}
@@ -414,61 +413,49 @@ $\bm{\lambda}\colon \{\,\lambda(i_y,j_y,y)\,\} \longrightarrow \Lambda$の間に
 \end{clearpagefigure}
 
 \begin{clearpagefigure}
-  \includegraphics[width=0.85\linewidth,clip]{fig/NumberPlace.pdf}
-  \caption{数独（ナンバープレイス）の完成盤面. 実際の盤面は\cite{web:Sudoku}からの引用. }
+  \includegraphics[width=0.85\linewidth,clip]{fig/NumberPlace.eps}
+  \caption{数独（ナンバープレイス）の完成盤面. 実際の盤面は \cite{web:Sudoku}からの引用. }
   \label{figure:NumberPlace}
 \end{clearpagefigure}
 
 \begin{clearpagefigure}
-  \includegraphics[width=0.85\linewidth,clip]{fig/NumberPlaceQuestion.pdf}
-  \caption{数独（ナンバープレイス）の完成可能盤面. 実際の盤面は\cite{web:Sudoku}からの引用. }
+  \includegraphics[width=0.85\linewidth,clip]{fig/NumberPlaceQuestion.eps}
+  \caption{数独（ナンバープレイス）の完成可能盤面. 実際の盤面は \cite{web:Sudoku}からの引用. }
   \label{figure:NumberPlaceQuestion}
 \end{clearpagefigure}
 
-% TODO:画像素材作成
 \begin{clearpagefigure}
-  \includegraphics[width=0.85\linewidth,clip]{fig/coordinate.png}
-  \caption{}
+  \includegraphics[width=0.7\linewidth,clip]{fig/Coordinate.eps}
+  \caption{グリッドに割り振る座標}
   \label{figure:Coordinate}
 \end{clearpagefigure}
 
-% TODO:画像素材作成
 \begin{clearpagefigure}
-  \includegraphics[width=0.85\linewidth,clip]{fig/define.png}
-  \caption{}
+  \includegraphics[width=\linewidth,clip]{fig/VariableAtBoard.eps}
+  \caption{位置と変数の対応}
   \label{figure:VariableAtBoard}
 \end{clearpagefigure}
 
 \begin{clearpagefigure}
-  \includegraphics[width=0.85\linewidth,clip]{fig/slitherlink.pdf}
-  \caption{スリザーリンクの完成可能盤面（上）と完成盤面（下）. $e_{i_y,j_y,y}=1$はオレンジで記述している. 分かりやすいように, $p(1,1)$, $p(1,8)$, $p(8,8)$, $p(8,1)$は緑色の太線で結んでいる. 実際の盤面は\cite{web:SlitherLink}からの引用. }
+  \includegraphics[width=0.5\linewidth,clip]{fig/slitherlink.eps}
+  \caption{スリザーリンクの完成可能盤面（上）と完成盤面（下）. $e_{i_y,j_y,y}=1$はオレンジで記述している. 分かりやすいように, $p(1,1)$, $p(1,8)$, $p(8,8)$, $p(8,1)$は緑色の太線で結んでいる. 実際の盤面は \cite{web:SlitherLink}からの引用. }
   \label{figure:SlitherLink}
 \end{clearpagefigure}
 
-% TODO:画像素材作成
 \begin{clearpagefigure}
-  \includegraphics[width=0.85\linewidth,clip]{fig/vennDiagram.png}
-  \caption{}
-  \label{figure:VennDiagram}
-\end{clearpagefigure}
-
-% TODO:画像素材作成
-\begin{clearpagefigure}
-  \includegraphics[width=0.85\linewidth,clip]{fig/cross.png}
-  \caption{cross}
+  \includegraphics[width=\linewidth,clip]{fig/Cross.eps}
+  \caption{cross関数}
   \label{figure:cross}
 \end{clearpagefigure}
 
-% TODO:画像素材作成
 \begin{clearpagefigure}
-  \includegraphics[width=0.85\linewidth,clip]{fig/cycle.png}
-  \caption{cycle}
+  \includegraphics[width=\linewidth,clip]{fig/Cycle.eps}
+  \caption{cycle関数}
   \label{figure:cycle}
 \end{clearpagefigure}
 
-% TODO:画像素材作成
 \begin{clearpagefigure}
-  \includegraphics[width=0.85\linewidth,clip]{fig/cycle.png}
-  \caption{replace}
+  \includegraphics[width=0.5\linewidth,clip]{fig/Replace.eps}
+  \caption{上がリプレイス前の盤面, 下がリプレイス後の盤面. 細胞と格子点が入れ替わっていることが分かる. }
   \label{figure:Replace}
 \end{clearpagefigure}
