@@ -24,6 +24,31 @@
   urlcolor=blue,
   }
 
+\newtheoremstyle{myDefinition}%   % スタイル名
+    {11pt}%b                     % 上部スペース
+    {16pt}%                      % 下部スペース
+    {}%              % 本文フォント
+    {}%                      % 1行目のインデント量
+    {\bfseries}%             % 見出しフォント
+    {.}%                     % 見出し後の句読点
+    {11pt}%                     % 見出し後のスペース
+    {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
+
+\theoremstyle{myDefinition}
+\newtheorem{definition}{Definition}[section]
+\theoremstyle{myDefinition}
+\newtheorem{theorem}[definition] {Theorem}
+\theoremstyle{myDefinition}
+\newtheorem{proposition}[definition] {Proposition}
+\theoremstyle{myDefinition}
+\newtheorem{lemma}[definition] {Lemma}
+\theoremstyle{myDefinition}
+\newtheorem{corollary}[definition] {Corollary}
+\theoremstyle{myDefinition}
+\newtheorem{example}[definition] {Example}
+\theoremstyle{myDefinition}
+\newtheorem{remark}[definition] {Remark}
+
 \crefname{definition}{}{}
 \crefname{example}{}{}
 \crefname{theorem}{}{}
@@ -146,30 +171,6 @@
 \allowdisplaybreaks % 数式の途中での改ページを許す
 
 %---------------------------------------------
-\newtheoremstyle{myDefinition}%   % スタイル名
-    {11pt}%b                     % 上部スペース
-    {16pt}%                      % 下部スペース
-    {}%              % 本文フォント
-    {}%                      % 1行目のインデント量
-    {\bfseries}%             % 見出しフォント
-    {.}%                     % 見出し後の句読点
-    {11pt}%                     % 見出し後のスペース
-    {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
-
-\theoremstyle{myDefinition}
-\newtheorem{definition}{Definition}[section]
-\theoremstyle{myDefinition}
-\newtheorem{theorem}[definition] {Theorem}
-\theoremstyle{myDefinition}
-\newtheorem{proposition}[definition] {Proposition}
-\theoremstyle{myDefinition}
-\newtheorem{lemma}[definition] {Lemma}
-\theoremstyle{myDefinition}
-\newtheorem{corollary}[definition] {Corollary}
-\theoremstyle{myDefinition}
-\newtheorem{example}[definition] {Example}
-\theoremstyle{myDefinition}
-\newtheorem{remark}[definition] {Remark}
 
 
 
