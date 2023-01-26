@@ -27,7 +27,7 @@
   ただし, $y=p$のときは位置$\lambda(i_p,j_p,p)$は格子点$p(i_p,j_p$), $y=c$のときは位置$\lambda(i_c,j_c,c)$は細胞$c(i_c,j_c)$, $y=h$のときは位置$\lambda(i,j,h)$は横辺$h(i_h,j_h)$, $y=v$のときは位置$\lambda(i,j,v)$は縦辺$v(i_v,j_v)$を指すものとする. $(i_y,j_y)$の範囲は$y$によって指定されるそれぞれの変数によって定義されるものとする（$y=p$のときは$1\le i_p \le m$, $1\le j_p \le n$）.
   これら添え字付きの変数を改めて格子点, 細胞, 辺と呼び, これらをまとめた総称として\textbf{位置}と呼ぶこととする.
 \end{definition}
-ペンシルパズルにおいて, 位置には状態が存在し, これをそのまま\textbf{状態}と定義する. ソルバーにある特定の位置に対し状態が明示されているそのことを\textbf{既知}と呼び, その具体的な数値や定数を\textbf{解}と呼ぶ（e.g. 3や$x_1$. ）. しかし特別に辺に関しては「書かれている」ときは1, 「書かれていない」ときは0に対応させるものとする （参照：\cref{definition:Identification}）. また, 解として「状態を持たない」ということを明示する場合の定数を特別に$\emptyset$と表現する. 状態が明示されていないことを\textbf{未知}と呼び, そのときの値を特別に\textbf{\textit{null}}と表現する.
+ペンシルパズルにおいて, 位置には状態が存在し, これをそのまま\textbf{状態}と定義する. ソルバーにある特定の位置に対し状態が明示されているそのことを\textbf{既知}と呼び, その具体的な数値や定数を\textbf{解}と呼ぶ（e.g. 3や$x_1$. ）. ただし, ここでのソルバーとはあるパズルルールの問題が存在したとき, 問題を解く解答者, あるいは問題を解くアルゴリズムのことを指すこととする. しかし特別に辺に関しては「書かれている」ときは1, 「書かれていない」ときは0に対応させるものとする （参照：\cref{definition:Identification}）. また, 解として「状態を持たない」ということを明示する場合の定数を特別に$\emptyset$と表現する. 状態が明示されていないことを\textbf{未知}と呼び, そのときの値を特別に\textbf{\textit{null}}と表現する.
 以上から, パズルルールを定義するためには状態がどのような集合の元であるかを定義する必要がある. そのために以下で\textit{codomain}という用語を用いて状態の集合を定義する.
 
 \begin{definition}[\textit{codomain}]\label{definition:Codomain}
@@ -38,9 +38,10 @@
 よって\textit{codomain}と解の列は同一視できないことに注意する. また, パズルルールによっては格子点, 細胞, 辺のいずれかに全ての$(i,j)$において状態を持たない場合があり, そのときに限っては\textit{codomain}は$\emptyset$と記述し, 位置に対応する状態が存在しないことを表すこととする. これは$\mathbb{P}=\{\,\emptyset\,\}$と$\mathbb{P}=\emptyset$は同義である. 以下に\textit{codomain}の例を挙げる. 例としては既存のパズルルールのスリザーリンクを用いる. ただし, スリザーリンクのパズルルールは以下のものである（\cite{web:SlitherLink}）.
 \begin{example}[スリザーリンクのパズルルール]\label{example:SlitherLinkRule}\textup{}
   \begin{enumerate}
-    \item 点と点の間にタテヨコに線を引き, 全体で１つの輪っかを作りましょう.\label{SlitherLinkRule_1}
-    \item ４つの点で作られた正方形の中にある数字は, その正方形の辺に引く線の数を表しています. 数字のない正方形には, 何本の線を引くかわかりません.\label{SlitherLinkRule_2}
-    \item 線を交差させたり, 枝分かれさせたりしてはいけません.\label{SlitherLinkRule_3}
+    \item \jaitalic{点と点の間にタテヨコに線を引き, 全体で１つの輪っかを作りましょう.}\label{SlitherLinkRule_1}
+    \item \jaitalic{４つの点で作られた正方形の中にある数字は, その正方形の辺に引く線の数を表しています.}\\
+          \jaitalic{数字のない正方形には, 何本の線を引くかわかりません.}\label{SlitherLinkRule_2}
+    \item \jaitalic{線を交差させたり, 枝分かれさせたりしてはいけません.}\\（文章は \cite{web:SlitherLink}から引用. ）\label{SlitherLinkRule_3}
   \end{enumerate}
 \end{example}
 
