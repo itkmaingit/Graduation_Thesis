@@ -277,10 +277,11 @@ $\bm{\lambda}\colon \{\,\lambda(i_y,j_y,y)\,\} \longrightarrow \Lambda$の間に
 \begin{definition}[\text{cross}, \text{cycle}]\label{definition:Function}
   盤面の位置を変数に取る関数として, 格子点$p(i,j)$を変数に取るcross関数と細胞$c(i,j)$を変数に取るcycle関数を以下で定義する
   \begin{align}
-    \text{cross}(p(i,j))\coloneqq h_{i,j-1}+v_{i-1,j}+h_{i,j}+v_{i,j} &   \\
-    \text{cycle}(c(i,j))\coloneqq h_{i,j}+v_{i,j}+h_{i+1,j}+v_{i,j+1} & .
+    \text{cross}(\,p(i,j)\,)\coloneqq h_{i,j-1}+v_{i-1,j}+h_{i,j}+v_{i,j} &   \\
+    \text{cycle}(\,c(i,j)\,)\coloneqq h_{i,j}+v_{i,j}+h_{i+1,j}+v_{i,j+1} & .
   \end{align}
 \end{definition}
+
 
 直感的にはcross関数はある格子点$p(i,j)$を与えたとき, その格子点を通る辺の本数を返す関数であり, cycle関数はある細胞$c(i,j)$を与えたとき, その細胞をの周りにある辺の本数を返す関数である.
 繰り返しになるが, ここで取り上げる関数は\textit{conditions}を記述するにあたり\cref{example:SlitherLinkConditions}や\cref{chapter:Demonstration}を含む, 多くのパズルルールで使用されるというものであり他のパズルルールにおいては他の関数が必要になることがあることに注意する.
@@ -352,14 +353,14 @@ $\bm{\lambda}\colon \{\,\lambda(i_y,j_y,y)\,\} \longrightarrow \Lambda$の間に
 \end{remark}
 
 \begin{example}[連結, 含有, 隣接, 到達可能]
-  \cref{figure:SlitherLink}の完成盤面（下図）において, $h(4,1)$と$v(1,4)$は連結である. $c(3,4)$は$v(4,4)$のみを含む. $c(2,2)$と$c(2,3)$は隣接である. $h(3,8)$から$v(8,1)$へは辿ることができる.
+  \cref{figure:SlitherLink}の完成盤面において, $h(4,1)$と$v(1,4)$は連結である. $c(3,4)$は$v(4,4)$のみを含む. $c(2,2)$と$c(2,3)$は隣接である. $h(3,8)$から$v(8,1)$へは辿ることができる.
 \end{example}
 以上の定義を用いることによって, 新たに「線」という概念を導入することができる.
 
 \begin{definition}[線]\label{definition:Line}
   盤面に存在する全ての辺を含む集合$\{\,e_{i,j}\,\}$の部分集合$L$の全ての要素から任意の2つの元を取り出したとき, いつでもそれらが互いに辿ることができるときその集合$L$を\textbf{線}であると定義する.
 \end{definition}
-この線はグラフ理論の用語を用いたときの連結グラフとほとんど同義である. \cref{figure:SlitherLink}の完成盤面（下図）において, 集合$\{\,h(3,2),v(4,1),h(4,1),h(5,1)\,\}$は線である. この線も含有という関係性を定義することができる.
+この線はグラフ理論の用語を用いたときの連結グラフとほとんど同義である. \cref{figure:SlitherLink}の完成盤面において, 集合$\{\,h(3,2),v(4,1),h(4,1),h(5,1)\,\}$は線である. この線も含有という関係性を定義することができる.
 \begin{definition}[線の含有]
   線$L$が線$L'$を含むとは以下が成立することで定義する
   \begin{equation}
@@ -413,7 +414,7 @@ $\bm{\lambda}\colon \{\,\lambda(i_y,j_y,y)\,\} \longrightarrow \Lambda$の間に
 \end{clearpagefigure}
 
 \begin{clearpagefigure}
-  \includegraphics[width=0.85\linewidth,clip]{fig/NumberPlaceQuestion.eps}
+  \includegraphics[width=0.85\linewidth,clip]{fig/NumberPlaceIncomplete.eps}
   \caption{数独（ナンバープレイス）の完成可能盤面. 実際の盤面は \cite{web:Sudoku}からの引用. }
   \label{figure:NumberPlaceQuestion}
 \end{clearpagefigure}
@@ -431,10 +432,25 @@ $\bm{\lambda}\colon \{\,\lambda(i_y,j_y,y)\,\} \longrightarrow \Lambda$の間に
 \end{clearpagefigure}
 
 \begin{clearpagefigure}
-  \includegraphics[width=0.5\linewidth,clip]{fig/slitherlink.eps}
-  \caption{スリザーリンクの完成可能盤面（上）と完成盤面（下）. $e_{i_y,j_y,y}=1$はオレンジ色の線で記述している. 分かりやすいように, $p(1,1)$, $p(1,8)$, $p(8,8)$, $p(8,1)$は緑色の太線で結んでいる. 実際の盤面は \cite{web:SlitherLink}からの引用. }
+  \includegraphics[width=\linewidth,clip]{fig/Slitherlink.eps}
+  \caption{スリザーリンクの完成盤面. 実際の盤面は \cite{web:SlitherLink}からの引用. }
   \label{figure:SlitherLink}
 \end{clearpagefigure}
+
+\begin{clearpagefigure}
+  \includegraphics[width=\linewidth,clip]{fig/SlitherLinkIncomplete.eps}
+  \caption{\cref{figure:SlitherLink}に対応するスリザーリンクの完成可能盤面. 実際の盤面は \cite{web:SlitherLink}からの引用. }
+  \label{figure:SlitherLinkIncomplete}
+\end{clearpagefigure}
+
+\begin{clearpagefigure}
+  \includegraphics[width=\linewidth,clip]{fig/SlitherLinkOtherIncomplete.eps}
+  \caption{\cref{figure:SlitherLink}に対応する\cref{figure:SlitherLinkIncomplete}とは異なるスリザーリンクの完成可能盤面. 実際の盤面は \cite{web:SlitherLink}からの引用. }
+  \label{figure:SlitherLinkOtherIncomplete}
+\end{clearpagefigure}
+
+
+
 
 \begin{clearpagefigure}
   \includegraphics[width=0.7\linewidth,clip]{fig/HIExample_Complete.eps}
