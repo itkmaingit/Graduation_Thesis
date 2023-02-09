@@ -3,12 +3,12 @@
 ペンシルパズルは, 例として数独（ナンバープレイス）（\cref{figure:NumberPlace}, \cref{figure:NumberPlaceQuestion}）などが与えられる.
 
 \cref{section:MathematicalDefinition}ではペンシルパズルにおける, 諸概念の数学的な定義を行う.
-\cref{section:PuzzleRuleDefinition}では\cref{section:MathematicalDefinition}で定義する\textit{codomain}, \textit{conditions}, Hidden Information（HI）, \textit{identification}という四つの概念を用いて, パズルルールの定義を行う.
+\cref{section:PuzzleRuleDefinition}では\cref{section:MathematicalDefinition}で定義する\textit{codomain}, \textit{conditions}, \textit{Hidden Information}（HI）, \textit{identification}という四つの概念を用いて, パズルルールの定義を行う.
 \cref{section:Replace}では, \cref{section:MathematicalDefinition}において定義する盤面を変換するリプレイスという概念の定義を行う.
 \cref{section:ConcreteConditions}では\cref{section:MathematicalDefinition}で定義する\textit{conditions}の具体的な構成方法についての説明を行う.
 
 \section{ペンシルパズルに関する基礎的な概念の数学的定義}\label{section:MathematicalDefinition}
-\cref{section:MathematicalDefinition}ではで与えた用語を数学的に定義する. ここで定義するものは全て直感的な定義と違わないように行う.
+\cref{section:MathematicalDefinition}では\cref{section:IntroDefinition}で与えた用語を数学的に定義する. ここで定義するものは全て直感的な定義と違わないように行う.
 まず, 平面グリッドを与えたとき, ペンシルパズルの盤面には左上から各格子点に対し座標$(i,j)$を割り振ることができる（\cref{figure:Coordinate}）. そうしたとき, グリッドにおける格子点, 細胞, 横辺, 縦辺に対して\cref{figure:VariableAtBoard}で表されるように変数を与えることができる. ただし, 格子点, 細胞, 横辺, 縦辺という言葉は\cref{figure:Board}に示したものに対応させることとする.
 これをそれぞれ数学的に格子点$p(i,j)$, 細胞$c(i,j)$, 横辺$h(i,j)$, 縦辺$v(i,j)$として定義する.
 
@@ -19,23 +19,23 @@
   \end{equation}
   と定義する. 以下同様に\textbf{細胞}$c(i,j)$, \textbf{横辺}$h(i,j)$, \textbf{縦辺}$v(i,j)$を
   \begin{align}
-     & c(i,j)\coloneqq  \{\,(i,j), (i,j+1), (i+1,j), (i+1,j+1)\,\}  \quad & (1\le i \le m,\, 1\le j \le n)    \\
-     & h(i,j)\coloneqq  \{\,(i,j), (i,j+1)\,\}                      \quad & (1\le i \le m, \, 1\le j \le n+1) \\
-     & v(i,j)\coloneqq  \{\,(i,j), (i+1,j)\,\}                      \quad & (1\le i \le m+1,\, 1\le j \le n)
+     & c(i,j)\coloneqq  \{\,(i,j), (i,j+1), (i+1,j), (i+1,j+1)\,\}  \quad &  & (1\le i \le m,\, 1\le j \le n)    \\
+     & h(i,j)\coloneqq  \{\,(i,j), (i,j+1)\,\}                      \quad &  & (1\le i \le m, \, 1\le j \le n+1) \\
+     & v(i,j)\coloneqq  \{\,(i,j), (i+1,j)\,\}                      \quad &  & (1\le i \le m+1,\, 1\le j \le n)
   \end{align}
-  と定義する. ただし, $h(i,j)$, $v(i,j)$の詳細に興味がない場合は, 任意の辺という意味で辺$e(i_y,j_y,y)$を$y$ $\in$ $\{\,h,v\,\}$に対して, $e(i_y,j_y,y) \in \{\,h(i_h,j_h), v(i_v,j_v)\,\}$として定義する. ただし, $y=h$のとき辺$e(i_h,j_h,h)$は横辺$h(i_h,j_h)$, $y=v$のとき辺$e(i_v,j_v,v)$は縦辺$v(i_v,j_v)$を指すものとする. $(i_y,j_y)$の範囲は$y$によって指定されるそれぞれの変数によって定義されるものとする（$y=h$のときは$1\le i_h \le m-1$, $1\le j_h \le n$）. また, 格子点, 細胞, 辺の集合の詳細そのものに興味がない場合は任意の格子点, 細胞, 辺という意味で位置$\lambda(i_y,j_y,y)$を$y$ $\in$ $\{\,p,c,h,v\,\}$に対して, $\lambda(i_y,j_y,y) \coloneqq \{\,p(i_p,j_p),c(i_c,j_c),h(i_h,j_h),v(i_v,j_v)\,\}$と定義する.
-  ただし, $y=p$のときは位置$\lambda(i_p,j_p,p)$は格子点$p(i_p,j_p$), $y=c$のときは位置$\lambda(i_c,j_c,c)$は細胞$c(i_c,j_c)$, $y=h$のときは位置$\lambda(i,j,h)$は横辺$h(i_h,j_h)$, $y=v$のときは位置$\lambda(i,j,v)$は縦辺$v(i_v,j_v)$を指すものとする. $(i_y,j_y)$の範囲は$y$によって指定されるそれぞれの変数によって定義されるものとする（$y=p$のときは$1\le i_p \le m$, $1\le j_p \le n$）.
-  これら添え字付きの変数を改めて格子点, 細胞, 辺と呼び, これらをまとめた総称として\textbf{位置}と呼ぶこととする.
+  と定義する. ただし, $h(i,j)$, $v(i,j)$の詳細に興味がない場合は, 任意の辺という意味で辺$e(i_y,j_y,y)$を$y$ $\in$ $\{\,h,v\,\}$に対して, $e(i_y,j_y,y) \in \{\,h(i_h,j_h), v(i_v,j_v)\,\}$として定義する. ただし, $y=h$のとき辺$e(i_h,j_h,h)$は横辺$h(i_h,j_h)$と定義する. $y=v$のとき辺$e(i_v,j_v,v)$は縦辺$v(i_v,j_v)$と定義する. $(i_y,j_y)$の範囲は$y$によって指定されるそれぞれの変数によって定義されるものとする（$y=h$のときは$1\le i_h \le m-1$, $1\le j_h \le n$）. また, 格子点, 細胞, 横辺, 縦辺の集合の詳細そのものに興味がない場合は任意の格子点, 細胞, 横辺, 縦辺という意味で位置$\lambda(i_y,j_y,y)$を$y$ $\in$ $\{\,p,c,h,v\,\}$に対して, $\lambda(i_y,j_y,y) \coloneqq \{\,p(i_p,j_p),c(i_c,j_c),h(i_h,j_h),v(i_v,j_v)\,\}$と定義する.
+  ただし, $y=p$のとき, 位置$\lambda(i_p,j_p,p)$は格子点$p(i_p,j_p$)と定義する. $y=c$のとき, 位置$\lambda(i_c,j_c,c)$は細胞$c(i_c,j_c)$と定義する. $y=h$のとき, 位置$\lambda(i,j,h)$は横辺$h(i_h,j_h)$と定義する. $y=v$のとき, 位置$\lambda(i,j,v)$は縦辺$v(i_v,j_v)$と定義する. $(i_y,j_y)$の範囲は$y$によって指定されるそれぞれの変数によって定義されるものとする（$y=p$のときは$1\le i_p \le m$, $1\le j_p \le n$）.
+  これら添え字付きの変数を改めて格子点, 細胞, 横辺, 縦辺と呼び, これらをまとめた総称として\textbf{位置}と呼ぶこととする.
 \end{definition}
-ペンシルパズルにおいて, 位置には状態が存在し, これをそのまま\textbf{状態}と定義する. ソルバーにある特定の位置に対し状態が明示されているそのことを\textbf{既知}と呼び, その具体的な数値や定数を\textbf{解}と呼ぶ（e.g. 3や$x_1$. ）. ただし, ここでのソルバーとはあるパズルルールの問題が存在したとき, 問題を解く解答者, あるいは問題を解くアルゴリズムのことを指すこととする. しかし特別に辺に関しては「書かれている」ときは1, 「書かれていない」ときは0に対応させるものとする （参照：\cref{definition:Identification}）. また, 解として「状態を持たない」ということを明示する場合の定数を特別に$\emptyset$と表現する. 状態が明示されていないことを\textbf{未知}と呼び, そのときの値を特別に\textbf{\textit{null}}と表現する.
+ペンシルパズルにおいて, 位置には状態が存在し, これをそのまま\textbf{状態}と定義する. ソルバーにある特定の位置に対し状態が明示されているそのことを\textbf{既知}と呼び, その具体的な数値や定数を\textbf{解}と呼ぶ（e.g. 3や$x_1$. ）. ただし, ここでのソルバーとは\cref{section:IntroDefinition}で触れたように, あるパズルルールの問題が存在したとき, 問題を解く解答者, あるいは問題を解くアルゴリズムのことを指すこととする. しかし特別に辺に関しては「書かれている」ときは1, 「書かれていない」ときは0に対応させるものとする （参照：\cref{definition:Identification}）. また, 解として「状態を持たない」ということを明示する場合の定数を特別に$\emptyset$と表現する. 状態が明示されていないことを\textbf{未知}と呼び, そのときの値を特別に\textbf{\textit{null}}と表現する.
 以上から, パズルルールを定義するためには状態がどのような集合の元であるかを定義する必要がある. そのために以下で\textit{codomain}という用語を用いて状態の集合を定義する.
 
 \begin{definition}[\textit{codomain}]\label{definition:Codomain}
-  位置に対応する状態がとりうる集合のことを\textbf{\textit{codomain}}と定義する. 格子点, 細胞, 辺の\textit{codomain}を表す集合としてそれぞれ$\mathbb{P}$, $\mathbb{C}$, $\mathbb{H}$, $\mathbb{V}$を用いる. $\mathbb{H}$, $\mathbb{V}$の\textit{codomain}が一致している場合にはまとめて$\mathbb{E}$と記述する. \textit{codomain}の詳細に興味がなく, \textit{codomain}全体を考えるときにはそれら集合を含意するものとして$\Lambda$を使用する.
+  位置に対応する状態がとりうる集合のことを\textbf{\textit{codomain}}と定義する. 格子点, 細胞, 横辺, 縦辺の\textit{codomain}を表す集合としてそれぞれ$\mathbb{P}$, $\mathbb{C}$, $\mathbb{H}$, $\mathbb{V}$を用いる. $\mathbb{H}$, $\mathbb{V}$の\textit{codomain}が一致している場合にはまとめて$\mathbb{E}$と記述する. \textit{codomain}の詳細に興味がなく, \textit{codomain}全体を考えるときにはそれら集合を含意するものとして$\Lambda$を使用する.
 \end{definition}
 
 ここで, 位置が既知であるとき, それぞれの位置には解として具体的な値（1や3などの数値, あるいは$x_1$などの記号）が対応するがその解は列をなしていて同一の値が含んだ列となることがある.
-よって\textit{codomain}と解の列は同一視できないことに注意する. また, パズルルールによっては格子点, 細胞, 辺のいずれかに全ての$(i,j)$において状態を持たない場合があり, そのときに限っては\textit{codomain}は$\emptyset$と記述し, 位置に対応する状態が存在しないことを表すこととする. これは$\mathbb{P}=\{\,\emptyset\,\}$と$\mathbb{P}=\emptyset$は同義である. 以下に\textit{codomain}の例を挙げる. 例としては既存のパズルルールのスリザーリンクを用いる. ただし, スリザーリンクのパズルルールは以下のものである（\cite{web:SlitherLink}）.
+よって\textit{codomain}と解の列は同一視できないことに注意する. また, パズルルールによっては格子点, 細胞, 横辺, 縦辺のいずれかに全ての$(i,j)$において状態を持たない場合があり, そのときに限っては\textit{codomain}は$\emptyset$と記述し, 位置に対応する状態が存在しないことを表すこととする. ここで$\mathbb{P}=\{\,\emptyset\,\}$と$\mathbb{P}=\emptyset$は同義であるが, 簡潔さを優先し$\mathbb{P}=\emptyset$を用いる. 以下に\textit{codomain}の例を挙げる. 例としては既存のパズルルールのスリザーリンクを用いる. ただし, スリザーリンクのパズルルールは以下のものである（\cite{web:SlitherLink}）.
 \begin{example}[スリザーリンクのパズルルール]\label{example:SlitherLinkRule}\textup{}
   \begin{enumerate}
     \item \jaitalic{点と点の間にタテヨコに線を引き, 全体で１つの輪っかを作りましょう.}\label{SlitherLinkRule_1}
@@ -102,14 +102,14 @@
   \end{equation}
   と記述する. 上と同様に状態$e_{i_y,j_y,y}$, $\lambda_{i_y,j_y,y}$と呼ぶこととする.
 \end{definition}
-集合論の用語を用いると, 状態の列$(\lambda_{1_{y(1,1)},1_{y(1,1)},y_{(1,1)}}, \lambda_{1_{y(1,2)},2_{y(1,2)},y_{(1,2)}},\ldots)$と写像\\
+集合論の用語を用いると, 状態の列$(\lambda_{1,1,y_{(1,1)}}, \lambda_{1,2,y_{(1,2)}},\ldots)$と写像\\
 $\bm{\lambda}\colon \{\,\lambda(i_y,j_y,y)\,\} \longrightarrow \Lambda$の間には$\bm{\lambda}(\lambda(i_y,j_y,y))=\lambda_{i_y,j_y,y}$という自然な一対一対応が存在する.
-ここで$\{\,\lambda_{i_y,j_y,y}\,\}$は$\{\,\lambda_{1_{y(1,1)},1_{y(1,1)},y_{(1,1)}}, \lambda_{1_{y(1,2)},2_{y(1,2)},y_{(1,2)}},\ldots\,\}$であり, 写像$\bm{\lambda}$は$\{\,\lambda(i_y,j_y,y)\,\}$によって添え字付けられた族である. またこのとき, $\{\,\lambda(i_y,j_y,y)\,\}$は添字集合で, 位置$\lambda(i_y,j_y,y)$はこの写像の添字である.
+ここで$\{\,\lambda_{i_y,j_y,y}\,\}$は$\{\,\lambda_{1,1,y_{(1,1)}}, \lambda_{1,2,y_{(1,2)}},\ldots\,\}$である. 写像$\bm{\lambda}$は$\{\,\lambda(i_y,j_y,y)\,\}$によって添え字付けられた族である. またこのとき, $\{\,\lambda(i_y,j_y,y)\,\}$は添字集合で, 位置$\lambda(i_y,j_y,y)$はこの写像の添字である.
 
 状態が既知である位置とその解との対応は\cref{definition:Mapping}のように添字によってラベル付けされる. また, 解同士の関係は\cref{definition:Codomain}直後で記述したように実際に取る値の如何に関わらず別物として扱う.
 位置と, その解との対応（\cref{definition:Mapping}）が全て分かっているとき, 写像はそれらの取る値を全て列として記述すれば$\bm{\lambda}\Leftrightarrow \{\,\lambda_{i_y,j_y,y}\,\}$と同一視することができる.
 
-このような種々の定義を導入することにより, グリッドのサイズ$m$, $n$と\textit{codomain}$\mathbb{P}$, $\mathbb{C}$, $\mathbb{E}$を与えたとき任意の盤面を位置とその状態の対応によって定義することができる.
+このような種々の定義を導入することにより, グリッドのサイズ$m$, $n$と\textit{codomain}として$\mathbb{P}$, $\mathbb{C}$, $\mathbb{E}$を与えたとき任意の盤面を位置とその状態の対応によって定義することができる.
 \begin{definition}[盤面\textit{B}]\label{definition:B}
   \textbf{盤面\textit{B}}を以下のように定義する
   \begin{equation}
@@ -118,25 +118,25 @@ $\bm{\lambda}\colon \{\,\lambda(i_y,j_y,y)\,\} \longrightarrow \Lambda$の間に
 \end{definition}
 
 ここで, 位置$\lambda(i_y,j_y,y)$が状態$\lambda_{i_y,j_y,y}$と一対一対応することより誤解の恐れがない場合は$\lambda(i_y,j_y,y) \in B  $, $\lambda_{i_y,j_y,y}\in B $と記述する.
-このときは$B$は集合として$B=\{\,\lambda(i_y,j_y,y)\,\}$を考え, 状態$\lambda_{i_y,j_y,y}$も$\bm{\lambda}$によりBの元として扱うこととする.
+このとき, $B$は集合として$B=\{\,\lambda(i_y,j_y,y)\,\}$を考え, 状態$\lambda_{i_y,j_y,y}$も$\bm{\lambda}$により$B$の元として扱うこととする.
 ただし前と同様$\{\,\lambda(i_y,j_y,y)\,\}$とは$\{\,\lambda(1,1,y_{(1,1)}), \lambda(1,2,y_{(1,2)}),\ldots\,\}$を指すものとする.
 
-さらに, パズルルールにまつわる概念として問題が存在する. それを数学的に定義するために既存のパズルルールの問題が満たしている条件を用いて定義する. まず, 問題とは「ソルバーに対して与えられる, 未知の状態が含まれた盤面と, それに対応する答え（未知の状態全てが既知になったもの）」である. 一般に既存のパズルルールにおいては, あるパズルルールの問題が存在したときそれが唯一解であることが条件である. そのことが具体的なパズルルールとして前提にあることが参考文献にて確認される. いくつか例として挙げると, Sun-Sun-Wu-Yang-Yin \cite{Sun2008}は数独（ナンバープレイス）にて作問アルゴリズム自体に, 唯一解を持たせることを念頭に置いて研究している. Fumiya-Ishihata \cite{Fumiya2022}はNagareruというパズルルールにおいても唯一解であることが前提として議論を進めている. これらから分かるように, ペンシルパズルのパズルルールにのっとった問題は, 唯一解であることを要求する. そのため, 本研究における問題とは, それが唯一解であることを要求することとする. ただしここで呼ぶ唯一解とは, 先の解とは意味が異なり, 問題を解いたとき盤面として答えが一つに定まるそのことを\textbf{唯一解}と呼ぶことに注意する.
+さらに, パズルルールにまつわる概念として問題が存在する. それを数学的に定義するために既存のパズルルールの問題が満たしている条件を用いて定義する. まず, 問題とは「ソルバーに対して与えられる, 未知の状態が含まれた盤面と, それに対応する答え（未知の状態全てが既知になったもの）」である. 一般に既存のパズルルールにおいては, あるパズルルールの問題が存在したとき, それは唯一解であることが条件である. そのことが具体的なパズルルールとして前提にあることが参考文献にて確認される. いくつか例として挙げると, Sun-Sun-Wu-Yang-Yin \cite{Sun2008}は数独（ナンバープレイス）にて作問アルゴリズム自体に, 唯一解を持たせることを念頭に置いて研究している. Fumiya-Ishihata \cite{Fumiya2022}はNagareruというパズルルールにおいて唯一解であることが前提として議論を進めている. これらから分かるように, ペンシルパズルのパズルルールに則った問題は, 唯一解であることを要求する. そのため, 本研究における問題とは, それが唯一解であることを要求することとする. ただしここで呼ぶ唯一解とは, 先の解とは意味が異なり, 問題を解いたとき盤面として答えが一つに定まるそのことを\textbf{唯一解}と呼ぶことに注意する.
 
-これらを踏まえ, 以下で完成盤面, 完成可能盤面, 問題の定義を行う. ただし, 完成盤面は全ての位置の状態が既知であることを必要条件としている. よって以下で使用する\textit{conditions}には\textit{null}を認めたものがないことが前提にあることに注意する.
+これらを踏まえ, 以下で完成盤面, 完成可能盤面, 問題の定義を行う. ただし, 完成盤面は全ての位置の状態が既知であることを必要条件としている. よって以下で使用する\textit{conditions}は\textit{null}を含めないことが前提であることに注意する.
 \begin{definition}[完成盤面と\textit{conditions}]\label{definition:Conditions}
   全ての位置の状態が既知である盤面を与えたとき, 解が満たしているべき条件を\textbf{\textit{conditions}}と呼ぶ. そしてこれが条件として記述される盤面の集合の任意の元を\textbf{完成盤面}と定義する.
 \end{definition}
 
 \begin{definition}[完成可能盤面]
-  ある盤面が存在して, 全ての位置の状態が既知としたとき, その解が全て\textit{conditions}に従う完成盤面がただ一つしかないとき, その盤面を\textbf{完成可能盤面}と定義する.
+  ある盤面が存在して, その盤面において全ての位置の状態が既知としたとき, その解が全て\textit{conditions}に従う完成盤面がただ一つしかないような盤面を\textbf{完成可能盤面}と定義する.
 \end{definition}
 
 \begin{definition}[問題と非完成盤面]
   一つの完成盤面に対応する完成可能盤面全体の集合を一つの\textbf{問題}と定義する. ただし, 問題の集合は要素として2以上であることを要請するものとする. また, 文脈の中で問題の元として特別, 状態が未知であるものを含む盤面を指したいときは\textbf{非完成盤面}と呼ぶこととする.
 \end{definition}
 
-問題の集合が要素として2以上であるから, 必ず非完成盤面も問題に含まれることに注意する. 以上のような定義を行うことで, 問題は唯一解であることを保証する. ある問題に含まれる完成可能盤面を, その完成可能盤面に対応する完成盤面へと変換するその操作のことを問題を\textbf{解く}と呼ぶこととする.
+問題の集合が要素として2以上であるから, 必ず非完成盤面も問題に含まれることに注意する. 以上のような定義を行うことで, 問題は唯一解であることを保証する. さらに, ある問題に含まれる完成可能盤面を, その完成可能盤面に対応する完成盤面へと変換するその操作のことを問題を\textbf{解く}と呼ぶこととする.
 
 ここで盤面（\cref{definition:B}）全体の集合を考えたとき, 以下のように記述される
 \begin{equation}\label{equation:U}
@@ -151,7 +151,7 @@ $\bm{\lambda}\colon \{\,\lambda(i_y,j_y,y)\,\} \longrightarrow \Lambda$の間に
 \textit{conditions}の具体例は\cref{section:ConcreteConditions}で, 具体的な構成方法を示したのちに取り上げることとする（\cref{example:SlitherLinkConditions}）.
 
 完成盤面から未知の状態が含まれる完成可能盤面を生成するために「ソルバーから解を隠す位置」として\textit{Hidden Information}（HI）を定義する.
-ただし, \textbf{隠す}という言葉は\textit{codomain}から\textit{null}を除いた集合$\Lambda'=\Lambda \setminus \textit{null}$から\textit{codomain}への写像$\phi\colon \Lambda' \longrightarrow \Lambda$を解の列に作用させることとして定義する. ただし, 完成盤面から完成可能盤面を生成する具体的な手法については\cref{section:GenericAlgorithm}で取り上げる. ある完成盤面があって具体的にHIを与えた際には写像は具体的に構成することができ, それは\cref{equation:Phi}で取り上げる.
+ただし, \textbf{隠す}という言葉は\textit{codomain}から\textit{null}を除いた集合$\Lambda'=\Lambda \setminus \textit{null}$から\textit{codomain}への写像$\phi\colon \Lambda' \longrightarrow \Lambda$を解の列に作用させることとして定義する. ただし, 完成盤面から完成可能盤面を生成する具体的なアルゴリズムは\cref{section:GenericAlgorithm}で取り上げる. ある完成盤面があって具体的にHIを与えた際には写像は具体的に構成することができ, それは\cref{equation:Phi}で取り上げる.
 
 \begin{definition}[\textit{Hidden Information}（HI）]\label{definition:HiddenInformation}
   ある完成盤面があったとき, ソルバーから隠す位置の部分集合を\textbf{\textit{Hidden Information}（HI）}と定義する.
@@ -161,10 +161,12 @@ $\bm{\lambda}\colon \{\,\lambda(i_y,j_y,y)\,\} \longrightarrow \Lambda$の間に
 具体的な完成盤面を与えた際には具体的なHIを与えられる. そのとき, 写像$\phi$が具体的に構成することができて,
 \begin{equation}\label{equation:Phi}
   \phi(\lambda(i_y,j_y,y))=
-  \begin{cases}
-    {\lambda(i_y,j_y,y) \quad (\lambda(i_y,j_y,y) \not\in \text{HI})} \\
-    {\textit{null} \quad (\lambda(i_y,j_y,y) \in \text{HI})}
-  \end{cases}
+  \left\{
+  \begin{alignedat}{2}
+    &\lambda(i_y,j_y,y) \quad &  & (\lambda(i_y,j_y,y) \not\in \text{HI}) \\
+    &\textit{null} \quad      &  & (\lambda(i_y,j_y,y) \in \text{HI})
+  \end{alignedat}
+  \right.
 \end{equation}
 と記述することができる.
 
@@ -181,19 +183,19 @@ $\bm{\lambda}\colon \{\,\lambda(i_y,j_y,y)\,\} \longrightarrow \Lambda$の間に
 \end{remark}
 
 なぜなら完成盤面から解を隠した盤面があったとき, その盤面における全ての位置の状態を既知にしたとき全ての解が\textit{conditions}に従う完成盤面は一つとは限らないためである（元の完成盤面以外に違う完成盤面が\textit{conditions}に従う可能性がある. ）. よってそれはあくまで盤面であり完成可能盤面とは限らないことに注意する.
-\begin{example}
-  例として\cref{figure:HIExample_Complete}にある, スリザーリンクの完成盤面からHIを
+\begin{example}\label{example:HI}
+  例として\cref{figure:HIExample_Complete}のスリザーリンクの完成盤面からHIを
   \begin{align}
      & \{\,c(2,1)\,\}        \\
      & \{\,e(i_y,j_y,y)\,\}.
   \end{align}
   を選んだものが\cref{figure:HIExample_Incomplete}であるが, これは完成盤面として他に\cref{figure:HIExample_OtherComplete}が考えられる. よって\cref{figure:HIExample_Incomplete}は非完成盤面ではない.
 \end{example}
-以上の例完成盤面の存在は問題の存在と同値にならない. しかし, 既存のパズルルールにおいては藤原 \cite{Fujiwara2022}より以下（\cref{theorem:AutoGeneration}）が成立することが示されている. ただし既存のパズルルールとは, 藤原 \cite{Fujiwara2022}が想定しているパズルルールの適用範囲内に従う.
+以上の\cref{example:HI}より, 完成盤面の存在は問題の存在と同値にならない. しかし, 既存のパズルルールにおいては藤原 \cite{Fujiwara2022}より以下（\cref{theorem:AutoGeneration}）が成立することが示されている. ただし既存のパズルルールとは, 藤原 \cite{Fujiwara2022}が想定しているパズルルールの適用範囲内に従う.
 \begin{theorem}\label{theorem:AutoGeneration}
   既存のパズルルールにおいて, ある完成盤面が存在したとき, その完成盤面から非完成盤面を任意に生成することができる. つまり, 完成盤面の存在は問題の存在と同値である.
 \end{theorem}
-\cref{theorem:AutoGeneration}における具体的な生成方法については, \cref{section:GenericAlgorithm}で触れる. ただし, 本研究で定義する全てのパズルルールの任意の完成盤面に未知の状態が含まれる完成可能盤面が存在しているわけではないことに注意する. 完成盤面の存在が問題の存在と同値にする\textit{conditions}の制約条件は解明できていない. その制約条件が解明されればいかなるパズルルールにおいても\cref{theorem:AutoGeneration}から問題を作成することができるため, これを今後の研究課題とする.
+\cref{theorem:AutoGeneration}における具体的な生成方法については, \cref{section:GenericAlgorithm}で触れる. ただし, 本研究で定義する全てのパズルルールの任意の完成盤面に, 未知の状態を含む完成可能盤面が存在しているわけではないことに注意する. 完成盤面の存在が問題の存在と同値にする\textit{conditions}の制約条件は解明できていない. その制約条件が解明されればいかなるパズルルールにおいても\cref{theorem:AutoGeneration}から問題を作成することができるため, これを今後の研究課題とする.
 
 ここでHIと関連して, パズルルールによっては\textit{null}と, 解のうちのいずれかがソルバーに同一の状態として示される場合がある. 例としてスリザーリンク（\cref{example:SlitherLinkCodomain}）においては$e_{i_y,j_y,y} = 0$のときと$e_{i_y,j_y,y}=\textit{null}$のとき, ソルバーに同一の状態として伝えられていた. これらの対応はパズルルールにおいて明示するべきものである. これを\textit{identification}として定義する. ただし, 同一の状態として示されない（\textit{null}という形でソルバーに示される）場合にはこの対応は明示しないものとする.
 
@@ -213,7 +215,7 @@ $\bm{\lambda}\colon \{\,\lambda(i_y,j_y,y)\,\} \longrightarrow \Lambda$の間に
 
 
 \section{パズルルールの定義}\label{section:PuzzleRuleDefinition}
-以下のようにペンシルパズルのパズルルールを定義する.
+\cref{section:MathematicalDefinition}の概念を用いることにより, 以下のようにペンシルパズルのパズルルールを定義する.
 \begin{definition}[パズルルール]\label{definition:PuzzleRule}
   \textit{codomain}, \textit{conditions}, HI, \textit{identification}の組み合わせを\textbf{パズルルール}と定義する.
 \end{definition}
@@ -235,12 +237,12 @@ $\bm{\lambda}\colon \{\,\lambda(i_y,j_y,y)\,\} \longrightarrow \Lambda$の間に
 
 \cref{figure:Replace}のようにグリッドを引き直す操作を数学的に以下で定義する.
 \begin{definition}[リプレイス]\label{definition:Replace}
-  盤面$B$を与えられたとき, 以下の変換を考えることができる
+  盤面$B$を与えたとき, 以下の変換を考えることができる
   \begin{align}
     \bm{f_p}\colon & p(i,j)  \longmapsto c'(i,j)  \\
     \bm{f_c}\colon & c(i,j)  \longmapsto p'(i,j).
   \end{align}
-  ただし, 変換後の座標は左上を$(0,0)$とする.
+  ただし, 変換後の座標は左上端を$(0,0)$とする.
   また, それぞれの位置に対応する状態も, 変換後の位置に対応させるものとする. 辺$e(i_y,j_y,y)$は$p(i,j)$を繋いでいたものをそのまま$c'(i,j)$を繋ぐものとし, \cref{figure:Replace}のように辺を対応させ, 状態も変化させないものとする. 変換後のグリッド上の見かけの辺には位置, 状態ともに割り当てないものとする. ただし, $p'_{0,n'}$, $p'_{m+1,n'}$, $p'_{m',0}$, $p'_{m',n+1}$はそれぞれ$\emptyset$とする$（0\le m' \le m+1$, $0\le n'\le n+1）$.
 
   このような変換をいかなる盤面においても考えることができ, これらの写像$\bm{f_p}$, $\bm{f_c}$をまとめて行う操作のことを\textbf{リプレイス}と定義する.
@@ -267,18 +269,19 @@ $\bm{\lambda}\colon \{\,\lambda(i_y,j_y,y)\,\} \longrightarrow \Lambda$の間に
 % 上記のシフトを用いることで, ソルバーに分かりやすい情報の提示が可能になる場合がパズルルールによっては存在する. 便宜上, シフトを行った盤面を\textbf{変換盤面}と以下では呼ぶこととする. 変換盤面が含まれる集合は\cref{equation:U}とは異なることに注意する（$p'_{1,n'}$, $p'_{m+2,n'}$, $p'_{m',1}$, $p'_{m',n+2}$は状態を考えないため. ）.
 
 \section{{\it conditions}の具体的な構成方法}\label{section:ConcreteConditions}
-\cref{section:ConcreteConditions}ではパズルルールの特性を左右する\textit{conditions}を具体的に構成する方法について\cref{example:SlitherLinkConditions}や\cref{chapter:Demonstration}で登場するもののみについて説明を行う. ただし, ここで触れる構成方法については限定的なものであり他に記述する際には新たな概念を導入する必要がある場合がある. ただし, 本論文の主旨とは少し異なるため詳しくは触れないものとする.
+\cref{section:ConcreteConditions}ではパズルルールの特性を左右する\textit{conditions}を具体的に構成する方法について\cref{example:SlitherLinkConditions}や\cref{chapter:Demonstration}で登場するもののみについて説明を行う. ただし, ここで触れる構成方法については限定的なものであり, 他のパズルルールの\textit{conditions}を記述する際には新たな概念を導入する必要がある. ただし, それは本論文の主旨とは少し異なるためそれらについては触れないものとする.
 \subsection{関数}\label{subsection:Function}
 \textit{conditions}を構成するにあたり, 関数を定義しておくと便利な場合が多い. ここでは, その中でも頻用するcross関数とcycle関数について定義を行っておく.
-完成盤面においては位置と解が一対一に対応することにより, $\mathbb{E}$が要素として数値のみを持つ場合に限り新たに下記のような関数を導入することができる(\cref{figure:cross}, \cref{figure:cycle}).
+完成盤面においては位置と解が一対一に対応することにより, $\mathbb{E}$が要素として数値のみを持つ場合に限り新たに下記のような関数を導入することができる（\cref{figure:cross}, \cref{figure:cycle}）.
 
 \begin{definition}[\text{cross}, \text{cycle}]\label{definition:Function}
   盤面の位置を変数に取る関数として, 格子点$p(i,j)$を変数に取るcross関数と細胞$c(i,j)$を変数に取るcycle関数を以下で定義する
   \begin{align}
-    \text{cross}(p(i,j))\coloneqq h_{i,j-1}+v_{i-1,j}+h_{i,j}+v_{i,j} \\
-    \text{cycle}(c(i,j))\coloneqq h_{i,j}+v_{i,j}+h_{i+1,j}+v_{i,j+1}.
+    \text{cross}(\,p(i,j)\,)\coloneqq h_{i,j-1}+v_{i-1,j}+h_{i,j}+v_{i,j} &   \\
+    \text{cycle}(\,c(i,j)\,)\coloneqq h_{i,j}+v_{i,j}+h_{i+1,j}+v_{i,j+1} & .
   \end{align}
 \end{definition}
+
 
 直感的にはcross関数はある格子点$p(i,j)$を与えたとき, その格子点を通る辺の本数を返す関数であり, cycle関数はある細胞$c(i,j)$を与えたとき, その細胞をの周りにある辺の本数を返す関数である.
 繰り返しになるが, ここで取り上げる関数は\textit{conditions}を記述するにあたり\cref{example:SlitherLinkConditions}や\cref{chapter:Demonstration}を含む, 多くのパズルルールで使用されるというものであり他のパズルルールにおいては他の関数が必要になることがあることに注意する.
@@ -293,7 +296,7 @@ $\bm{\lambda}\colon \{\,\lambda(i_y,j_y,y)\,\} \longrightarrow \Lambda$の間に
 到達可能とは離れた辺と辺へと向かう道が存在することである.
 
 \begin{definition}[連結]\label{definition:Connection}
-  辺$e(i_y,j_y,y)$と辺$e(i_{y'}',j_{y'}',y')$が\textbf{連結}であるとは, 以下が成立することで定義する
+  辺$e(i_y,j_y,y)$と辺$e(i_{y'}',j_{y'}',y')$が\textbf{連結}であることを, 以下が成立することで定義する
   \begin{equation}
     \begin{cases}
       {e_{i_y,j_y,y}=1,\quad e_{i_{y'}',j_{y'}',y'}  =     1          } \\
@@ -303,14 +306,14 @@ $\bm{\lambda}\colon \{\,\lambda(i_y,j_y,y)\,\} \longrightarrow \Lambda$の間に
 \end{definition}
 
 \begin{definition}[含有]\label{definition:Contain}
-  辺$e(i_y,j_y,y)$が格子点$p(i',j')$を\textbf{含む（含有する）}とは以下が成立することで定義する
+  辺$e(i_y,j_y,y)$が格子点$p(i',j')$を\textbf{含む（含有する）}ことを, 以下が成立することで定義する
   \begin{equation}
     \begin{cases}
       {e_{i_y,j_y,y}=1               } \\
       {e(i_y,j_y,y)\supset p(i',j')}.
     \end{cases}
   \end{equation}
-  以下同様に, 細胞$c(i,j)$が辺$e(i_{y'}',j_{y'}',y')$を含む, 細胞$c(i,j)$が格子点$p(i',j')$を含むことを以下が成立することでそれぞれ定義する
+  以下同様に, 細胞$c(i,j)$が辺$e(i_{y'}',j_{y'}',y')$を含むことと, 細胞$c(i,j)$が格子点$p(i',j')$を含むことを以下が成立することでそれぞれ定義する
   \begin{equation}
     \begin{cases}
       {e_{i_{y'}',j_{y'}',y'}=1 } \\
@@ -321,7 +324,7 @@ $\bm{\lambda}\colon \{\,\lambda(i_y,j_y,y)\,\} \longrightarrow \Lambda$の間に
     c(i,j)\supset p(i',j').
   \end{align}
 \end{definition}
-このような含有の概念を考えることで細胞, 辺が持つ集合を考えることができる. それらを$P_{c(i,j)}$, $E_{c(i,j)}$, $P_{e(i_y,j_y,y)}$として以下で定義する. ただし, $c(i,j)\supset e(i_{y'}',j_{y'}',y')$などと記述する場合には$c(i,j)$に（本研究における）含まれる$e(i_y,j_y,y)$という意味で用いる.
+このような含有の概念を考えることで細胞, 辺が持つ集合を考えることができる. それらを$P_{c(i,j)}$, $E_{c(i,j)}$, $P_{e(i_y,j_y,y)}$として以下で定義する. ただし, $c(i,j)\supset e(i_{y'}',j_{y'}',y')$などと記述する場合には$c(i,j)$に$e(i_y,j_y,y)$が（本研究における）含まれるという意味で用いる.
 \begin{definition}[$P_{c(i,j)}$, $E_{c(i,j)}$, $P_{e(i_y,j_y,y)}$]
   細胞$c(i,j)$が含む格子点の集合$P_{c(i,j)}$, 細胞$c(i,j)$が含む辺の集合$E_{c(i,j)}$, 辺$e(i_y,j_y,y)$が含む格子点の集合$P_{e(i_y,j_y,y)}$を以下で定義する
   \begin{align}
@@ -350,20 +353,20 @@ $\bm{\lambda}\colon \{\,\lambda(i_y,j_y,y)\,\} \longrightarrow \Lambda$の間に
 \end{remark}
 
 \begin{example}[連結, 含有, 隣接, 到達可能]
-  \cref{figure:SlitherLink}の完成盤面（下図）において, $h(4,1)$と$v(1,4)$は連結であり, $c(3,4)$は$v(4,4)$のみを含み, $c(2,2)$と$c(2,3)$は隣接しており, $h(3,8)$から$v(8,1)$へは辿ることができる.
+  \cref{figure:SlitherLink}の完成盤面において, $h(4,1)$と$v(1,4)$は連結である. $c(3,4)$は$v(4,4)$のみを含む. $c(2,2)$と$c(2,3)$は隣接である. $h(3,8)$から$v(8,1)$へは辿ることができる.
 \end{example}
 以上の定義を用いることによって, 新たに「線」という概念を導入することができる.
 
 \begin{definition}[線]\label{definition:Line}
   盤面に存在する全ての辺を含む集合$\{\,e_{i,j}\,\}$の部分集合$L$の全ての要素から任意の2つの元を取り出したとき, いつでもそれらが互いに辿ることができるときその集合$L$を\textbf{線}であると定義する.
 \end{definition}
-この線はグラフ理論の用語を用いたときの連結グラフとほとんど同義である. \cref{figure:SlitherLink}の完成盤面（下図）において, 集合$\{\,h(3,2),v(4,1),h(4,1),h(5,1)\,\}$は線である. この線も含有という関係性を定義することができる.
+この線はグラフ理論の用語を用いたときの連結グラフとほとんど同義である. \cref{figure:SlitherLink}の完成盤面において, 集合$\{\,h(3,2),v(4,1),h(4,1),h(5,1)\,\}$は線である. この線も含有という関係性を定義することができる.
 \begin{definition}[線の含有]
   線$L$が線$L'$を含むとは以下が成立することで定義する
   \begin{equation}
     L\supset L'.
   \end{equation}
-  同様に線$L$が辺$e(i_y,j_y,y)$, 格子点$p(i,j)$が含むことを以下が成立することでそれぞれ定義する
+  同様に線$L$が辺$e(i_y,j_y,y)$, 格子点$p(i,j)$が含むことを以下の成立によりそれぞれ定義する
   \begin{equation}
     \begin{cases}
       {L\supset  e(i_y,j_y,y) } \\
@@ -389,7 +392,7 @@ $\bm{\lambda}\colon \{\,\lambda(i_y,j_y,y)\,\} \longrightarrow \Lambda$の間に
 \end{equation}
 
 また\cref{definition:Function}で取り上げた関数のうち, グラフが定義に$p(i,j)$を含むことによりcross関数を用いて「グラフ内の全ての$p(i,j)$において, $\text{cross}(p(i,j))=2$」などという条件を構成できる. グラフという概念を導入したことにより, \cref{definition:Conditions}で取り上げた\textit{conditions}を記述することができる.
-\begin{example}\textup{スリザーリンクの\textit{conditions}}\label{example:SlitherLinkConditions}
+\begin{example}[スリザーリンクの\textit{conditions}]\label{example:SlitherLinkConditions}
   スリザーリンクの\textit{conditions}は以下のように記述することができる
   \begin{align}
      & B\ni \forall p(i,j)   , \forall c_{i,j} , \text{cross}(p(i,j))=c_{i,j}\label{equation:SlitherLinkConditions_1} \\
@@ -411,7 +414,7 @@ $\bm{\lambda}\colon \{\,\lambda(i_y,j_y,y)\,\} \longrightarrow \Lambda$の間に
 \end{clearpagefigure}
 
 \begin{clearpagefigure}
-  \includegraphics[width=0.85\linewidth,clip]{fig/NumberPlaceQuestion.eps}
+  \includegraphics[width=0.85\linewidth,clip]{fig/NumberPlaceIncomplete.eps}
   \caption{数独（ナンバープレイス）の完成可能盤面. 実際の盤面は \cite{web:Sudoku}からの引用. }
   \label{figure:NumberPlaceQuestion}
 \end{clearpagefigure}
@@ -429,10 +432,25 @@ $\bm{\lambda}\colon \{\,\lambda(i_y,j_y,y)\,\} \longrightarrow \Lambda$の間に
 \end{clearpagefigure}
 
 \begin{clearpagefigure}
-  \includegraphics[width=0.5\linewidth,clip]{fig/slitherlink.eps}
-  \caption{スリザーリンクの完成可能盤面（上）と完成盤面（下）. $e_{i_y,j_y,y}=1$はオレンジ色の線で記述している. 分かりやすいように, $p(1,1)$, $p(1,8)$, $p(8,8)$, $p(8,1)$は緑色の太線で結んでいる. 実際の盤面は \cite{web:SlitherLink}からの引用. }
+  \includegraphics[width=\linewidth,clip]{fig/Slitherlink.eps}
+  \caption{スリザーリンクの完成盤面. 実際の盤面は \cite{web:SlitherLink}からの引用. }
   \label{figure:SlitherLink}
 \end{clearpagefigure}
+
+\begin{clearpagefigure}
+  \includegraphics[width=\linewidth,clip]{fig/SlitherLinkIncomplete.eps}
+  \caption{\cref{figure:SlitherLink}に対応するスリザーリンクの完成可能盤面. 実際の盤面は \cite{web:SlitherLink}からの引用. }
+  \label{figure:SlitherLinkIncomplete}
+\end{clearpagefigure}
+
+\begin{clearpagefigure}
+  \includegraphics[width=\linewidth,clip]{fig/SlitherLinkOtherIncomplete.eps}
+  \caption{\cref{figure:SlitherLink}に対応する\cref{figure:SlitherLinkIncomplete}とは異なるスリザーリンクの完成可能盤面. 実際の盤面は \cite{web:SlitherLink}からの引用. }
+  \label{figure:SlitherLinkOtherIncomplete}
+\end{clearpagefigure}
+
+
+
 
 \begin{clearpagefigure}
   \includegraphics[width=0.7\linewidth,clip]{fig/HIExample_Complete.eps}

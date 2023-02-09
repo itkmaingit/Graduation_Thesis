@@ -14,13 +14,13 @@
 \end{example}
 
 \begin{example}[スリザーリンクの数学的記述]
-  スリザーリンクの\textit{codomain}, \textit{conditions}, HI, \textit{identification}はそれぞれ\cref{example:SlitherLinkCodomain}, \cref{example:SlitherLinkConditions}, \cref{example:SlitherLinkHiddenInformation}, \cref{example:SlitherLinkIndentification}である. \textit{conditions}に関し, \cref{example:SlitherLinkRule}の\ref{SlitherLinkRule_1}と\ref{SlitherLinkRule_3}は\cref{equation:SlitherLinkConditions_2}と\cref{equation:SlitherLinkConditions_3}に対応し, \cref{example:SlitherLinkRule}の\ref{SlitherLinkRule_2}は\cref{equation:SlitherLinkConditions_1}に対応している.
+  スリザーリンクの\textit{codomain}, \textit{conditions}, HI, \textit{identification}はそれぞれ\cref{example:SlitherLinkCodomain}, \cref{example:SlitherLinkConditions}, \cref{example:SlitherLinkHiddenInformation}, \cref{example:SlitherLinkIndentification}である. \textit{conditions}に関し, \cref{example:SlitherLinkRule}の\ref{SlitherLinkRule_1}と\ref{SlitherLinkRule_3}は\cref{equation:SlitherLinkConditions_2}と\cref{equation:SlitherLinkConditions_3}に対応する. \cref{example:SlitherLinkRule}の\ref{SlitherLinkRule_2}は\cref{equation:SlitherLinkConditions_1}に対応している.
 
-  このパズルルールから具体的に完成盤面を選んだものに\cref{figure:SlitherLink}の下図が含まれる. 非完成盤面は\cref{figure:SlitherLink}の上図であり, 確かにこれはスリザーリンクの（\cref{figure:SlitherLink}の完成盤面に対応する）問題の元であることが分かる.
+  このパズルルールから具体的に完成盤面を選んだものに\cref{figure:SlitherLink}が含まれる. 非完成盤面は\cref{figure:SlitherLinkIncomplete}であり, 確かにこれはスリザーリンクの（\cref{figure:SlitherLink}の完成盤面に対応する）問題の元であることが分かる.
 \end{example}
 
 \begin{example}[ナンバーリンクの数学的記述]
-  ナンバーリンクは, 以下で示す\textit{codomain}, \textit{conditions}で定めた盤面をリプレイスすることによりナンバーリンクの盤面を表すことができる.
+  ナンバーリンクは, 以下に示す\textit{codomain}, \textit{conditions}で定めた盤面をリプレイスすることによりナンバーリンクの盤面を表すことができる.
   \textit{codomain}は以下のように記述することができる
   \begin{align}
      & \mathbb{P}=\emptyset                                             \\
@@ -46,13 +46,13 @@
     e:\textit{null}\leftrightarrow 0.
   \end{equation}
 
-  \textit{conditions}に関し, \cref{example:NumberLinkRule}の\ref{NumberLinkRule_1}は\cref{equation:NumberLinkConditions_1}と\cref{equation:NumberLinkConditions_2}と\cref{equation:NumberLinkConditions_4}に含まれ, \ref{NumberLinkRule_2}は\cref{equation:NumberLinkConditions_3}に対応し, \ref{NumberLinkRule_2}は\cref{equation:NumberLinkConditions_4}に含まれ,\cref{example:NumberLinkRule}の\ref{NumberLinkRule_4}は\textit{codomain}の時点で保証される.
+  \textit{conditions}に関し, それぞれ\cref{example:NumberLinkRule}の\ref{NumberLinkRule_1}は\cref{equation:NumberLinkConditions_1}と\cref{equation:NumberLinkConditions_2}と\cref{equation:NumberLinkConditions_4}に含まれる. \ref{NumberLinkRule_2}は\cref{equation:NumberLinkConditions_3}に対応する. \ref{NumberLinkRule_2}は\cref{equation:NumberLinkConditions_4}に含まれる. \cref{example:NumberLinkRule}の\ref{NumberLinkRule_4}は\textit{codomain}の時点で保証される.
 
-  このパズルルールから具体的に完成盤面を選んだものは\cref{figure:NumberLink}であり, 非完成盤面は\cref{figure:NumberLinkQuestion}であり, これをリプレイスしたものがそれぞれ\cref{figure:NumberLinkReplace}, \cref{figure:NumberLinkQuestionReplace}である. これは確かにスリザーリンクの完成盤面であることが分かる.
+  このパズルルールから具体的に完成盤面を選んだものは\cref{figure:NumberLink}であり, 非完成盤面は\cref{figure:NumberLinkQuestion}である. これらをリプレイスしたものがそれぞれ\cref{figure:NumberLinkReplace}, \cref{figure:NumberLinkQuestionReplace}である. これは確かにスリザーリンクの完成盤面であることが分かる.
 \end{example}
 
 \section{新しいパズルルールの作成}\label{section:NewPuzzleRule}
-\cref{section:NewPuzzleRule}では\cref{chapter:Definition}で定義したパズルルールで, 新しいパズルルールが作成できることを説明する. まず, 以下のように\textit{codomain}, \textit{conditions}, HI, \textit{identification}を次のように選ぶ.
+\cref{section:NewPuzzleRule}では\cref{chapter:Definition}において定義したパズルルールで, 新しいパズルルールが作成できることを説明する. まず, 以下のように\textit{codomain}, \textit{conditions}, HI, \textit{identification}を次のように選ぶ.
 
 \textit{codomain}は以下とする
 \begin{align}
@@ -108,7 +108,7 @@ HIは以下とする
 \end{clearpagefigure}
 
 \begin{clearpagefigure}
-  \includegraphics[width=0.5\linewidth,clip]{fig/NewPuzzleRule.eps}
+  \includegraphics[width=0.5\linewidth,clip]{fig/NewPuzzle.eps}
   \caption{新しく作成したパズルルール. 上が非完成盤面, 下が完成盤面. }
   \label{figure:NewPuzzleRule}
 \end{clearpagefigure}
